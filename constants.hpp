@@ -1,0 +1,7 @@
+#ifndef CONSTANTS_HPP
+#define CONSTANTS_HPP
+
+#define BUFFER_SIZE 256
+#define DEFAULT_ARGS_SIZE 8
+
+#endif // CONSTANTS_HPP
