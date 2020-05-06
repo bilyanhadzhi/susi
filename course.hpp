@@ -1,7 +1,7 @@
 #ifndef COURSE_HPP
 #define COURSE_HPP
 
-#include "string.hpp"
+#include "lib/string.hpp"
 #include "course_type.hpp"
 
 class Course

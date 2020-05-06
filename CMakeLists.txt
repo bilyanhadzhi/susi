@@ -9,7 +9,8 @@ set(Sources
     io_handler.cpp
     student.cpp
     course.cpp
-    string.cpp
+    lib/string.cpp
+    major.cpp
     susi.cpp
 )
 
@@ -18,7 +19,9 @@ set(Headers
     io_handler.hpp
     student.hpp
     course.hpp
-    string.hpp
+    lib/string.hpp
+    lib/vector.hpp
+    major.hpp
     susi.hpp
 )
 

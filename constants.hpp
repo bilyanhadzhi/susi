@@ -2,6 +2,11 @@
 #define CONSTANTS_HPP
 
 #define BUFFER_SIZE 256
-#define DEFAULT_ARGS_SIZE 8
+
+// IOHandler
+#define IOHANDLER_DEFAULT_ARGS_SIZE 8
+
+// Vector
+#define VECTOR_DEFAULT_CAPACITY 16
 
 #endif // CONSTANTS_HPP

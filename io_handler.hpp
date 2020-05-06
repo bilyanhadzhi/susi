@@ -1,7 +1,7 @@
 #ifndef IO_HANDLER_HPP
 #define IO_HANDLER_HPP
 
-#include "string.hpp"
+#include "lib/string.hpp"
 
 class IOHandler
 {

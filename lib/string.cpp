@@ -1,7 +1,7 @@
 #include <cstring>
 #include <cassert>
 #include "string.hpp"
-#include "constants.hpp"
+#include "../constants.hpp"
 
 void String::copy_from(const String& other)
 {
@@ -98,8 +98,13 @@ void String::increase_capacity()
 
 int String::get_needed_capacity(const char* string)
 {
-    int temp_capacity = this->capacity;
+    int temp_capacity = BUFFER_SIZE;
     int str_len = strlen(string);
+
+    if (str_len == 0)
+    {
+        return temp_capacity;
+    }
 
     while (temp_capacity < str_len)
     {

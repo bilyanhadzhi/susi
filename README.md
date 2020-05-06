@@ -1,2 +1,2 @@
 # susi
-Student system app for FMI's OOP course.
+Student information system app for FMI's OOP course.

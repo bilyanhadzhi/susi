@@ -43,7 +43,7 @@ void IOHandler::set_command(const char* command)
 
 IOHandler::IOHandler()
 {
-    this->args_capacity = DEFAULT_ARGS_SIZE;
+    this->args_capacity = IOHANDLER_DEFAULT_ARGS_SIZE;
     this->number_of_args = 0;
     this->args = new String[this->args_capacity];
 }
@@ -79,7 +79,7 @@ void IOHandler::input_command()
 void IOHandler::input_args(std::istream& i_stream)
 {
     this->free_args();
-    this->args_capacity = DEFAULT_ARGS_SIZE;
+    this->args_capacity = IOHANDLER_DEFAULT_ARGS_SIZE;
     this->args = new String[this->args_capacity];
 
     do
