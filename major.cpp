@@ -20,7 +20,7 @@ void Major::free_memory()
 
 Major::Major()
 {
-    this->max_years = 4;
+    this->max_years = MAX_YEAR;
     this->courses = new Vector<Course>[max_years];
 }
 

@@ -6,15 +6,13 @@
 class PassedCourse: public Course
 {
 private:
-    int grade;
-    // void copy_from(const PassedCourse& other);
+    double grade;
     //! Get whether grade is in range [2, 6]
-    bool is_valid_grade(int grade);
+    void set_grade(double grade);
 
 public:
     PassedCourse();
-    PassedCourse(Course* course, int grade);
-    // PassedCourse(const PassedCourse& other);
+    PassedCourse(Course* course, double grade);
 };
 
 #endif // PASSED_COURSE_HPP

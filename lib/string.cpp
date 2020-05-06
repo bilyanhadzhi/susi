@@ -58,6 +58,8 @@ String& String::operator=(const char* str)
     assert(str != nullptr);
 
     this->set_value(str);
+
+    return *this;
 }
 
 String::~String()

@@ -3,15 +3,21 @@
 #include "lib/vector.hpp"
 #include "io_handler.hpp"
 #include "passed_course.hpp"
+#include "student.hpp"
 
 void test_io_handler();
 void test_vector();
 void test_passed_course();
-
+void test_student();
 
 int main(void)
 {
-    test_passed_course();
+    test_student();
+}
+
+void test_student()
+{
+    std::cout << sizeof(Student) << std::endl;
 }
 
 void test_io_handler()
