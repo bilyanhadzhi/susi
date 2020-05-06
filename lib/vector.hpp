@@ -80,6 +80,8 @@ Vector<T>& Vector<T>::operator=(const Vector& other)
 
     this->free_memory();
     this->copy_from(other);
+
+    return *this;
 }
 
 template<typename T>

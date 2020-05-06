@@ -73,7 +73,7 @@ IOHandler::~IOHandler()
 void IOHandler::input_command()
 {
     std::cin >> this->command;
-    std::cout << this->command << std::endl;
+    // std::cout << this->command << std::endl;
 }
 
 void IOHandler::input_args(std::istream& i_stream)
@@ -93,13 +93,11 @@ void IOHandler::input_args(std::istream& i_stream)
     }
     while (i_stream.peek() != '\n');
 
-    //
-    for (int i = 0; i < this->number_of_args; ++i)
-    {
-        std::cout << this->args[i] << "|";
-    }
-    std::cout << std::endl;
-
+    // for (int i = 0; i < this->number_of_args; ++i)
+    // {
+    //     std::cout << this->args[i] << "|";
+    // }
+    // std::cout << std::endl;
 }
 
 void IOHandler::increase_args_capacity()

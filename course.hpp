@@ -15,8 +15,6 @@ public:
     Course();
     Course(const char* name, CourseType type);
     Course(const Course& other);
-    Course& operator=(const Course& other);
-    ~Course();
 };
 
 #endif // COURSE_HPP
