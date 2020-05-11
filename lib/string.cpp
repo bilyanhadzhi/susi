@@ -37,6 +37,7 @@ String::String(const char* str)
 String::String(const String& other)
 {
     this->capacity = other.capacity;
+    this->value = nullptr;
     this->set_value(other.value);
     this->len = other.len;
 }
@@ -98,7 +99,7 @@ void String::increase_capacity()
     this->value = value_new_capacity;
 }
 
-int String::get_needed_capacity(const char* string)
+int String::get_needed_capacity(const char* string) const
 {
     int temp_capacity = BUFFER_SIZE;
     int str_len = strlen(string);
@@ -123,21 +124,7 @@ std::ostream& operator<<(std::ostream& o_stream, const String& string)
     return o_stream;
 }
 
-std::istream& operator>>(std::istream& i_stream, String& string)
-{
-    char buf[BUFFER_SIZE];
-    i_stream >> buf;
-
-    string.free_memory();
-    string.capacity = string.get_needed_capacity(buf);
-    string.value = new char[string.capacity];
-    strcpy(string.value, buf);
-    string.len = strlen(string.value);
-
-    return i_stream;
-}
-
-char String::operator[](int i)
+char String::operator[](int i) const
 {
     assert(i >= 0);
 
@@ -147,4 +134,116 @@ char String::operator[](int i)
     }
 
     return this->value[i];
+}
+
+void String::input(std::istream& i_stream, bool whole_line)
+{
+    char curr_char;
+    int string_len = 0;
+    int string_capacity = BUFFER_SIZE;
+
+    char* new_string_value = new char[string_capacity];
+
+    if (i_stream.peek() == EOF || i_stream.peek() == '\n')
+    {
+        delete[] new_string_value;
+        this->set_value("");
+
+        if (i_stream.peek() == '\n')
+        {
+            i_stream.get();
+        }
+        return;
+    }
+
+    // skip whitespace
+    while (i_stream.peek() == ' ')
+    {
+        i_stream.get();
+    }
+
+    // i_stream.get(curr_char);
+    // new_string_value[string_len++] = curr_char;
+
+    do
+    {
+        curr_char = i_stream.get();
+
+        if (!whole_line && curr_char == ' ')
+        {
+            break;
+        }
+        if (curr_char == '\n' || curr_char == EOF)
+        {
+            break;
+        }
+
+        if (string_len + 1 >= string_capacity)
+        {
+            char* bigger = new char[string_capacity *= 2];
+            strcpy(bigger, new_string_value);
+
+            delete[] new_string_value;
+            new_string_value = bigger;
+        }
+
+        new_string_value[string_len++] = curr_char;
+    } while (i_stream.peek() != '\n');
+
+    new_string_value[string_len] = '\0';
+    this->set_value(new_string_value);
+}
+
+std::istream& operator>>(std::istream& i_stream, String& string)
+{
+    string.input(i_stream);
+
+    return i_stream;
+}
+
+bool operator==(const String& left_string, const String& right_string)
+{
+    return strcmp(left_string.value, right_string.value) == 0;
+}
+
+bool operator==(const String& string, const char* c_string)
+{
+    return strcmp(string.value, c_string) == 0;
+}
+
+bool operator==(const char* c_string, const String& string)
+{
+    return strcmp(c_string, string.value) == 0;
+}
+
+bool operator!=(const String& left_string, const String& right_string)
+{
+    return !(left_string == right_string);
+}
+
+bool operator!=(const String& string, const char* c_string)
+{
+    return !(string == c_string);
+}
+
+bool operator!=(const char* c_string, const String& string)
+{
+    return !(c_string == string);
+}
+
+String& String::operator+=(const char new_char)
+{
+    if (this->len + 1 >= this->capacity)
+    {
+        this->increase_capacity();
+    }
+
+    this->value[len++] = new_char;
+
+    return *this;
+}
+
+int String::get_len() const
+{
+    return this->len;
 }

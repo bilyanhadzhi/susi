@@ -47,3 +47,6 @@ _deps
 # doxygen
 html/
 latex/
+
+# dummy text
+random.txt

@@ -2,6 +2,7 @@
 #define VECTOR_HPP
 
 #include "../constants.hpp"
+#include <cassert>
 
 template<typename T>
 class Vector
@@ -14,14 +15,21 @@ private:
     void copy_from(const Vector<T>& other);
     void free_memory();
     void increase_capacity();
+    void init_vector();
 
 public:
     Vector();
     Vector(const Vector& other);
     Vector<T>& operator=(const Vector& other);
     ~Vector();
+    //! Restore vector to initial state
+    void empty_vector();
     //! Add element at the end of the vector
     void push(T value);
+    //! Get the (semantical) length of the vector
+    int get_len() const;
+    //! Get value of element at i-th index
+    T operator[](int i) const;
 };
 
 template<typename T>
@@ -52,6 +60,12 @@ void Vector<T>::copy_from(const Vector<T>& other)
 
 template<typename T>
 Vector<T>::Vector()
+{
+    this->init_vector();
+}
+
+template<typename T>
+void Vector<T>::init_vector()
 {
     this->elements_capacity = VECTOR_DEFAULT_CAPACITY;
     this->elements = new T*[this->elements_capacity];
@@ -113,6 +127,28 @@ void Vector<T>::push(T value)
     }
 
     this->elements[this->elements_count++] = new T(value);
+}
+
+template<typename T>
+int Vector<T>::get_len() const
+{
+    return this->elements_count;
+}
+
+template<typename T>
+T Vector<T>::operator[](int i) const
+{
+    assert(i >= 0);
+    assert(i < this->elements_count);
+
+    return *(this->elements[i]);
+}
+
+template<typename T>
+void Vector<T>::empty_vector()
+{
+    this->free_memory();
+    this->init_vector();
 }
 
 #endif // VECTOR_HPP

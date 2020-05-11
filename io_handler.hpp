@@ -2,32 +2,27 @@
 #define IO_HANDLER_HPP
 
 #include "lib/string.hpp"
+#include "lib/vector.hpp"
 
 class IOHandler
 {
 private:
     String command;
-    String* args;
-    int number_of_args;
-    int args_capacity;
-    void free_memory();
-    void free_args();
-    void copy_from(const IOHandler& other);
-    // Copy args into this' args
-    void set_args(String* args, int number_of_args);
+    Vector<String> args;
     void set_command(const char* command);
-    // Double the arg capacity and move them into new array
-    void increase_args_capacity();
+    void clean_args();
 
 public:
-    IOHandler();
-    IOHandler(const IOHandler& other);
-    IOHandler& operator=(const IOHandler& other);
-    ~IOHandler();
     //! Get first string from the console
     void input_command();
     //! Get argument list (works for files, too)
     void input_args(std::istream& i_stream);
+    //! Get current command
+    String get_command() const;
+    //! Get current arguments in a list
+    Vector<String> get_args() const;
+    //! Get argument at index i
+    String get_arg_at(int i) const;
 };
 
 #endif // IO_HANDLER_HPP

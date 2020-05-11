@@ -4,15 +4,34 @@
 #include "io_handler.hpp"
 #include "passed_course.hpp"
 #include "student.hpp"
+#include "susi.hpp"
 
 void test_io_handler();
 void test_vector();
 void test_passed_course();
 void test_student();
+void test_string();
+void test_app();
 
 int main(void)
 {
-    test_student();
+    test_app();
+}
+
+void test_app()
+{
+    SUSI susi_app;
+
+    susi_app.run();
+}
+
+void test_string()
+{
+    String str;
+
+    std::cin >> str;
+
+    return;
 }
 
 void test_student()

@@ -2,72 +2,12 @@
 #include <cstring>
 
 #include "io_handler.hpp"
+
 #include "constants.hpp"
-
-void IOHandler::free_memory()
-{
-    this->free_args();
-}
-
-void IOHandler::free_args()
-{
-    if (this->args)
-    {
-        delete[] this->args;
-    }
-    this->args = nullptr;
-}
-
-void IOHandler::copy_from(const IOHandler& other)
-{
-    this->command = other.command;
-    this->number_of_args = other.number_of_args;
-    this->args_capacity = other.args_capacity;
-    this->set_args(other.args, other.number_of_args);
-}
-
-void IOHandler::set_args(String* args, int number_of_args)
-{
-    this->args = new String[number_of_args];
-
-    for (int i = 0; i < number_of_args; ++i)
-    {
-        this->args[i] = args[i];
-    }
-}
 
 void IOHandler::set_command(const char* command)
 {
     this->command = command;
-}
-
-IOHandler::IOHandler()
-{
-    this->args_capacity = IOHANDLER_DEFAULT_ARGS_SIZE;
-    this->number_of_args = 0;
-    this->args = new String[this->args_capacity];
-}
-
-IOHandler::IOHandler(const IOHandler& other)
-{
-    this->copy_from(other);
-}
-
-IOHandler& IOHandler::operator=(const IOHandler& other)
-{
-    if (this == &other)
-    {
-        return *this;
-    }
-
-    this->free_memory();
-    this->copy_from(other);
-    return *this;
-}
-
-IOHandler::~IOHandler()
-{
-    this->free_memory();
 }
 
 void IOHandler::input_command()
@@ -78,39 +18,74 @@ void IOHandler::input_command()
 
 void IOHandler::input_args(std::istream& i_stream)
 {
-    this->free_args();
-    this->args_capacity = IOHANDLER_DEFAULT_ARGS_SIZE;
-    this->args = new String[this->args_capacity];
+    this->clean_args();
 
-    do
+    String args_string = "";
+    args_string.input(i_stream, true);
+
+    if (args_string == "")
     {
-        if (this->number_of_args + 1 >= this->args_capacity)
-        {
-            this->increase_args_capacity();
-        }
-
-        i_stream >> this->args[this->number_of_args++];
+        return;
     }
-    while (i_stream.peek() != '\n');
 
-    // for (int i = 0; i < this->number_of_args; ++i)
-    // {
-    //     std::cout << this->args[i] << "|";
-    // }
-    // std::cout << std::endl;
+    String curr_arg;
+    int args_str_len = args_string.get_len();
+    int i = 0;
+    while (args_string[i] == ' ')
+    {
+        ++i;
+    }
+
+    while (i < args_str_len)
+    {
+        if (args_string[i] != ' ')
+        {
+            curr_arg += args_string[i];
+            ++i;
+        }
+        else
+        {
+            while (args_string[i] == ' ')
+            {
+                ++i;
+            }
+            curr_arg += '\0';
+            this->args.push(curr_arg);
+            curr_arg = "";
+        }
+    }
+
+    if (curr_arg != "")
+    {
+        this->args.push(curr_arg);
+    }
+
+    return;
 }
 
-void IOHandler::increase_args_capacity()
+String IOHandler::get_command() const
 {
-    String* new_args = new String[this->args_capacity * 2];
+    return this->command;
+}
 
-    for (int i = 0; i < this->args_capacity; ++i)
+Vector<String> IOHandler::get_args() const
+{
+    return this->args;
+}
+
+void IOHandler::clean_args()
+{
+    this->args.empty_vector();
+}
+
+String IOHandler::get_arg_at(int i) const
+{
+    assert(i >= 0);
+
+    if (this->args.get_len() <= i)
     {
-        new_args[i] = this->args[i];
+        return "";
     }
 
-    this->free_args();
-    this->args_capacity *= 2;
-
-    this->args = new_args;
+    return this->args[i];
 }
