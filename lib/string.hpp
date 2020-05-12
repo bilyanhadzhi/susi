@@ -50,6 +50,12 @@ public:
     void input(std::istream& i_stream, bool whole_line = false);
     //! Get length of string
     int get_len() const;
+    //! Check if string could be converted to a number
+    bool is_valid_number() const;
+    //! Convert string to number (returns very large negative number for invalid strings)
+    double to_double() const;
+    //! Same like to_double, it just casts to int
+    int to_int() const;
 };
 
 std::ostream& operator<<(std::ostream& o_stream, const String& string);

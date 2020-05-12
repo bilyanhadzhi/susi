@@ -13,10 +13,11 @@ private:
     // A class that deals with getting commands
     IOHandler io_handler;
     // Our 'database':
-    Vector<Student> all_students;
+    Vector<Major> all_majors;
     Vector<Course> all_courses;
-    // Get data from file
-    void get_data();
+    Vector<Student> all_students;
+    // Dummy function to add some courses
+    void populate_data();
     // Functions to handle each command
     void handle_command_enroll();
     void handle_command_advance();

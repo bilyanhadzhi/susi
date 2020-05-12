@@ -16,6 +16,7 @@ void test_app();
 int main(void)
 {
     test_app();
+
 }
 
 void test_app()

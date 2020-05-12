@@ -2,13 +2,14 @@
 
 void Major::copy_from(const Major& other)
 {
-    Vector<Course>* new_courses = new Vector<Course>[other.max_years];
+    Vector<Course*>* new_courses = new Vector<Course*>[other.max_years];
     for (int i = 0; i < other.max_years; ++i)
     {
         new_courses[i] = other.courses[i];
     }
 
     this->free_memory();
+    this->name = other.name;
     this->max_years = other.max_years;
     this->courses = new_courses;
 }
@@ -18,10 +19,11 @@ void Major::free_memory()
     delete[] this->courses;
 }
 
-Major::Major()
+Major::Major(const char* name, int max_years)
 {
-    this->max_years = MAX_YEAR;
-    this->courses = new Vector<Course>[max_years];
+    this->name = name;
+    this->max_years = max_years;
+    this->courses = new Vector<Course*>[max_years];
 }
 
 Major::Major(const Major& other)
@@ -45,4 +47,14 @@ Major& Major::operator=(const Major& other)
 Major::~Major()
 {
     this->free_memory();
+}
+
+void Major::add_course(Course* course, int year)
+{
+    if (year < 1 || year > this->max_years)
+    {
+        return;
+    }
+
+    this->courses[year - 1].push(course);
 }

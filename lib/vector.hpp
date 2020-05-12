@@ -29,7 +29,7 @@ public:
     //! Get the (semantical) length of the vector
     int get_len() const;
     //! Get value of element at i-th index
-    T operator[](int i) const;
+    T& operator[](int i) const;
 };
 
 template<typename T>
@@ -136,7 +136,7 @@ int Vector<T>::get_len() const
 }
 
 template<typename T>
-T Vector<T>::operator[](int i) const
+T& Vector<T>::operator[](int i) const
 {
     assert(i >= 0);
     assert(i < this->elements_count);

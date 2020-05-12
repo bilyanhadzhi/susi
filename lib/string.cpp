@@ -162,9 +162,6 @@ void String::input(std::istream& i_stream, bool whole_line)
         i_stream.get();
     }
 
-    // i_stream.get(curr_char);
-    // new_string_value[string_len++] = curr_char;
-
     do
     {
         curr_char = i_stream.get();
@@ -238,7 +235,12 @@ String& String::operator+=(const char new_char)
         this->increase_capacity();
     }
 
-    this->value[len++] = new_char;
+    this->value[len] = new_char;
+
+    if (new_char != '\0')
+    {
+        ++len;
+    }
 
     return *this;
 }
@@ -246,4 +248,117 @@ String& String::operator+=(const char new_char)
 int String::get_len() const
 {
     return this->len;
+}
+
+bool String::is_valid_number() const
+{
+    const int len = this->get_len();
+
+    bool found_dot = this->value[0] == '.';
+    bool is_valid = true;
+
+    if (len < 1)
+    {
+        is_valid = false;
+    }
+    if (this->value[0] != '-' && this->value[0] != '+' && !isdigit(this->value[0]))
+    {
+        is_valid = false;
+    }
+
+    for (int i = 0; i < len && is_valid; ++i)
+    {
+        if (!isdigit(this->value[i]))
+        {
+            if (this->value[i] == '.')
+            {
+                // Found 2nd dot -> invalid
+                if (found_dot)
+                {
+                    is_valid = false;
+                }
+                else
+                {
+                    found_dot = true;
+                }
+            }
+            else
+            {
+                is_valid = false;
+            }
+        }
+    }
+
+    return is_valid;
+}
+
+double String::to_double() const
+{
+    if (!this->is_valid_number())
+    {
+        return -__DBL_MAX__;
+    }
+
+    double result = 0.0;
+
+    int len = this->get_len();
+    bool has_sign = this->value[0] == '+' || this->value[0] == '-';
+    bool is_int = true;
+
+    int begin_index = has_sign ? 1 : 0;
+    int i = begin_index;
+
+    // skip beginning zeros
+    while (this->value[i] == '0')
+    {
+        ++i;
+    }
+
+    // get integer part
+    while (i < len)
+    {
+        if (this->value[i] == '.')
+        {
+            is_int = false;
+            ++i;
+            break;
+        }
+
+        result *= 10;
+        result += (int)(this->value[i] - '0');
+
+        ++i;
+    }
+
+    // get fractional part
+    double divide_by = 10;
+
+    // know decimal places so to round number
+    int dec_places = 0;
+
+    if (!is_int)
+    {
+        while (i < len && dec_places < 2)
+        {
+            result += (double)(this->value[i] - '0') / divide_by;
+
+            divide_by *= 10;
+            ++dec_places;
+            ++i;
+        }
+    }
+
+    if (dec_places >= 2 && (int)(this->value[i] - '0') >= 5)
+    {
+        result += 10 / divide_by;
+    }
+
+    bool is_negative = has_sign && this->value[i] == '-';
+
+    return is_negative ? -result : result;
+}
+
+int String::to_int() const
+{
+    return (int)this->to_double();
 }
