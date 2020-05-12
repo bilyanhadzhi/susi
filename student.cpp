@@ -10,6 +10,15 @@ Student::Student(): name(""), major(nullptr), status(StudentStatus::none)
     this->group = 0;
 }
 
+Student::Student(int fac_number, Major* major, int group, String name, int year, StudentStatus status):
+    name(name), major(major), status(status)
+{
+    this->year = year;
+    this->fac_number = fac_number;
+    this->group = group;
+    this->gpa = 0;
+}
+
 void Student::set_gpa(double gpa)
 {
     if (gpa < MIN_COURSE_GRADE || gpa > MAX_COURSE_GRADE)
@@ -52,6 +61,11 @@ void Student::set_group(int group)
     }
 
     this->group = group;
+}
+
+String Student::get_name()
+{
+    return this->name;
 }
 
 // TODO

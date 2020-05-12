@@ -51,10 +51,10 @@ public:
     //! Get length of string
     int get_len() const;
     //! Check if string could be converted to a number
-    bool is_valid_number() const;
+    bool is_valid_number(bool check_for_int_only = false) const;
     //! Convert string to number (returns very large negative number for invalid strings)
     double to_double() const;
-    //! Same like to_double, it just casts to int
+    //! Same like to_double, cast to int
     int to_int() const;
 };
 

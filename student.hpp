@@ -28,7 +28,8 @@ private:
 
 public:
     Student();
-    Student(int fac_number, Major* major, int group, String name);
+    Student(int fac_number, Major* major, int group, String name, int year = 1, StudentStatus status = StudentStatus::enrolled);
+    String get_name();
 };
 
 #endif // STUDENT_HPP

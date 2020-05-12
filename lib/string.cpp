@@ -250,7 +250,7 @@ int String::get_len() const
     return this->len;
 }
 
-bool String::is_valid_number() const
+bool String::is_valid_number(bool check_for_int_only) const
 {
     const int len = this->get_len();
 
@@ -287,6 +287,11 @@ bool String::is_valid_number() const
                 is_valid = false;
             }
         }
+    }
+
+    if (check_for_int_only && found_dot)
+    {
+        is_valid = false;
     }
 
     return is_valid;

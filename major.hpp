@@ -19,7 +19,10 @@ public:
     Major(const Major& other);
     Major& operator=(const Major& other);
     ~Major();
+    //! Add course to year
     void add_course(Course* course, int year);
+    //! Get name of Major
+    String get_name() const;
 };
 
 #endif // MAJOR_HPP

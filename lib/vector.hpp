@@ -30,6 +30,8 @@ public:
     int get_len() const;
     //! Get value of element at i-th index
     T& operator[](int i) const;
+    //! Return index of first occurrence
+    int get_first_occurrence(T elem) const;
 };
 
 template<typename T>
@@ -149,6 +151,20 @@ void Vector<T>::empty_vector()
 {
     this->free_memory();
     this->init_vector();
+}
+
+template<typename T>
+int Vector<T>::get_first_occurrence(T elem) const
+{
+    for (int i = 0; i < this->elements_count; ++i)
+    {
+        if (this->elements[i] == elem)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 #endif // VECTOR_HPP

@@ -58,3 +58,8 @@ void Major::add_course(Course* course, int year)
 
     this->courses[year - 1].push(course);
 }
+
+String Major::get_name() const
+{
+    return this->name;
+}

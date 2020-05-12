@@ -12,7 +12,7 @@ class SUSI
 private:
     // A class that deals with getting commands
     IOHandler io_handler;
-    // Our 'database':
+    // 'Database':
     Vector<Major> all_majors;
     Vector<Course> all_courses;
     Vector<Student> all_students;
@@ -31,6 +31,8 @@ private:
     void handle_command_add_grade();
     void handle_command_protocol();
     void handle_command_report();
+    // Functions for accessing the 'database'
+    Vector<Major*> get_majors_by_name(String name) const;
 
 public:
     void run();
