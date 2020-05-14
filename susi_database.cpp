@@ -33,6 +33,14 @@ void Database::populate_data()
 
 void Database::add_student(Student student)
 {
+    Student* existing_student = this->get_student_by_fac_number(student.get_fac_number());
+
+    if (existing_student != nullptr)
+    {
+        std::cout << "Database error: student with faculty number already exists";
+        return;
+    }
+
     this->students.push(student);
 }
 
@@ -52,21 +60,19 @@ Vector<Major*> Database::get_majors_by_name(String name) const
     return filtered;
 }
 
-Vector<Student*> Database::get_students_by_fac_number(int fac_number) const
+Student* Database::get_student_by_fac_number(int fac_number) const
 {
-    Vector<Student*> filtered;
-
     const int students_len = this->students.get_len();
 
     for (int i = 0; i < students_len; ++i)
     {
         if (this->students[i].get_fac_number() == fac_number)
         {
-            filtered.push(&this->students[i]);
+            return &this->students[i];
         }
     }
 
-    return filtered;
+    return nullptr;
 }
 
 Vector<Major*> Database::get_majors() const

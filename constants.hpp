@@ -1,6 +1,9 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
+// General buffer size
+#define BUFFER_SIZE 256
+
 // Commands
 #define COMMAND_ENROLL "enroll"
 #define COMMAND_ADVANCE "advance"
@@ -18,19 +21,16 @@
 // Usage of commands
 #define USAGE_ENROLL "<fn> <program> <group> <name>"
 #define USAGE_ADVANCE "<fn>"
-#define USAGE_CHANGE ""
-#define USAGE_GRADUATE ""
-#define USAGE_INTERRUPT ""
-#define USAGE_RESUME ""
-#define USAGE_PRINT ""
-#define USAGE_PRINT_ALL ""
-#define USAGE_ENROLL_IN ""
-#define USAGE_ADD_GRADE ""
-#define USAGE_PROTOCOL ""
-#define USAGE_REPORT ""
-
-// Buffer size for all things
-#define BUFFER_SIZE 256
+#define USAGE_CHANGE "<fn> <option> <value>"
+#define USAGE_GRADUATE "<fn>"
+#define USAGE_INTERRUPT "<fn>"
+#define USAGE_RESUME "<fn>"
+#define USAGE_PRINT "<fn>"
+#define USAGE_PRINT_ALL "<program> <year>"
+#define USAGE_ENROLL_IN "<fn> <course>"
+#define USAGE_ADD_GRADE "<fn> <course> <grade>"
+#define USAGE_PROTOCOL "<course>"
+#define USAGE_REPORT "<fn>"
 
 // Vector
 #define VECTOR_DEFAULT_CAPACITY 16

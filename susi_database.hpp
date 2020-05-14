@@ -29,7 +29,7 @@ public:
     //! Get majors with matching name
     Vector<Major*> get_majors_by_name(String name) const;
     //! Get students with matching faculty number
-    Vector<Student*> get_students_by_fac_number(int fac_number) const;
+    Student* get_student_by_fac_number(int fac_number) const;
 };
 
 #endif // SUSI_DATABASE_HPP

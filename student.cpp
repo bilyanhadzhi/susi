@@ -73,6 +73,16 @@ int Student::get_fac_number() const
     return this->fac_number;
 }
 
+Vector<Course*> Student::get_pending_courses() const
+{
+    return this->pending_courses;
+}
+
+void Student::advance_year()
+{
+    this->set_year(this->year + 1);
+}
+
 // TODO
 void Student::update_gpa()
 {

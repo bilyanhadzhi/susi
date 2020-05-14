@@ -1,4 +1,5 @@
 #include "susi.hpp"
+#include "course_type.hpp"
 
 void SUSI::run()
 {
@@ -7,7 +8,6 @@ void SUSI::run()
         this->io_handler.input_command();
         String command = this->io_handler.get_command();
 
-        // std::cout << command << std::endl;
         if (command == COMMAND_ENROLL)
         {
             this->handle_command_enroll();
@@ -18,7 +18,6 @@ void SUSI::run()
         }
     }
     while (this->io_handler.get_command() != "quit");
-
 }
 
 void SUSI::handle_command_enroll()
@@ -39,14 +38,14 @@ void SUSI::handle_command_enroll()
     }
 
     Vector<String> arguments = this->io_handler.get_args();
-    if (!arguments[0].is_valid_number())
+    if (!arguments[0].is_valid_number(true))
     {
-        std::cout << "Error: Invalid faculty number" << std::endl;
+        this->io_handler.print_error("Invalid faculty number");
         return;
     }
     if (!arguments[2].is_valid_number(true))
     {
-        std::cout << "Error: Invalid group number" << std::endl;
+        this->io_handler.print_error("Invalid group number");
         return;
     }
 
@@ -55,6 +54,7 @@ void SUSI::handle_command_enroll()
 
     if (majors_matching_name.get_len() != 1)
     {
+        this->io_handler.print_error("Could not determine major");
         return;
     }
 
@@ -80,11 +80,40 @@ void SUSI::handle_command_advance()
     }
 
     Vector<String> arguments = this->io_handler.get_args();
-    if (!arguments[0].is_valid_number())
+    if (!arguments[0].is_valid_number(true))
     {
-        std::cout << "Error: Invalid faculty number" << std::endl;
+        this->io_handler.print_error("Invalid faculty number");
         return;
     }
-}
 
-// Student& SUSI::get_student
+    // get student by fn
+    Student* student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+    if (!student)
+    {
+        this->io_handler.print_error("No student with specified id exists");
+        return;
+    }
+
+    // check if student has too many courses to pass
+    Vector<Course*> pending_courses = student->get_pending_courses();
+    int pending_courses_len = pending_courses.get_len();
+    int courses_to_pass = 0;
+
+    for (int i = 0; i < pending_courses_len; ++i)
+    {
+        if (pending_courses[i]->get_type() == CourseType::mandatory)
+        {
+            ++courses_to_pass;
+        }
+    }
+
+    if (courses_to_pass > 2)
+    {
+        this->io_handler.print_error("Cannot advance student – too many courses to pass");
+        return;
+    }
+
+    student->advance_year();
+    return;
+}

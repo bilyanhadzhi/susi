@@ -23,3 +23,13 @@ void Course::copy_from(const Course& other)
     this->name = other.name;
     this->type = other.type;
 }
+
+String Course::get_name() const
+{
+    return this->name;
+}
+
+CourseType Course::get_type() const
+{
+    return this->type;
+}

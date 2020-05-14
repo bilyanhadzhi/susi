@@ -13,7 +13,6 @@ void IOHandler::set_command(const char* command)
 void IOHandler::input_command()
 {
     std::cin >> this->command;
-    // std::cout << this->command << std::endl;
 }
 
 void IOHandler::input_args(std::istream& i_stream)
@@ -87,4 +86,10 @@ void IOHandler::print_usage(const char* command, const char* usage) const
 {
     std::cout << "Usage: ";
     std::cout << command << " " << usage << std::endl;
+}
+
+void IOHandler::print_error(const char* desc) const
+{
+    std::cout << "Error: ";
+    std::cout << desc << std::endl;
 }
