@@ -78,14 +78,13 @@ void IOHandler::clean_args()
     this->args.empty_vector();
 }
 
-String IOHandler::get_arg_at(int i) const
+bool IOHandler::check_number_of_arguments(int num_of_args) const
 {
-    assert(i >= 0);
+    return this->args.get_len() == num_of_args;
+}
 
-    if (this->args.get_len() <= i)
-    {
-        return "";
-    }
-
-    return this->args[i];
+void IOHandler::print_usage(const char* command, const char* usage) const
+{
+    std::cout << "Usage: ";
+    std::cout << command << " " << usage << std::endl;
 }

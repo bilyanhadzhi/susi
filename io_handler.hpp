@@ -21,8 +21,9 @@ public:
     String get_command() const;
     //! Get current arguments in a list
     Vector<String> get_args() const;
-    //! Get argument at index i
-    String get_arg_at(int i) const;
+    bool check_number_of_arguments(int num_of_args) const;
+    //! Print usage of command
+    void print_usage(const char* command, const char* usage) const;
 };
 
 #endif // IO_HANDLER_HPP

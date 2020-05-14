@@ -5,6 +5,7 @@
 #include "lib/vector.hpp"
 #include "io_handler.hpp"
 #include "student.hpp"
+#include "susi_database.hpp"
 
 
 class SUSI
@@ -12,12 +13,8 @@ class SUSI
 private:
     // A class that deals with getting commands
     IOHandler io_handler;
-    // 'Database':
-    Vector<Major> all_majors;
-    Vector<Course> all_courses;
-    Vector<Student> all_students;
-    // Dummy function to add some courses
-    void populate_data();
+    // A class that keeps our data:
+    Database database;
     // Functions to handle each command
     void handle_command_enroll();
     void handle_command_advance();
@@ -31,8 +28,6 @@ private:
     void handle_command_add_grade();
     void handle_command_protocol();
     void handle_command_report();
-    // Functions for accessing the 'database'
-    Vector<Major*> get_majors_by_name(String name) const;
 
 public:
     void run();

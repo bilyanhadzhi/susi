@@ -12,6 +12,7 @@ set(Sources
     passed_course.cpp
     lib/string.cpp
     major.cpp
+    susi_database.cpp
     susi.cpp
 )
 
@@ -25,6 +26,7 @@ set(Headers
     lib/vector.hpp
     student_status.hpp
     major.hpp
+    susi_database.hpp
     susi.hpp
 )
 

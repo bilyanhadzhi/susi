@@ -63,9 +63,14 @@ void Student::set_group(int group)
     this->group = group;
 }
 
-String Student::get_name()
+String Student::get_name() const
 {
     return this->name;
+}
+
+int Student::get_fac_number() const
+{
+    return this->fac_number;
 }
 
 // TODO

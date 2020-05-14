@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
+// Commands
 #define COMMAND_ENROLL "enroll"
 #define COMMAND_ADVANCE "advance"
 #define COMMAND_CHANGE "change"
@@ -13,6 +14,20 @@
 #define COMMAND_ADD_GRADE "addgrade"
 #define COMMAND_PROTOCOL "protocol"
 #define COMMAND_REPORT "report"
+
+// Usage of commands
+#define USAGE_ENROLL "<fn> <program> <group> <name>"
+#define USAGE_ADVANCE "<fn>"
+#define USAGE_CHANGE ""
+#define USAGE_GRADUATE ""
+#define USAGE_INTERRUPT ""
+#define USAGE_RESUME ""
+#define USAGE_PRINT ""
+#define USAGE_PRINT_ALL ""
+#define USAGE_ENROLL_IN ""
+#define USAGE_ADD_GRADE ""
+#define USAGE_PROTOCOL ""
+#define USAGE_REPORT ""
 
 // Buffer size for all things
 #define BUFFER_SIZE 256
