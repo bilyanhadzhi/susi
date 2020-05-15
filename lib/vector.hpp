@@ -3,6 +3,7 @@
 
 #include "../constants.hpp"
 #include <cassert>
+#include <iostream>
 
 template<typename T>
 class Vector
@@ -39,17 +40,24 @@ void Vector<T>::free_memory()
 {
     for (int i = 0; i < this->elements_capacity; ++i)
     {
-        delete this->elements[i];
+        if (this->elements[i] != nullptr)
+        {
+            delete this->elements[i];
+            this->elements[i] = nullptr;
+        }
     }
 
-    delete[] this->elements;
-    this->elements = nullptr;
+    if (this->elements != nullptr)
+    {
+        delete[] this->elements;
+        this->elements = nullptr;
+    }
 }
 
 template<typename T>
 void Vector<T>::copy_from(const Vector<T>& other)
 {
-    T** new_elements = new T*[other.elements_capacity];
+    T** new_elements = new T*[other.elements_capacity]();
     for (int i = 0; i < other.elements_count; ++i)
     {
         new_elements[i] = new T(*(other.elements[i]));
@@ -70,7 +78,7 @@ template<typename T>
 void Vector<T>::init_vector()
 {
     this->elements_capacity = VECTOR_DEFAULT_CAPACITY;
-    this->elements = new T*[this->elements_capacity];
+    this->elements = new T*[this->elements_capacity]();
 
     for (int i = 0; i < this->elements_capacity; ++i)
     {
@@ -109,7 +117,7 @@ Vector<T>::~Vector()
 template<typename T>
 void Vector<T>::increase_capacity()
 {
-    T** new_elements = new T*[this->elements_capacity * 2];
+    T** new_elements = new T*[this->elements_capacity * 2]();
     for (int i = 0; i < this->elements_count; ++i)
     {
         new_elements[i] = new T(*(this->elements[i]));
@@ -140,6 +148,8 @@ int Vector<T>::get_len() const
 template<typename T>
 T& Vector<T>::operator[](int i) const
 {
+    // std::cout << i << " ";
+    // std::cout << this->elements_count << std::endl;
     assert(i >= 0);
     assert(i < this->elements_count);
 

@@ -9,7 +9,7 @@ class IOHandler
 private:
     String command;
     Vector<String> args;
-    void set_command(const char* command);
+    void set_command(String command);
     void clean_args();
 
 public:
@@ -21,9 +21,14 @@ public:
     String get_command() const;
     //! Get current arguments in a list
     Vector<String> get_args() const;
+    //! Returns whether the number of current arguments is 'num_of_args'
     bool check_number_of_arguments(int num_of_args) const;
     //! Print usage of command
-    void print_usage(const char* command, const char* usage) const;
+    void print_usage(String command, String usage) const;
+    //! Print error
+    void print_error(String desc) const;
+    //! Print unknown command
+    void print_unknown_command(String command) const;
 };
 
 #endif // IO_HANDLER_HPP

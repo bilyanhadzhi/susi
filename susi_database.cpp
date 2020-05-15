@@ -23,12 +23,14 @@ void Database::populate_data()
     this->majors.push(Major("Information_Systems"));
 
     // Assign courses to majors
+    std::cout << "Course 1" << std::endl;
     this->majors[0].add_course(&this->courses[0], 1);
+    std::cout << "Course 2" << std::endl;
     this->majors[1].add_course(&this->courses[6], 1);
 
     // Add students
-    this->students.push(Student(81980, &this->majors[0], 7, "Bilyan"));
-    this->students.push(Student(81964, &this->majors[0], 7, "Ivana"));
+    this->add_student(Student(81980, &this->majors[0], 7, "Bilyan"));
+    this->add_student(Student(81964, &this->majors[0], 7, "Ivana"));
 }
 
 void Database::add_student(Student student)

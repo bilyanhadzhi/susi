@@ -2,7 +2,7 @@
 
 void Major::copy_from(const Major& other)
 {
-    Vector<Course*>* new_courses = new Vector<Course*>[other.max_years];
+    Vector<Course*>* new_courses = new Vector<Course*>[other.max_years]();
     for (int i = 0; i < other.max_years; ++i)
     {
         new_courses[i] = other.courses[i];
@@ -23,7 +23,7 @@ Major::Major(const char* name, int max_years)
 {
     this->name = name;
     this->max_years = max_years;
-    this->courses = new Vector<Course*>[max_years];
+    this->courses = new Vector<Course*>[max_years]();
 }
 
 Major::Major(const Major& other)

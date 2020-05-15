@@ -22,7 +22,6 @@ private:
     int group;
     void set_gpa(double gpa);
     void set_fac_number(int fac_number);
-    void set_group(int group);
     void set_year(int year);
     void update_gpa();
 
@@ -37,6 +36,17 @@ public:
     Vector<Course*> get_pending_courses() const;
     //! Increment student's year
     void advance_year();
+    //! Change group of student; return whether successful
+    bool set_group(int group);
+    //! Set major
+    void set_major(Major* major);
+    //! Check whether student can advance to next year
+    bool can_advance() const;
+    //! Check if student can change major
+    bool can_switch_major(Major* major) const;
+    //! Check whether course has been passed
+    bool has_passed_course(Course* course) const;
+
 };
 
 #endif // STUDENT_HPP

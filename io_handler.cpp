@@ -3,9 +3,10 @@
 
 #include "io_handler.hpp"
 
+#include "lib/string.hpp"
 #include "constants.hpp"
 
-void IOHandler::set_command(const char* command)
+void IOHandler::set_command(String command)
 {
     this->command = command;
 }
@@ -82,13 +83,13 @@ bool IOHandler::check_number_of_arguments(int num_of_args) const
     return this->args.get_len() == num_of_args;
 }
 
-void IOHandler::print_usage(const char* command, const char* usage) const
+void IOHandler::print_usage(String command, String usage) const
 {
     std::cout << "Usage: ";
     std::cout << command << " " << usage << std::endl;
 }
 
-void IOHandler::print_error(const char* desc) const
+void IOHandler::print_error(String desc) const
 {
     std::cout << "Error: ";
     std::cout << desc << std::endl;

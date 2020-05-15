@@ -15,8 +15,8 @@ void test_app();
 
 int main(void)
 {
+    // test_student();
     test_app();
-
 }
 
 void test_app()
@@ -30,14 +30,14 @@ void test_string()
 {
     String str;
 
-    std::cin >> str;
-
     return;
 }
 
 void test_student()
 {
-    std::cout << sizeof(Student) << std::endl;
+    Student student;
+
+    return;
 }
 
 void test_io_handler()
@@ -50,9 +50,8 @@ void test_io_handler()
 
 void test_vector()
 {
-    Vector<String> vec1;
+    Vector<Vector<Major*>> vec1;
 
-    vec1.push("abc");
 
     return;
 }

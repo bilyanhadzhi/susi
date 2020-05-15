@@ -12,14 +12,17 @@ void String::copy_from(const String& other)
 
 void String::free_memory()
 {
-    delete[] this->value;
-    this->value = nullptr;
+    if (this->value != nullptr)
+    {
+        delete[] this->value;
+        this->value = nullptr;
+    }
 }
 
 String::String()
 {
     this->capacity = BUFFER_SIZE;
-    this->value = new char[this->capacity];
+    this->value = new char[this->capacity]();
     this->len = 0;
 }
 
@@ -28,7 +31,7 @@ String::String(const char* str)
     assert(str != nullptr);
 
     this->capacity = this->get_needed_capacity(str);
-    this->value = new char[this->capacity];
+    this->value = new char[this->capacity]();
     strcpy(this->value, str);
     this->len = strlen(this->value);
 
@@ -70,12 +73,14 @@ String::~String()
 
 void String::set_value(const char* value)
 {
+    assert(value != nullptr);
+
     const int value_len = strlen(value);
 
     this->capacity = this->get_needed_capacity(value);
     this->len = value_len;
 
-    char* new_value = new char[this->capacity];
+    char* new_value = new char[this->capacity]();
 
     strcpy(new_value, value);
 
@@ -92,7 +97,7 @@ void String::increase_capacity()
 {
     this->capacity *= 2;
 
-    char* value_new_capacity = new char[this->capacity];
+    char* value_new_capacity = new char[this->capacity]();
     strcpy(value_new_capacity, this->value);
 
     delete[] this->value;
@@ -142,7 +147,7 @@ void String::input(std::istream& i_stream, bool whole_line)
     int string_len = 0;
     int string_capacity = BUFFER_SIZE;
 
-    char* new_string_value = new char[string_capacity];
+    char* new_string_value = new char[string_capacity]();
 
     if (i_stream.peek() == EOF || i_stream.peek() == '\n')
     {
@@ -177,7 +182,7 @@ void String::input(std::istream& i_stream, bool whole_line)
 
         if (string_len + 1 >= string_capacity)
         {
-            char* bigger = new char[string_capacity *= 2];
+            char* bigger = new char[string_capacity *= 2]();
             strcpy(bigger, new_string_value);
 
             delete[] new_string_value;
@@ -189,6 +194,7 @@ void String::input(std::istream& i_stream, bool whole_line)
 
     new_string_value[string_len] = '\0';
     this->set_value(new_string_value);
+    delete[] new_string_value;
 }
 
 std::istream& operator>>(std::istream& i_stream, String& string)

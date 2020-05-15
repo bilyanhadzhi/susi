@@ -50,3 +50,6 @@ latex/
 
 # dummy text
 random.txt
+
+# valgrind
+vgcore.*

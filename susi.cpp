@@ -16,6 +16,10 @@ void SUSI::run()
         {
             this->handle_command_advance();
         }
+        else if (command == COMMAND_CHANGE)
+        {
+            this->handle_command_change();
+        }
     }
     while (this->io_handler.get_command() != "quit");
 }
@@ -95,25 +99,80 @@ void SUSI::handle_command_advance()
         return;
     }
 
-    // check if student has too many courses to pass
-    Vector<Course*> pending_courses = student->get_pending_courses();
-    int pending_courses_len = pending_courses.get_len();
-    int courses_to_pass = 0;
-
-    for (int i = 0; i < pending_courses_len; ++i)
+    if (!student->can_advance())
     {
-        if (pending_courses[i]->get_type() == CourseType::mandatory)
-        {
-            ++courses_to_pass;
-        }
-    }
-
-    if (courses_to_pass > 2)
-    {
-        this->io_handler.print_error("Cannot advance student – too many courses to pass");
+        this->io_handler.print_error("Cannot advance student with more than 2 pending mandatory courses");
         return;
     }
 
     student->advance_year();
     return;
+}
+
+void SUSI::handle_command_change()
+{
+    if (std::cin.peek() == '\n')
+    {
+        this->io_handler.print_usage(COMMAND_CHANGE, USAGE_CHANGE);
+        std::cin.ignore();
+        return;
+    }
+
+    this->io_handler.input_args(std::cin);
+
+    if (!this->io_handler.check_number_of_arguments(3))
+    {
+        this->io_handler.print_usage(COMMAND_CHANGE, USAGE_CHANGE);
+        return;
+    }
+
+    Vector<String> arguments = this->io_handler.get_args();
+    if (!arguments[0].is_valid_number(true))
+    {
+        this->io_handler.print_error("Invalid faculty number");
+        return;
+    }
+
+    if (arguments[1] == ARGUMENT_CHANGE_GROUP)
+    {
+        if (!arguments[2].is_valid_number(true) || arguments[2].to_int() < 1 || arguments[2].to_int() > MAX_GROUP)
+        {
+            this->io_handler.print_error("Invalid group number; group must be an integer in range [1, 8]");
+            return;
+        }
+
+        Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+        if (!student)
+        {
+            this->io_handler.print_error("No student with specified id exists");
+            return;
+        }
+
+        student->set_group(arguments[2].to_int());
+    }
+    else if (arguments[1] == ARGUMENT_CHANGE_PROGRAM)
+    {
+        Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+        if (!student)
+        {
+            this->io_handler.print_error("No student with specified id exists");
+            return;
+        }
+
+        Vector<Major*> majors = this->database.get_majors_by_name(arguments[2]);
+
+        if (majors.get_len() != 1)
+        {
+            this->io_handler.print_error("Could not find major");
+            return;
+        }
+
+        student->set_major(majors[0]);
+    }
+    else if (arguments[1] == ARGUMENT_CHANGE_YEAR)
+    {
+
+    }
 }
