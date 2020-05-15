@@ -17,6 +17,8 @@ private:
     void free_memory();
     void increase_capacity();
     void init_vector();
+    // Shift all elements, starting from the i-th, one index to the left
+    void shift_left_from(int i);
 
 public:
     Vector();
@@ -27,6 +29,8 @@ public:
     void empty_vector();
     //! Add element at the end of the vector
     void push(T value);
+    //! Remove element at index i and shift others left
+    void remove(int i);
     //! Get the (semantical) length of the vector
     int get_len() const;
     //! Get value of element at i-th index
@@ -148,10 +152,7 @@ int Vector<T>::get_len() const
 template<typename T>
 T& Vector<T>::operator[](int i) const
 {
-    // std::cout << i << " ";
-    // std::cout << this->elements_count << std::endl;
-    assert(i >= 0);
-    assert(i < this->elements_count);
+    assert(i >= 0 && i < this->elements_count);
 
     return *(this->elements[i]);
 }
@@ -175,6 +176,33 @@ int Vector<T>::get_first_occurrence(T elem) const
     }
 
     return -1;
+}
+
+template<typename T>
+void Vector<T>::shift_left_from(int i)
+{
+    for (i; i < this->elements_count - 1; ++i)
+    {
+        this->elements[i] = this->elements[i + 1];
+    }
+}
+
+template<typename T>
+void Vector<T>::remove(int i)
+{
+    if (this->elements_count < 1)
+    {
+        return;
+    }
+
+    assert(i >= 0 && i < this->elements_count);
+
+    delete this->elements[i];
+
+    this->shift_left_from(i);
+
+    this->elements[this->elements_count - 1] = nullptr;
+    --this->elements_count;
 }
 
 #endif // VECTOR_HPP

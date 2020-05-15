@@ -21,3 +21,8 @@ PassedCourse::PassedCourse(Course* course, double grade): Course(*course)
 {
     this->set_grade(grade);
 }
+
+double PassedCourse::get_grade() const
+{
+    return this->grade;
+}

@@ -32,6 +32,10 @@ public:
     String get_name() const;
     //! Get faculty number of student
     int get_fac_number() const;
+    //! Get current year of student
+    int get_year() const;
+    //! Get student status
+    StudentStatus get_status() const;
     //! Get a list of all courses the student has not yet passed
     Vector<Course*> get_pending_courses() const;
     //! Increment student's year
@@ -40,12 +44,18 @@ public:
     bool set_group(int group);
     //! Set major
     void set_major(Major* major);
+    //! Change student's status
+    void set_status(StudentStatus status);
     //! Check whether student can advance to next year
     bool can_advance() const;
     //! Check if student can change major
     bool can_switch_major(Major* major) const;
+    //! Check whether student can graduate
+    bool can_graduate() const;
     //! Check whether course has been passed
     bool has_passed_course(Course* course) const;
+    //! Mark student as graduated (only if they can)
+    void graduate();
 
 };
 

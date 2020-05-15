@@ -20,6 +20,14 @@ void SUSI::run()
         {
             this->handle_command_change();
         }
+        else if (command == COMMAND_GRADUATE)
+        {
+            this->handle_command_graduate();
+        }
+        else if (command == COMMAND_INTERRUPT)
+        {
+            this->handle_command_interrupt();
+        }
     }
     while (this->io_handler.get_command() != "quit");
 }
@@ -95,7 +103,7 @@ void SUSI::handle_command_advance()
 
     if (!student)
     {
-        this->io_handler.print_error("No student with specified id exists");
+        this->io_handler.print_error("No student with specified faculty number exists");
         return;
     }
 
@@ -145,7 +153,7 @@ void SUSI::handle_command_change()
 
         if (!student)
         {
-            this->io_handler.print_error("No student with specified id exists");
+            this->io_handler.print_error("No student with specified faculty number exists");
             return;
         }
 
@@ -157,7 +165,7 @@ void SUSI::handle_command_change()
 
         if (!student)
         {
-            this->io_handler.print_error("No student with specified id exists");
+            this->io_handler.print_error("No student with specified faculty number exists");
             return;
         }
 
@@ -169,10 +177,167 @@ void SUSI::handle_command_change()
             return;
         }
 
+        if (!student->can_switch_major(majors[0]))
+        {
+            this->io_handler.print_error("Can not switch major – student has not passed all exams necessary");
+            return;
+        }
+
         student->set_major(majors[0]);
     }
     else if (arguments[1] == ARGUMENT_CHANGE_YEAR)
     {
+        Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
 
+        if (!student)
+        {
+            this->io_handler.print_error("No student with specified faculty number exists");
+            return;
+        }
+
+        if (!arguments[2].is_valid_number(true))
+        {
+            this->io_handler.print_error("Invalid year number");
+            return;
+        }
+
+        const int new_year = arguments[2].to_int();
+
+        if (student->get_year() + 1 != new_year)
+        {
+            this->io_handler.print_error("Can not advance to any other year other than next");
+            return;
+        }
+
+        if (!student->can_advance())
+        {
+            this->io_handler.print_error("Cannot advance student with more than 2 pending mandatory courses");
+            return;
+        }
+
+        student->advance_year();
     }
+}
+
+void SUSI::handle_command_graduate()
+{
+    if (std::cin.peek() == '\n')
+    {
+        this->io_handler.print_usage(COMMAND_GRADUATE, USAGE_GRADUATE);
+        std::cin.ignore();
+        return;
+    }
+
+    this->io_handler.input_args(std::cin);
+
+    if (!this->io_handler.check_number_of_arguments(1))
+    {
+        this->io_handler.print_usage(COMMAND_GRADUATE, USAGE_GRADUATE);
+        return;
+    }
+
+    Vector<String> arguments = this->io_handler.get_args();
+    if (!arguments[0].is_valid_number(true))
+    {
+        this->io_handler.print_error("Invalid faculty number");
+        return;
+    }
+
+    Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+    if (!student)
+    {
+        this->io_handler.print_error("No student with specified faculty number exists");
+        return;
+    }
+
+    if (!student->can_graduate())
+    {
+        this->io_handler.print_error("Student can not graduate with pending courses");
+        return;
+    }
+
+    student->graduate();
+}
+
+void SUSI::handle_command_interrupt()
+{
+    if (std::cin.peek() == '\n')
+    {
+        this->io_handler.print_usage(COMMAND_INTERRUPT, USAGE_INTERRUPT);
+        std::cin.ignore();
+        return;
+    }
+
+    this->io_handler.input_args(std::cin);
+
+    if (!this->io_handler.check_number_of_arguments(1))
+    {
+        this->io_handler.print_usage(COMMAND_GRADUATE, USAGE_GRADUATE);
+        return;
+    }
+
+    Vector<String> arguments = this->io_handler.get_args();
+    if (!arguments[0].is_valid_number(true))
+    {
+        this->io_handler.print_error("Invalid faculty number");
+        return;
+    }
+
+    Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+    if (!student)
+    {
+        this->io_handler.print_error("No student with specified faculty number exists");
+        return;
+    }
+
+    if (student->get_status() == StudentStatus::interrupted)
+    {
+        this->io_handler.print_error("Student has already interrupted");
+        return;
+    }
+
+    student->set_status(StudentStatus::interrupted);
+}
+
+void SUSI::handle_command_resume()
+{
+    if (std::cin.peek() == '\n')
+    {
+        this->io_handler.print_usage(COMMAND_INTERRUPT, USAGE_INTERRUPT);
+        std::cin.ignore();
+        return;
+    }
+
+    this->io_handler.input_args(std::cin);
+
+    if (!this->io_handler.check_number_of_arguments(1))
+    {
+        this->io_handler.print_usage(COMMAND_GRADUATE, USAGE_GRADUATE);
+        return;
+    }
+
+    Vector<String> arguments = this->io_handler.get_args();
+    if (!arguments[0].is_valid_number(true))
+    {
+        this->io_handler.print_error("Invalid faculty number");
+        return;
+    }
+
+    Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+    if (!student)
+    {
+        this->io_handler.print_error("No student with specified faculty number exists");
+        return;
+    }
+
+    if (student->get_status() == StudentStatus::enrolled)
+    {
+        this->io_handler.print_error("Student is already enrolled");
+        return;
+    }
+
+    student->set_status(StudentStatus::enrolled);
 }

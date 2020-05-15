@@ -63,3 +63,13 @@ String Major::get_name() const
 {
     return this->name;
 }
+
+int Major::get_max_years() const
+{
+    return this->max_years;
+}
+
+const Vector<Course*>* Major::get_courses() const
+{
+    return this->courses;
+}

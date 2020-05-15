@@ -23,6 +23,10 @@ public:
     void add_course(Course* course, int year);
     //! Get name of Major
     String get_name() const;
+    //! Get course years
+    int get_max_years() const;
+    //! Get courses (can't be changed)
+    const Vector<Course*>* get_courses() const;
 };
 
 #endif // MAJOR_HPP

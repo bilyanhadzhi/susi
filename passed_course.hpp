@@ -13,6 +13,8 @@ private:
 public:
     PassedCourse();
     PassedCourse(Course* course, double grade);
+    //! Get grade of passed course
+    double get_grade() const;
 };
 
 #endif // PASSED_COURSE_HPP

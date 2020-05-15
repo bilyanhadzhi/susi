@@ -72,6 +72,16 @@ bool Student::set_group(int group)
     return true;
 }
 
+void Student::set_status(StudentStatus status)
+{
+    if (status == StudentStatus::graduated && !this->can_graduate())
+    {
+        return;
+    }
+
+    this->status = status;
+}
+
 String Student::get_name() const
 {
     return this->name;
@@ -80,6 +90,11 @@ String Student::get_name() const
 int Student::get_fac_number() const
 {
     return this->fac_number;
+}
+
+int Student::get_year() const
+{
+    return this->year;
 }
 
 Vector<Course*> Student::get_pending_courses() const
@@ -101,6 +116,11 @@ void Student::set_major(Major* major)
 
 bool Student::can_advance() const
 {
+    if (this->year == MAX_YEAR)
+    {
+        return false;
+    }
+
     int number_of_pending_courses = this->pending_courses.get_len();
     int courses_to_pass = 0;
 
@@ -118,18 +138,79 @@ bool Student::can_advance() const
 bool Student::has_passed_course(Course* course) const
 {
     assert (course != nullptr);
+
+    bool has_passed = false;
+
+    // search in passed courses
+    const int passed_courses_len = this->passed_courses.get_len();
+
+    for (int i = 0; i < passed_courses_len && !has_passed; ++i)
+    {
+        if (this->passed_courses[i]->get_name() == course->get_name())
+        {
+            if (this->passed_courses[i]->get_grade() >= 3)
+            {
+                has_passed = true;
+            }
+
+            break;
+        }
+    }
+
+    return has_passed;
 }
 
 bool Student::can_switch_major(Major* major) const
 {
     assert(major != nullptr);
 
+    bool can_switch = true;
+
     // Trying to switch to same major
     if (this->major == major)
     {
-        return false;
+        can_switch = false;
     }
 
+    const Vector<Course*>* major_courses = major->get_courses();
+
+    // for each year of major until current (i.e. a container of courses)
+    for (int i = 0; i < this->year && can_switch; ++i)
+    {
+        const int courses_curr_year_count = major_courses[i].get_len();
+
+        // for each course of current year
+        for (int j = 0; j < courses_curr_year_count && can_switch; ++j)
+        {
+            // check if has not been passed
+            if (!this->has_passed_course(major_courses[i][j]))
+            {
+                can_switch = false;
+            }
+        }
+    }
+
+    return can_switch;
+}
+
+bool Student::can_graduate() const
+{
+    return this->year == this->major->get_max_years() && this->pending_courses.get_len() == 0;
+}
+
+void Student::graduate()
+{
+    if (!this->can_graduate())
+    {
+        return;
+    }
+
+    this->status = StudentStatus::graduated;
+}
+
+StudentStatus Student::get_status() const
+{
+    return this->status;
 }
 
 // TODO

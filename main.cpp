@@ -15,7 +15,7 @@ void test_app();
 
 int main(void)
 {
-    // test_student();
+    // test_vector();
     test_app();
 }
 
@@ -50,8 +50,18 @@ void test_io_handler()
 
 void test_vector()
 {
-    Vector<Vector<Major*>> vec1;
+    Vector<int> vec1;
+    for (int i = 0; i < 4; ++i)
+    {
+        vec1.push(i);
+    }
 
+    for (int i = 0; i < vec1.get_len(); ++i)
+    {
+        std::cout << vec1[i] << " ";
+    }
+
+    std::cout << std::endl;
 
     return;
 }
