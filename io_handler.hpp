@@ -28,7 +28,7 @@ public:
     //! Print error
     void print_error(String desc) const;
     //! Print unknown command
-    void print_unknown_command(String command) const;
+    void print_unknown_command() const;
 };
 
 #endif // IO_HANDLER_HPP

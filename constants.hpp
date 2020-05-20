@@ -17,6 +17,7 @@
 #define COMMAND_ADD_GRADE   "addgrade"
 #define COMMAND_PROTOCOL    "protocol"
 #define COMMAND_REPORT      "report"
+#define COMMAND_EXIT        "exit"
 
 // Usage of commands
 #define USAGE_ENROLL        "<fn> <program> <group> <name>"
@@ -36,6 +37,17 @@
 #define ARGUMENT_CHANGE_PROGRAM "program"
 #define ARGUMENT_CHANGE_GROUP   "group"
 #define ARGUMENT_CHANGE_YEAR    "year"
+
+// Course Type names
+#define NAME_COURSE_TYPE_NONE           "none"
+#define NAME_COURSE_TYPE_MANDATORY      "mandatory"
+#define NAME_COURSE_TYPE_FREE_ELECTIVE  "free elective"
+
+// Student status names
+#define NAME_STUDENT_STATUS_NONE        "none"
+#define NAME_STUDENT_STATUS_ACTIVE      "active"
+#define NAME_STUDENT_STATUS_INTERRUPTED "interrupted"
+#define NAME_STUDENT_STATUS_GRADUATED   "graduated"
 
 // Vector
 #define VECTOR_DEFAULT_CAPACITY 16

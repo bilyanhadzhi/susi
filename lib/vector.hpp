@@ -169,7 +169,7 @@ int Vector<T>::get_first_occurrence(T elem) const
 {
     for (int i = 0; i < this->elements_count; ++i)
     {
-        if (this->elements[i] == elem)
+        if (*this->elements[i] == elem)
         {
             return i;
         }

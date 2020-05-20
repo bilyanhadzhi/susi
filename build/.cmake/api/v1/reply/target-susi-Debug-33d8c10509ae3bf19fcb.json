@@ -24,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 33,
+				"line" : 34,
 				"parent" : 0
 			}
 		]
@@ -107,7 +107,8 @@
 				16,
 				17,
 				18,
-				19
+				19,
+				20
 			]
 		}
 	],
@@ -185,6 +186,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "course.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "course_type.hpp",
 			"sourceGroupIndex" : 1
 		},
 		{

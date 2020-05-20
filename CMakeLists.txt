@@ -21,6 +21,7 @@ set(Headers
     io_handler.hpp
     student.hpp
     course.hpp
+    course_type.hpp
     passed_course.hpp
     lib/string.hpp
     lib/vector.hpp

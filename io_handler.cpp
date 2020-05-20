@@ -94,3 +94,8 @@ void IOHandler::print_error(String desc) const
     std::cout << "Error: ";
     std::cout << desc << std::endl;
 }
+
+void IOHandler::print_unknown_command() const
+{
+    std::cout << "Unknown command. Type 'help' for a list of commands" << std::endl;
+}

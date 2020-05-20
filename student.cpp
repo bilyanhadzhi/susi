@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iomanip>
 #include "student.hpp"
 #include "student_status.hpp"
 #include "constants.hpp"
@@ -20,41 +21,69 @@ Student::Student(int fac_number, Major* major, int group, String name, int year,
     this->gpa = 0;
 }
 
-void Student::set_gpa(double gpa)
+bool Student::set_gpa(double gpa)
 {
     if (gpa < MIN_COURSE_GRADE || gpa > MAX_COURSE_GRADE)
     {
-        this->gpa = MIN_COURSE_GRADE;
-        return;
+        if (this->gpa < MIN_COURSE_GRADE || this->gpa > MAX_COURSE_GRADE)
+        {
+            this->gpa = MIN_COURSE_GRADE;
+            return true;
+        }
+
+        return false;
     }
 
     this->gpa = gpa;
+    return true;
 }
 
-void Student::set_fac_number(int fac_number)
+bool Student::set_fac_number(int fac_number)
 {
     if (fac_number < 0 || fac_number > MAX_FAC_NUMBER)
     {
-        this->fac_number = 0;
-        return;
+        if (this->fac_number < 0 || this->fac_number > MAX_FAC_NUMBER)
+        {
+            this->fac_number = 0;
+            return true;
+        }
+
+        return false;
     }
 
     this->fac_number = fac_number;
+    return true;
 }
 
-void Student::set_year(int year)
+bool Student::set_year(int year)
 {
+    if (this->status != StudentStatus::active)
+    {
+        return false;
+    }
+
     if (year < 1 || year > MAX_YEAR)
     {
-        this->year = 1;
-        return;
+        if (this->year < 1 || this->year > MAX_YEAR)
+        {
+            this->year = 1;
+            return true;
+        }
+
+        return false;
     }
 
     this->year = year;
+    return true;
 }
 
 bool Student::set_group(int group)
 {
+    if (this->status != StudentStatus::active)
+    {
+        return false;
+    }
+
     if (group < 1 || group > MAX_GROUP)
     {
         // if group contains some random value out of range (i.e. when constructing)
@@ -104,18 +133,29 @@ Vector<Course*> Student::get_pending_courses() const
 
 void Student::advance_year()
 {
-    this->set_year(this->year + 1);
+    if (this->status == StudentStatus::active)
+    {
+        this->set_year(this->year + 1);
+    }
 }
 
 void Student::set_major(Major* major)
 {
     assert(major != nullptr);
 
-    this->major = major;
+    if (this->status == StudentStatus::active)
+    {
+        this->major = major;
+    }
 }
 
 bool Student::can_advance() const
 {
+    if (this->status == StudentStatus::active)
+    {
+        return false;
+    }
+
     if (this->year == MAX_YEAR)
     {
         return false;
@@ -146,9 +186,9 @@ bool Student::has_passed_course(Course* course) const
 
     for (int i = 0; i < passed_courses_len && !has_passed; ++i)
     {
-        if (this->passed_courses[i]->get_name() == course->get_name())
+        if (this->passed_courses[i].get_name() == course->get_name())
         {
-            if (this->passed_courses[i]->get_grade() >= 3)
+            if (this->passed_courses[i].get_grade() >= 3)
             {
                 has_passed = true;
             }
@@ -160,11 +200,56 @@ bool Student::has_passed_course(Course* course) const
     return has_passed;
 }
 
+bool Student::enroll_in(Course* course)
+{
+    assert(course != nullptr);
+
+    if (this->get_enrolled_course(course) != nullptr)
+    {
+        return false;
+    }
+
+    const int passed_courses_len = this->passed_courses.get_len();
+    for (int i = 0; i < passed_courses_len; ++i)
+    {
+        if (this->passed_courses[i].get_name() == course->get_name())
+        {
+            return false;
+        }
+    }
+
+    this->pending_courses.push(course);
+    return true;
+}
+
+Course* Student::get_enrolled_course(Course* course) const
+{
+    assert(course != nullptr);
+
+    Course* found_course = nullptr;
+
+    const int pending_courses_len = this->pending_courses.get_len();
+    for (int i = 0; i < pending_courses_len && !found_course; ++i)
+    {
+        if (pending_courses[i] == course)
+        {
+            found_course = course;
+        }
+    }
+
+    return found_course;
+}
+
 bool Student::can_switch_major(Major* major) const
 {
     assert(major != nullptr);
 
     bool can_switch = true;
+
+    if (this->status == StudentStatus::active)
+    {
+        can_switch = false;
+    }
 
     // Trying to switch to same major
     if (this->major == major)
@@ -195,7 +280,7 @@ bool Student::can_switch_major(Major* major) const
 
 bool Student::can_graduate() const
 {
-    return this->year == this->major->get_max_years() && this->pending_courses.get_len() == 0;
+    return this->status == StudentStatus::active && this->year == this->major->get_max_years() && this->pending_courses.get_len() == 0;
 }
 
 void Student::graduate()
@@ -216,5 +301,79 @@ StudentStatus Student::get_status() const
 // TODO
 void Student::update_gpa()
 {
+    int number_of_courses = 0;
+    double cumulative_grade = 0;
 
+    const int num_pending_courses = this->pending_courses.get_len();
+    number_of_courses += num_pending_courses;
+    cumulative_grade += (num_pending_courses * 2);
+
+    const int passed_courses_len = this->passed_courses.get_len();
+    number_of_courses += passed_courses_len;
+    for (int i = 0; i < passed_courses_len; ++i)
+    {
+        cumulative_grade += this->passed_courses[i].get_grade();
+    }
+
+    this->gpa = cumulative_grade / number_of_courses;
+}
+
+const char* Student::get_student_type_name() const
+{
+    switch (this->status)
+    {
+    case StudentStatus::none:
+        return NAME_STUDENT_STATUS_NONE;
+    case StudentStatus::active:
+        return NAME_STUDENT_STATUS_ACTIVE;
+    case StudentStatus::interrupted:
+        return NAME_STUDENT_STATUS_INTERRUPTED;
+    case StudentStatus::graduated:
+        return NAME_STUDENT_STATUS_ACTIVE;
+    default:
+        return NAME_STUDENT_STATUS_NONE;
+    }
+}
+
+std::ostream& operator<<(std::ostream& o_stream, const Student& student)
+{
+    o_stream << "| ";
+    o_stream << std::setw(6) << student.fac_number << " | ";
+    o_stream << std::setw(12) << student.name << " | ";
+    o_stream << std::setw(10) << student.get_student_type_name() << " | ";
+    o_stream << std::setw(20) << student.major->get_name() << " | ";
+    o_stream << std::setw(5) << "Year " << student.year << " | ";
+    o_stream << std::setw(6) << "Group " << student.group << " |";
+    std::cout << std::endl;
+
+    return o_stream;
+}
+
+bool Student::pass_course(Course* course, int grade)
+{
+    if (this->status == StudentStatus::active)
+    {
+        return false;
+    }
+
+    if (grade < MIN_COURSE_GRADE + 1 || grade > MAX_COURSE_GRADE)
+    {
+        return false;
+    }
+
+    // Find course in pending
+    Course* found_course = this->get_enrolled_course(course);
+    if (!found_course)
+    {
+        return false;
+    }
+
+    // push new instance of finished course
+    this->passed_courses.push(PassedCourse(found_course, grade));
+
+    // remove pointer to pending course
+    int index_of_course = this->pending_courses.get_first_occurrence(found_course);
+    this->pending_courses.remove(index_of_course);
+
+    return true;
 }

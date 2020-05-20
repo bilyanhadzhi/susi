@@ -12,7 +12,7 @@ class Student
 {
 private:
     Vector<Course*> pending_courses;
-    Vector<PassedCourse*> passed_courses;
+    Vector<PassedCourse> passed_courses;
     String name;
     double gpa;
     Major* major;
@@ -20,14 +20,14 @@ private:
     int fac_number;
     int year;
     int group;
-    void set_gpa(double gpa);
-    void set_fac_number(int fac_number);
-    void set_year(int year);
+    bool set_gpa(double gpa);
+    bool set_fac_number(int fac_number);
+    bool set_year(int year);
     void update_gpa();
 
 public:
     Student();
-    Student(int fac_number, Major* major, int group, String name, int year = 1, StudentStatus status = StudentStatus::enrolled);
+    Student(int fac_number, Major* major, int group, String name, int year = 1, StudentStatus status = StudentStatus::active);
     //! Get name of student
     String get_name() const;
     //! Get faculty number of student
@@ -38,6 +38,10 @@ public:
     StudentStatus get_status() const;
     //! Get a list of all courses the student has not yet passed
     Vector<Course*> get_pending_courses() const;
+    //! Get course if student is enrolled; return nullptr otherwise
+    Course* get_enrolled_course(Course* course) const;
+    //! Remove course pointer from pending and create an instance of a finished course
+    bool pass_course(Course* course, int grade);
     //! Increment student's year
     void advance_year();
     //! Change group of student; return whether successful
@@ -54,8 +58,15 @@ public:
     bool can_graduate() const;
     //! Check whether course has been passed
     bool has_passed_course(Course* course) const;
+    //! Enroll student in course (only if not already enrolled/passed)
+    bool enroll_in(Course* course);
     //! Mark student as graduated (only if they can)
     void graduate();
+    //! Get student's status as string
+    const char* get_student_type_name() const;
+    //! Print student
+    friend std::ostream& operator<<(std::ostream& o_stream, const Student& student);
+
 
 };
 

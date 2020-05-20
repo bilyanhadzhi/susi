@@ -113,3 +113,19 @@ Vector<Student*> Database::get_students() const
 
     return all_students;
 }
+
+Vector<Course*> Database::get_courses_by_name(String name) const
+{
+    Vector<Course*> filtered;
+
+    const int courses_len = this->courses.get_len();
+    for (int i = 0; i < courses_len; ++i)
+    {
+        if (this->courses[i].get_name() == name)
+        {
+            filtered.push(&this->courses[i]);
+        }
+    }
+
+    return filtered;
+}

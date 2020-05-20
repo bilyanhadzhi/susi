@@ -50,17 +50,15 @@ void test_io_handler()
 
 void test_vector()
 {
-    Vector<int> vec1;
-    for (int i = 0; i < 4; ++i)
-    {
-        vec1.push(i);
-    }
+    Vector<Course*> vec1;
+    Course* ptr = new Course("CompSci", CourseType::mandatory);
+    Course* ptr2 = new Course("OOP", CourseType::mandatory);
+    vec1.push(ptr);
+    vec1.push(ptr2);
 
-    for (int i = 0; i < vec1.get_len(); ++i)
-    {
-        std::cout << vec1[i] << " ";
-    }
+    std::cout << vec1.get_first_occurrence(ptr2);
 
+    delete ptr, ptr2;
     std::cout << std::endl;
 
     return;
