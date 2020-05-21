@@ -240,11 +240,21 @@ Course* Student::get_enrolled_course(Course* course) const
     return found_course;
 }
 
+const Vector<PassedCourse>& Student::get_passed_courses() const
+{
+    return this->passed_courses;
+}
+
 bool Student::can_enroll(Course* course)
 {
     assert(course != nullptr);
 
     if (this->is_enrolled_in(course))
+    {
+        return false;
+    }
+
+    if (this->has_passed_course(course))
     {
         return false;
     }
@@ -366,7 +376,7 @@ std::ostream& operator<<(std::ostream& o_stream, const Student& student)
     return o_stream;
 }
 
-bool Student::pass_course(Course* course, int grade)
+bool Student::pass_course(Course* course, double grade)
 {
     if (this->status != StudentStatus::active)
     {

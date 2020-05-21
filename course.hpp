@@ -19,6 +19,10 @@ public:
     String get_name() const;
     //! Get type of course
     CourseType get_type() const;
+    //! Get course type as a string
+    const char* get_type_name() const;
+    //! Print course information to output stream
+    friend std::ostream& operator<<(std::ostream& o_stream, const Course& course);
 };
 
 #endif // COURSE_HPP

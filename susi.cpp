@@ -43,7 +43,7 @@ void SUSI::run()
         }
         else if (command == COMMAND_PRINT_ALL)
         {
-            this->handle_command_print();
+            this->handle_command_print_all();
         }
         else if (command == COMMAND_ENROLL_IN)
         {
@@ -444,10 +444,48 @@ void SUSI::handle_command_print()
         return;
     }
 
-    std::cout << *student;
+    std::cout << "\nInformation for student " << student->get_fac_number() << ":\n";
+    std::cout << *student << std::endl;
 
-    // Get all passed courses
-    // TODO
+    // enrolled courses
+    const Vector<Course*> pending_courses = student->get_pending_courses();
+    const int pending_courses_len = pending_courses.get_len();
+
+    if (pending_courses_len < 1)
+    {
+        std::cout << "No pending courses" << std::endl;
+    }
+    else
+    {
+        std::cout << "Currently enrolled:\n";
+        for (int i = 0; i < pending_courses_len; ++i)
+        {
+            std::cout << *pending_courses[i] << std::endl;
+        }
+        std::cout << std::endl;
+    }
+
+    // passed courses
+    const Vector<PassedCourse>& passed_courses = student->get_passed_courses();
+    const int passed_courses_len = passed_courses.get_len();
+
+    if (passed_courses_len < 1)
+    {
+        std::cout << "No passed courses" << std::endl;
+    }
+    else
+    {
+        std::cout << "Passed courses:\n";
+        for (int i = 0; i < passed_courses_len; ++i)
+        {
+            std::cout << passed_courses[i] << std::endl;
+        }
+
+        if (passed_courses_len < 1)
+        {
+            std::cout << std::endl;
+        }
+    }
 }
 
 // TODO
@@ -513,11 +551,16 @@ void SUSI::handle_command_enroll_in()
     {
         if (student->is_enrolled_in(courses_matching_name[0]))
         {
-            this->io_handler.print_error("Student is already enrolled in that course");
+            this->io_handler.print_error("Student is already enrolled in this course");
+            return;
+        }
+        if (student->has_passed_course(courses_matching_name[0]))
+        {
+            this->io_handler.print_error("Student has already passed course");
             return;
         }
 
-        this->io_handler.print_error("Student can not enroll in that course");
+        this->io_handler.print_error("Student can not enroll in this course");
         return;
     }
 
@@ -527,7 +570,7 @@ void SUSI::handle_command_enroll_in()
         return;
     }
 
-    this->io_handler.print_success("Student enrolled successfuly");
+    this->io_handler.print_success("Student enrolled successfully");
 }
 
 // TODO
@@ -580,7 +623,6 @@ void SUSI::handle_command_add_grade()
     }
 
     double grade = arguments[2].to_double();
-
     Vector<Course*> courses_matching_name = this->database.get_courses_by_name(arguments[1]);
     if (courses_matching_name.get_len() != 1)
     {

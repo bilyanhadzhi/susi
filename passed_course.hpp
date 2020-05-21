@@ -15,6 +15,8 @@ public:
     PassedCourse(Course* course, double grade);
     //! Get grade of passed course
     double get_grade() const;
+    //! Print passec course to output stream
+    friend std::ostream& operator<<(std::ostream& o_stream, const PassedCourse& passed_course);
 };
 
 #endif // PASSED_COURSE_HPP

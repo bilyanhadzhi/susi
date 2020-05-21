@@ -23,7 +23,11 @@ void Database::populate_data()
     this->majors.push(Major("Information_Systems"));
 
     // Assign courses to majors
-    this->majors[0].add_course(&this->courses[0], 1);
+    for (int i = 0; i < this->courses.get_len(); ++i)
+    {
+        this->majors[0].add_course(&this->courses[i], 1);
+    }
+
     this->majors[1].add_course(&this->courses[6], 1);
 
     // Add students

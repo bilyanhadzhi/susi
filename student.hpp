@@ -42,8 +42,10 @@ public:
     Vector<Course*> get_pending_courses() const;
     //! Get course if student is enrolled; return nullptr otherwise
     Course* get_enrolled_course(Course* course) const;
+    //! Get all passed courses for student
+    const Vector<PassedCourse>& get_passed_courses() const;
     //! Remove course pointer from pending and create an instance of a finished course
-    bool pass_course(Course* course, int grade);
+    bool pass_course(Course* course, double grade);
     //! Increment student's year
     void advance_year();
     //! Change group of student; return whether successful
