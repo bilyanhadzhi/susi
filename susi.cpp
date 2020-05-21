@@ -5,6 +5,11 @@ void SUSI::run()
 {
     do
     {
+        if (std::cin.peek() == '\n')
+        {
+            std::cin.ignore();
+        }
+
         this->io_handler.input_command();
         String command = this->io_handler.get_command();
 
@@ -481,6 +486,48 @@ void SUSI::handle_command_enroll_in()
         this->io_handler.print_usage(COMMAND_ENROLL_IN, USAGE_ENROLL_IN);
         return;
     }
+
+    Vector<String> arguments = this->io_handler.get_args();
+    if (!arguments[0].is_valid_number(true))
+    {
+        this->io_handler.print_error("Invalid faculty number");
+        return;
+    }
+
+    Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+    if (!student)
+    {
+        this->io_handler.print_error("No student with specified faculty number exists");
+        return;
+    }
+
+    Vector<Course*> courses_matching_name = this->database.get_courses_by_name(arguments[1]);
+    if (courses_matching_name.get_len() != 1)
+    {
+        this->io_handler.print_error("Could not determine course");
+        return;
+    }
+
+    if (!student->can_enroll(courses_matching_name[0]))
+    {
+        if (student->is_enrolled_in(courses_matching_name[0]))
+        {
+            this->io_handler.print_error("Student is already enrolled in that course");
+            return;
+        }
+
+        this->io_handler.print_error("Student can not enroll in that course");
+        return;
+    }
+
+    if (!student->enroll_in(courses_matching_name[0]))
+    {
+        this->io_handler.print_error("Could not enroll student in course");
+        return;
+    }
+
+    this->io_handler.print_success("Student enrolled successfuly");
 }
 
 // TODO
@@ -549,7 +596,15 @@ void SUSI::handle_command_add_grade()
     }
 
     // Add course to passed
-    student->pass_course(pending_course, grade);
+    if (student->pass_course(pending_course, grade))
+    {
+        std::cout << "Course passed successfully\n";
+        return;
+    }
+    else
+    {
+        this->io_handler.print_error("Could not pass course");
+    }
 }
 
 // TODO

@@ -131,6 +131,11 @@ Vector<Course*> Student::get_pending_courses() const
     return this->pending_courses;
 }
 
+Major* Student::get_major() const
+{
+    return this->major;
+}
+
 void Student::advance_year()
 {
     if (this->status == StudentStatus::active)
@@ -204,11 +209,6 @@ bool Student::enroll_in(Course* course)
 {
     assert(course != nullptr);
 
-    if (this->get_enrolled_course(course) != nullptr)
-    {
-        return false;
-    }
-
     const int passed_courses_len = this->passed_courses.get_len();
     for (int i = 0; i < passed_courses_len; ++i)
     {
@@ -238,6 +238,23 @@ Course* Student::get_enrolled_course(Course* course) const
     }
 
     return found_course;
+}
+
+bool Student::can_enroll(Course* course)
+{
+    assert(course != nullptr);
+
+    if (this->is_enrolled_in(course))
+    {
+        return false;
+    }
+
+    return this->major->get_courses()[this->year - 1].get_first_occurrence(course) != -1;
+}
+
+bool Student::is_enrolled_in(Course* course) const
+{
+    return this->pending_courses.get_first_occurrence(course) != -1;
 }
 
 bool Student::can_switch_major(Major* major) const
@@ -351,7 +368,7 @@ std::ostream& operator<<(std::ostream& o_stream, const Student& student)
 
 bool Student::pass_course(Course* course, int grade)
 {
-    if (this->status == StudentStatus::active)
+    if (this->status != StudentStatus::active)
     {
         return false;
     }

@@ -34,6 +34,8 @@ public:
     int get_fac_number() const;
     //! Get current year of student
     int get_year() const;
+    //! Get pointer to student's major
+    Major* get_major() const;
     //! Get student status
     StudentStatus get_status() const;
     //! Get a list of all courses the student has not yet passed
@@ -50,8 +52,12 @@ public:
     void set_major(Major* major);
     //! Change student's status
     void set_status(StudentStatus status);
+    //! Check whether this year student can enroll in course
+    bool can_enroll(Course* course);
     //! Check whether student can advance to next year
     bool can_advance() const;
+    //! Check if student is already enrolled in course
+    bool is_enrolled_in(Course* course) const;
     //! Check if student can change major
     bool can_switch_major(Major* major) const;
     //! Check whether student can graduate

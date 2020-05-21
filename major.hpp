@@ -8,7 +8,7 @@ class Major
 {
 private:
     String name;
-    //! Container of courses for each year (index 0 -> year 1)
+    //! Dynaminc container of course-vectors for each year (index 0 -> courses for year 1)
     Vector<Course*>* courses;
     int max_years;
     void copy_from(const Major& other);

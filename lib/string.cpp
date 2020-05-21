@@ -154,10 +154,11 @@ void String::input(std::istream& i_stream, bool whole_line)
         delete[] new_string_value;
         this->set_value("");
 
-        if (i_stream.peek() == '\n')
+        if (std::cin.peek() == '\n')
         {
-            i_stream.get();
+            std::cin.get();
         }
+
         return;
     }
 
