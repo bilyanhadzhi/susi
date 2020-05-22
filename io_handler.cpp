@@ -83,6 +83,11 @@ bool IOHandler::check_number_of_arguments(int num_of_args) const
     return this->args.get_len() == num_of_args;
 }
 
+void IOHandler::print_prompt() const
+{
+    std::cout << "(susi) $ ";
+}
+
 void IOHandler::print_usage(String command, String usage) const
 {
     std::cout << "Usage: ";

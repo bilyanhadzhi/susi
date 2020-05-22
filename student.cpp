@@ -101,14 +101,15 @@ bool Student::set_group(int group)
     return true;
 }
 
-void Student::set_status(StudentStatus status)
+bool Student::set_status(StudentStatus status)
 {
     if (status == StudentStatus::graduated && !this->can_graduate())
     {
-        return;
+        return false;
     }
 
     this->status = status;
+    return true;
 }
 
 String Student::get_name() const
@@ -126,6 +127,11 @@ int Student::get_year() const
     return this->year;
 }
 
+double Student::get_gpa() const
+{
+    return this->gpa;
+}
+
 Vector<Course*> Student::get_pending_courses() const
 {
     return this->pending_courses;
@@ -136,22 +142,22 @@ Major* Student::get_major() const
     return this->major;
 }
 
-void Student::advance_year()
+bool Student::advance_year()
 {
-    if (this->status == StudentStatus::active)
-    {
-        this->set_year(this->year + 1);
-    }
+    return this->status == StudentStatus::active ? this->set_year(this->year + 1) : false;
 }
 
-void Student::set_major(Major* major)
+bool Student::set_major(Major* major)
 {
     assert(major != nullptr);
 
-    if (this->status == StudentStatus::active)
+    if (this->status != StudentStatus::active)
     {
-        this->major = major;
+        return false;
     }
+
+    this->major = major;
+    return true;
 }
 
 bool Student::can_advance() const
@@ -193,7 +199,7 @@ bool Student::has_passed_course(Course* course) const
     {
         if (this->passed_courses[i].get_name() == course->get_name())
         {
-            if (this->passed_courses[i].get_grade() >= 3)
+            if (this->passed_courses[i].get_grade() >= MIN_COURSE_GRADE + 1)
             {
                 has_passed = true;
             }
@@ -310,14 +316,15 @@ bool Student::can_graduate() const
     return this->status == StudentStatus::active && this->year == this->major->get_max_years() && this->pending_courses.get_len() == 0;
 }
 
-void Student::graduate()
+bool Student::graduate()
 {
     if (!this->can_graduate())
     {
-        return;
+        return false;
     }
 
     this->status = StudentStatus::graduated;
+    return true;
 }
 
 StudentStatus Student::get_status() const
@@ -371,7 +378,7 @@ std::ostream& operator<<(std::ostream& o_stream, const Student& student)
     o_stream << std::setw(20) << student.major->get_name() << " | ";
     o_stream << std::setw(5) << "Year " << student.year << " | ";
     o_stream << std::setw(6) << "Group " << student.group << " |";
-    std::cout << std::endl;
+    // o_stream << std::setw(6) << student.get_gpa() << " |";
 
     return o_stream;
 }
@@ -402,5 +409,44 @@ bool Student::pass_course(Course* course, double grade)
     int index_of_course = this->pending_courses.get_first_occurrence(found_course);
     this->pending_courses.remove(index_of_course);
 
+    // update gpa
+    this->update_gpa();
+
     return true;
+}
+
+bool Student::is_enrolled_in_or_has_passed(Course* course)
+{
+    return this->is_enrolled_in(course) || this->has_passed_course(course);
+}
+
+double Student::get_grade_for_course(Course* course)
+{
+    PassedCourse* found_course = this->get_passed_course(course);
+
+    return (found_course ? found_course->get_grade() : MIN_COURSE_GRADE);
+}
+
+PassedCourse* Student::get_passed_course(Course* course)
+{
+    assert (course != nullptr);
+
+    PassedCourse* found_course = nullptr;
+
+    const int passed_courses_len = this->passed_courses.get_len();
+
+    for (int i = 0; i < passed_courses_len && !found_course; ++i)
+    {
+        if (this->passed_courses[i].get_name() == course->get_name())
+        {
+            if (this->passed_courses[i].get_grade() >= MIN_COURSE_GRADE + 1)
+            {
+                found_course = &this->passed_courses[i];
+            }
+
+            break;
+        }
+    }
+
+    return found_course;
 }

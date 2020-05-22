@@ -26,6 +26,7 @@ void Database::populate_data()
     for (int i = 0; i < this->courses.get_len(); ++i)
     {
         this->majors[0].add_course(&this->courses[i], 1);
+        this->majors[1].add_course(&this->courses[i], 1);
     }
 
     this->majors[1].add_course(&this->courses[6], 1);
@@ -132,4 +133,77 @@ Vector<Course*> Database::get_courses_by_name(String name) const
     }
 
     return filtered;
+}
+
+Vector<Student*> Database::get_students_by_major_and_year(Major* major, int year) const
+{
+    Vector<Student*> filtered;
+
+    const int students_len = this->students.get_len();
+    for (int i = 0; i < students_len; ++i)
+    {
+        if (this->students[i].get_major() == major && this->students[i].get_year() == year)
+        {
+            filtered.push(&this->students[i]);
+        }
+    }
+
+    return filtered;
+}
+
+Vector<Student*> Database::get_students_by_course_and_year(Course* course, int year) const
+{
+    Vector<Student*> filtered;
+
+    const int students_count = this->students.get_len();
+
+    for (int i = 0; i < students_count; ++i)
+    {
+        if (this->students[i].get_year() == year && this->students[i].is_enrolled_in_or_has_passed(course))
+        {
+            filtered.push(&this->students[i]);
+        }
+    }
+
+    return filtered;
+}
+
+Vector<Student*> Database::filter_students_by_major(const Vector<Student*>& list, Major* major) const
+{
+    const int list_count = list.get_len();
+
+    Vector<Student*> filtered;
+
+    for (int i = 0; i < list_count; ++i)
+    {
+        if (list[i]->get_major() == major)
+        {
+            filtered.push(list[i]);
+        }
+    }
+
+    return filtered;
+}
+
+void Database::sort_list_of_students_by_fac_number(Vector<Student*>& list) const
+{
+    const int list_count = list.get_len();
+
+    // perform insertion sort
+    for (int i = 0; i < list_count - 1; ++i)
+    {
+        int min_index = i;
+
+        for (int j = i + 1; j < list_count; ++j)
+        {
+            if (list[j]->get_fac_number() < list[min_index]->get_fac_number())
+            {
+                min_index = j;
+            }
+        }
+
+        Student* temp = list[i];
+        list[i] = list[min_index];
+        list[min_index] = temp;
+    }
 }

@@ -24,6 +24,7 @@ private:
     bool set_fac_number(int fac_number);
     bool set_year(int year);
     void update_gpa();
+    PassedCourse* get_passed_course(Course* course);
 
 public:
     Student();
@@ -34,6 +35,8 @@ public:
     int get_fac_number() const;
     //! Get current year of student
     int get_year() const;
+    //! Get GPA of studnet
+    double get_gpa() const;
     //! Get pointer to student's major
     Major* get_major() const;
     //! Get student status
@@ -47,13 +50,13 @@ public:
     //! Remove course pointer from pending and create an instance of a finished course
     bool pass_course(Course* course, double grade);
     //! Increment student's year
-    void advance_year();
+    bool advance_year();
     //! Change group of student; return whether successful
     bool set_group(int group);
     //! Set major
-    void set_major(Major* major);
+    bool set_major(Major* major);
     //! Change student's status
-    void set_status(StudentStatus status);
+    bool set_status(StudentStatus status);
     //! Check whether this year student can enroll in course
     bool can_enroll(Course* course);
     //! Check whether student can advance to next year
@@ -68,8 +71,12 @@ public:
     bool has_passed_course(Course* course) const;
     //! Enroll student in course (only if not already enrolled/passed)
     bool enroll_in(Course* course);
+    //! Check if student is either enrolled in or has passed course
+    bool is_enrolled_in_or_has_passed(Course* course);
+    //! Get grade for passed course (min grade if not passed)
+    double get_grade_for_course(Course* course);
     //! Mark student as graduated (only if they can)
-    void graduate();
+    bool graduate();
     //! Get student's status as string
     const char* get_student_type_name() const;
     //! Print student

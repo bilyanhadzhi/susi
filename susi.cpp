@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "susi.hpp"
 #include "course_type.hpp"
 
@@ -5,6 +6,7 @@ void SUSI::run()
 {
     do
     {
+        this->io_handler.print_prompt();
         if (std::cin.peek() == '\n')
         {
             std::cin.ignore();
@@ -70,10 +72,14 @@ void SUSI::run()
             if (std::cin.peek() == '\n')
             {
                 std::cin.ignore();
+                this->io_handler.print_unknown_command();
             }
-            this->io_handler.print_unknown_command();
+            else
+            {
+                this->io_handler.input_args(std::cin);
+                this->io_handler.print_unknown_command();
+            }
         }
-
     }
     while (this->io_handler.get_command() != "exit");
 }
@@ -118,6 +124,8 @@ void SUSI::handle_command_enroll()
 
     Student new_student(arguments[0].to_int(), majors_matching_name[0], arguments[2].to_int(), arguments[3]);
     this->database.add_student(new_student);
+
+    this->io_handler.print_success("New student enrolled successfully");
 }
 
 void SUSI::handle_command_advance()
@@ -159,8 +167,14 @@ void SUSI::handle_command_advance()
         return;
     }
 
-    student->advance_year();
-    return;
+    if (student->advance_year())
+    {
+        this->io_handler.print_success("Student advanced successfully");
+    }
+    else
+    {
+        this->io_handler.print_error("Student could not advance");
+    }
 }
 
 void SUSI::handle_command_change()
@@ -210,6 +224,7 @@ void SUSI::handle_command_change()
         }
 
         student->set_group(arguments[2].to_int());
+        this->io_handler.print_success("Changed student's group successfully");
     }
     else if (arguments[1] == ARGUMENT_CHANGE_PROGRAM)
     {
@@ -241,7 +256,15 @@ void SUSI::handle_command_change()
             return;
         }
 
-        student->set_major(majors[0]);
+        if (student->set_major(majors[0]))
+        {
+            this->io_handler.print_success("Changed student's major successfully");
+        }
+        else
+        {
+            this->io_handler.print_error("Could not change student's major");
+        }
+
     }
     else if (arguments[1] == ARGUMENT_CHANGE_YEAR)
     {
@@ -279,7 +302,14 @@ void SUSI::handle_command_change()
             return;
         }
 
-        student->advance_year();
+        if (student->advance_year())
+        {
+            this->io_handler.print_success("Student successfully advanced");
+        }
+        else
+        {
+            this->io_handler.print_error("Student could not advance");
+        }
     }
 }
 
@@ -321,7 +351,16 @@ void SUSI::handle_command_graduate()
         return;
     }
 
-    student->graduate();
+
+    if (student->graduate())
+    {
+        this->io_handler.print_success("Student graduated successfully");
+    }
+    else
+    {
+        this->io_handler.print_error("Student could not graduate");
+    }
+
 }
 
 void SUSI::handle_command_interrupt()
@@ -408,10 +447,17 @@ void SUSI::handle_command_resume()
         return;
     }
 
-    student->set_status(StudentStatus::active);
+    if (student->set_status(StudentStatus::active))
+    {
+        this->io_handler.print_success("Student resumed successfully");
+    }
+    else
+    {
+        this->io_handler.print_error("Student could not resume");
+    }
+
 }
 
-// TODO
 void SUSI::handle_command_print()
 {
     if (std::cin.peek() == '\n')
@@ -445,50 +491,9 @@ void SUSI::handle_command_print()
     }
 
     std::cout << "\nInformation for student " << student->get_fac_number() << ":\n";
-    std::cout << *student << std::endl;
-
-    // enrolled courses
-    const Vector<Course*> pending_courses = student->get_pending_courses();
-    const int pending_courses_len = pending_courses.get_len();
-
-    if (pending_courses_len < 1)
-    {
-        std::cout << "No pending courses" << std::endl;
-    }
-    else
-    {
-        std::cout << "Currently enrolled:\n";
-        for (int i = 0; i < pending_courses_len; ++i)
-        {
-            std::cout << *pending_courses[i] << std::endl;
-        }
-        std::cout << std::endl;
-    }
-
-    // passed courses
-    const Vector<PassedCourse>& passed_courses = student->get_passed_courses();
-    const int passed_courses_len = passed_courses.get_len();
-
-    if (passed_courses_len < 1)
-    {
-        std::cout << "No passed courses" << std::endl;
-    }
-    else
-    {
-        std::cout << "Passed courses:\n";
-        for (int i = 0; i < passed_courses_len; ++i)
-        {
-            std::cout << passed_courses[i] << std::endl;
-        }
-
-        if (passed_courses_len < 1)
-        {
-            std::cout << std::endl;
-        }
-    }
+    std::cout << *student << "\n\n";
 }
 
-// TODO
 void SUSI::handle_command_print_all()
 {
     if (std::cin.peek() == '\n')
@@ -505,9 +510,39 @@ void SUSI::handle_command_print_all()
         this->io_handler.print_usage(COMMAND_PRINT_ALL, USAGE_PRINT_ALL);
         return;
     }
+
+    Vector<String> arguments = this->io_handler.get_args();
+
+    Vector<Major*> majors_matching_name = this->database.get_majors_by_name(arguments[0]);
+
+    if (majors_matching_name.get_len() != 1)
+    {
+        this->io_handler.print_error("Could not determine major");
+        return;
+    }
+
+    if (!arguments[1].is_valid_number(true))
+    {
+        this->io_handler.print_error("Year needs to be a valid number");
+        return;
+    }
+
+    const int year = arguments[1].to_int();
+    if (year < 1 || year > MAX_YEAR)
+    {
+        this->io_handler.print_error("year needs to be in range [1, 4]");
+        return;
+    }
+
+    Vector<Student*> students = this->database.get_students_by_major_and_year(majors_matching_name[0], year);
+    const int number_of_students = students.get_len();
+
+    for (int i = 0; i < number_of_students; ++i)
+    {
+        std::cout << *students[i] << std::endl;
+    }
 }
 
-// TODO
 void SUSI::handle_command_enroll_in()
 {
     if (std::cin.peek() == '\n')
@@ -564,16 +599,16 @@ void SUSI::handle_command_enroll_in()
         return;
     }
 
-    if (!student->enroll_in(courses_matching_name[0]))
+    if (student->enroll_in(courses_matching_name[0]))
+    {
+        this->io_handler.print_success("Student enrolled in course successfully");
+    }
+    else
     {
         this->io_handler.print_error("Could not enroll student in course");
-        return;
     }
-
-    this->io_handler.print_success("Student enrolled successfully");
 }
 
-// TODO
 void SUSI::handle_command_add_grade()
 {
     if (std::cin.peek() == '\n')
@@ -640,7 +675,7 @@ void SUSI::handle_command_add_grade()
     // Add course to passed
     if (student->pass_course(pending_course, grade))
     {
-        std::cout << "Course passed successfully\n";
+        this->io_handler.print_success("Course passed successfully");
         return;
     }
     else
@@ -649,7 +684,6 @@ void SUSI::handle_command_add_grade()
     }
 }
 
-// TODO
 void SUSI::handle_command_protocol()
 {
     if (std::cin.peek() == '\n')
@@ -666,9 +700,70 @@ void SUSI::handle_command_protocol()
         this->io_handler.print_usage(COMMAND_PROTOCOL, USAGE_PROTOCOL);
         return;
     }
+
+    Vector<String> arguments = this->io_handler.get_args();
+
+    Vector<Course*> courses_matching_name = this->database.get_courses_by_name(arguments[0]);
+    if (courses_matching_name.get_len() != 1)
+    {
+        this->io_handler.print_error("Could not determine course");
+        return;
+    }
+
+    Course* course = courses_matching_name[0];
+
+    std::cout << "\nProtocol for " << course->get_name() << ":\n\n";
+    for (int i = 0; i < MAX_YEAR; ++i)
+    {
+        Vector<Student*> matching_students = this->database.get_students_by_course_and_year(course, i + 1);
+        this->database.sort_list_of_students_by_fac_number(matching_students);
+
+        std::cout << "Year " << i + 1 << ":\n";
+        const int students_count = matching_students.get_len();
+
+        if (students_count < 1)
+        {
+            std::cout << "No students attend this course\n\n";
+            continue;
+        }
+
+        Vector<Major*> all_majors = this->database.get_majors();
+        const int all_majors_count = all_majors.get_len();
+        for (int j = 0; j < all_majors_count; ++j)
+        {
+            Vector<Student*> matching_students_with_major = this->database.filter_students_by_major(matching_students, all_majors[j]);
+            const int matching_students_with_major_count = matching_students_with_major.get_len();
+
+            std::cout << "  " << all_majors[j]->get_name() << ":\n";
+
+            if (matching_students_with_major_count < 1)
+            {
+                std::cout << "  No students from this major\n\n";
+                continue;
+            }
+
+            for (int k = 0; k < matching_students_with_major_count; ++k)
+            {
+                std::cout << "  ";
+                std::cout << *matching_students_with_major[k];
+                std::cout << " " << std::setw(8);
+                if (matching_students_with_major[k]->has_passed_course(course))
+                {
+                    std::cout << std::setprecision(2) << std::fixed << matching_students_with_major[k]->get_grade_for_course(course);
+                }
+                else
+                {
+                    std::cout << "No grade";
+                }
+
+                std::cout << " |";
+                std::cout << "\n";
+            }
+            std::cout << "\n";
+        }
+    }
 }
 
-// TODO
 void SUSI::handle_command_report()
 {
     if (std::cin.peek() == '\n')
@@ -685,4 +780,66 @@ void SUSI::handle_command_report()
         this->io_handler.print_usage(COMMAND_REPORT, USAGE_REPORT);
         return;
     }
+
+    Vector<String> arguments = this->io_handler.get_args();
+    if (!arguments[0].is_valid_number(true))
+    {
+        this->io_handler.print_error("Invalid faculty number");
+        return;
+    }
+
+    Student *student = this->database.get_student_by_fac_number(arguments[0].to_int());
+
+    if (!student)
+    {
+        this->io_handler.print_error("No student with specified faculty number exists");
+        return;
+    }
+
+    std::cout << "\nInformation for student " << student->get_fac_number() << ":\n";
+    std::cout << *student << "\n\n";
+
+    // enrolled courses
+    const Vector<Course*> pending_courses = student->get_pending_courses();
+    const int pending_courses_len = pending_courses.get_len();
+
+    if (pending_courses_len < 1)
+    {
+        std::cout << "No pending courses" << std::endl;
+    }
+    else
+    {
+        std::cout << "Pending courses:\n";
+        for (int i = 0; i < pending_courses_len; ++i)
+        {
+            std::cout << *pending_courses[i] << "\n";
+        }
+        std::cout << std::endl;
+    }
+
+    // passed courses
+    const Vector<PassedCourse>& passed_courses = student->get_passed_courses();
+    const int passed_courses_len = passed_courses.get_len();
+
+    if (passed_courses_len < 1)
+    {
+        std::cout << "No passed courses" << std::endl;
+    }
+    else
+    {
+        std::cout << "Passed courses:\n";
+        for (int i = 0; i < passed_courses_len; ++i)
+        {
+            std::cout << passed_courses[i] << std::endl;
+        }
+
+        std::cout << "\n";
+        if (passed_courses_len < 1)
+        {
+            std::cout << "\n";
+        }
+    }
+
+    std::cout << "GPA: " << std::setprecision(2) << std::fixed << student->get_gpa() << "\n\n";
+    std::cout << "(Pending courses are counted as " << std::setprecision(2) << std::fixed << (double)MIN_COURSE_GRADE << ")\n\n";
 }
