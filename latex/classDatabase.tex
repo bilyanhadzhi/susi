@@ -1,8 +1,20 @@
 \hypertarget{classDatabase}{}\doxysection{Database Class Reference}
 \label{classDatabase}\index{Database@{Database}}
+
+
+The database class stores all the courses, majors and students.  
+
+
+
+
+{\ttfamily \#include $<$susi\+\_\+database.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{classDatabase_a4703c80e6969d33565ea340f768fdadf}\label{classDatabase_a4703c80e6969d33565ea340f768fdadf}} 
+\mbox{\hyperlink{classDatabase_a4703c80e6969d33565ea340f768fdadf}{Database}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classDatabase_a915377cfed26e909fd9eaa3e6a88727e}\label{classDatabase_a915377cfed26e909fd9eaa3e6a88727e}} 
 void \mbox{\hyperlink{classDatabase_a915377cfed26e909fd9eaa3e6a88727e}{add\+\_\+student}} (\mbox{\hyperlink{classStudent}{Student}} student)
 \begin{DoxyCompactList}\small\item\em Add new student to database. \end{DoxyCompactList}\item 
@@ -27,10 +39,64 @@ Vector$<$ \mbox{\hyperlink{classCourse}{Course}} $\ast$ $>$ \mbox{\hyperlink{cla
 \mbox{\Hypertarget{classDatabase_a82ee24eb31dc473959aa80f00f0609c5}\label{classDatabase_a82ee24eb31dc473959aa80f00f0609c5}} 
 Vector$<$ \mbox{\hyperlink{classStudent}{Student}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_a82ee24eb31dc473959aa80f00f0609c5}{get\+\_\+students\+\_\+by\+\_\+major\+\_\+and\+\_\+year}} (\mbox{\hyperlink{classMajor}{Major}} $\ast$major, int year) const
 \begin{DoxyCompactList}\small\item\em Get students by major and year. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDatabase_ace2287bfb57fd48c594aaaaf74e246c2}\label{classDatabase_ace2287bfb57fd48c594aaaaf74e246c2}} 
-Vector$<$ \mbox{\hyperlink{classPassedCourse}{Passed\+Course}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_ace2287bfb57fd48c594aaaaf74e246c2}{get\+\_\+passed\+\_\+courses\+\_\+for\+\_\+student}} (\mbox{\hyperlink{classStudent}{Student}} $\ast$student) const
-\begin{DoxyCompactList}\small\item\em Get all passed courses for a given student. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classDatabase_ad23e7fc1f525125382264d15be0bbddc}\label{classDatabase_ad23e7fc1f525125382264d15be0bbddc}} 
+Vector$<$ \mbox{\hyperlink{classStudent}{Student}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_ad23e7fc1f525125382264d15be0bbddc}{get\+\_\+students\+\_\+by\+\_\+course\+\_\+and\+\_\+year}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course, int year) const
+\begin{DoxyCompactList}\small\item\em Get a (sorted) list of students by course and year. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_afb747a7d0106fa15625d79a62b182a48}\label{classDatabase_afb747a7d0106fa15625d79a62b182a48}} 
+void \mbox{\hyperlink{classDatabase_afb747a7d0106fa15625d79a62b182a48}{sort\+\_\+list\+\_\+of\+\_\+students\+\_\+by\+\_\+fac\+\_\+number}} (Vector$<$ \mbox{\hyperlink{classStudent}{Student}} $\ast$ $>$ \&list) const
+\begin{DoxyCompactList}\small\item\em Sort a list of students (pointers) by their faculty number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_a45f1957b797ff105d146fa89d2ed6f3d}\label{classDatabase_a45f1957b797ff105d146fa89d2ed6f3d}} 
+Vector$<$ \mbox{\hyperlink{classStudent}{Student}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_a45f1957b797ff105d146fa89d2ed6f3d}{filter\+\_\+students\+\_\+by\+\_\+major}} (const Vector$<$ \mbox{\hyperlink{classStudent}{Student}} $\ast$ $>$ \&list, \mbox{\hyperlink{classMajor}{Major}} $\ast$major) const
+\begin{DoxyCompactList}\small\item\em Filtera list of students by their major. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_af9d0fd2ff2c3b4648c43b352bcacb697}\label{classDatabase_af9d0fd2ff2c3b4648c43b352bcacb697}} 
+void \mbox{\hyperlink{classDatabase_af9d0fd2ff2c3b4648c43b352bcacb697}{empty}} ()
+\begin{DoxyCompactList}\small\item\em Empty the database. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDatabase_a8a54e713ebda6299a44e7e931551db3e}{save}} (String filename=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Save information to binary file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDatabase_aa5988242f252af66dcd66ff36d42c8ef}{load}} (String filename=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Load information. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_a32de5021033aa7049597ab19e254d3f1}\label{classDatabase_a32de5021033aa7049597ab19e254d3f1}} 
+void \mbox{\hyperlink{classDatabase_a32de5021033aa7049597ab19e254d3f1}{make\+\_\+empty\+\_\+file}} (String filename)
+\begin{DoxyCompactList}\small\item\em Make empty file at destination. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_a41f3ee097a524f8d5d2c28709699c5fd}\label{classDatabase_a41f3ee097a524f8d5d2c28709699c5fd}} 
+bool \mbox{\hyperlink{classDatabase_a41f3ee097a524f8d5d2c28709699c5fd}{close}} ()
+\begin{DoxyCompactList}\small\item\em Close file without saving. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_ade293c1da2782395f417c4bb55774f57}\label{classDatabase_ade293c1da2782395f417c4bb55774f57}} 
+bool \mbox{\hyperlink{classDatabase_ade293c1da2782395f417c4bb55774f57}{get\+\_\+is\+\_\+loaded}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is a db file opened. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+The database class stores all the courses, majors and students. 
+
+If a file is loaded, is\+\_\+loaded will be true and file\+\_\+loaded will hold the name of that file. Filenames are relative to the folder db/ i.\+e. \char`\"{}database.\+db\char`\"{} means the file at \char`\"{}db/database.\+db\char`\"{} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDatabase_aa5988242f252af66dcd66ff36d42c8ef}\label{classDatabase_aa5988242f252af66dcd66ff36d42c8ef}} 
+\index{Database@{Database}!load@{load}}
+\index{load@{load}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily bool Database\+::load (\begin{DoxyParamCaption}\item[{String}]{filename = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Load information. 
+
+Load all courses
+
+Load all majors\mbox{\Hypertarget{classDatabase_a8a54e713ebda6299a44e7e931551db3e}\label{classDatabase_a8a54e713ebda6299a44e7e931551db3e}} 
+\index{Database@{Database}!save@{save}}
+\index{save@{save}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily bool Database\+::save (\begin{DoxyParamCaption}\item[{String}]{filename = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Save information to binary file. 
+
+Save all courses
+
+Save all majors
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

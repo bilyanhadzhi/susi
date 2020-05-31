@@ -164,6 +164,40 @@ bool Database::save(String filename)
         {
             return false;
         }
+
+        const Vector<Course*> student_pending_courses = this->students[i].get_pending_courses();
+        const int student_pending_courses_count = student_pending_courses.get_len();
+
+        if (!of_stream.write((char*)&student_pending_courses_count, sizeof(int)))
+        {
+            return false;
+        }
+
+        for (int j = 0; j < student_pending_courses_count; ++j)
+        {
+            String course_name = student_pending_courses[j]->get_name();
+
+            if (!course_name.write_to_bin(of_stream))
+            {
+                return false;
+            }
+        }
+
+        const Vector<PassedCourse> passed_courses = this->students[i].get_passed_courses();
+        const int passed_courses_len = passed_courses.get_len();
+
+        if (!of_stream.write((char*)&passed_courses_len, sizeof(int)))
+        {
+            return false;
+        }
+
+        for (int j = 0; j < passed_courses_len; ++j)
+        {
+            if (!passed_courses[j].write_to_bin(of_stream))
+            {
+                return false;
+            }
+        }
     }
 
     return of_stream ? true : false;
@@ -304,6 +338,43 @@ bool Database::load(String filename)
         }
 
         Student student(fac_number, major, group, student_name, year, student_status);
+
+        int student_pending_courses_count;
+        if (!if_stream.read((char*)&student_pending_courses_count, sizeof(int)))
+        {
+            return false;
+        }
+
+        for (int j = 0; j < student_pending_courses_count; ++j)
+        {
+            String course_name;
+            if (!course_name.read_from_bin(if_stream))
+            {
+                return false;
+            }
+
+            Course* found_course = this->get_courses_by_name(course_name)[0];
+            student.enroll_in(found_course);
+        }
+
+        int passed_courses_len;
+
+        if (!if_stream.read((char*)&passed_courses_len, sizeof(int)))
+        {
+            return false;
+        }
+
+        for (int j = 0; j < passed_courses_len; ++j)
+        {
+            PassedCourse passed_course;
+            Course* original_course = this->get_courses_by_name(passed_course.get_name())[0];
+            if (!passed_course.read_from_bin(if_stream))
+            {
+                return false;
+            }
+            student.pass_course(original_course, passed_course.get_grade());
+        }
+
         this->students.push(student);
     }
 

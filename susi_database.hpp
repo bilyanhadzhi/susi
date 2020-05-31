@@ -8,6 +8,13 @@
 #include "course.hpp"
 #include "student.hpp"
 
+//! The database class stores all the courses, majors and students.
+
+/*!
+    If a file is loaded, is_loaded will be true and file_loaded will hold the name of that file.
+    Filenames are relative to the folder db/ i.e. "database.db" means the file at "db/database.db"
+*/
+
 class Database
 {
 private:

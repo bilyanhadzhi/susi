@@ -1157,6 +1157,22 @@ void SUSI::handle_command_help()
 
 void SUSI::handle_command_exit()
 {
-    this->database.save();
+    if (this->database.get_is_loaded())
+    {
+        std::cout << "Would you like to save your changes? (y/n): ";
+        char ans;
+        std::cin >> ans;
+
+        if (ans == 'y')
+        {
+            this->database.save();
+        }
+        else
+        {
+            std::cout << "Exiting without saving.\n";
+        }
+    }
+
+    this->database.close();
     this->io_handler.print_exit();
 }

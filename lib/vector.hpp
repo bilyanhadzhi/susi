@@ -5,6 +5,8 @@
 #include <cassert>
 #include <iostream>
 
+//! A dynamic array of dynamic elements
+
 template<typename T>
 class Vector
 {

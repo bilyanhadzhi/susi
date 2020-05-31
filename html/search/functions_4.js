@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['has_5fpassed_5fcourse_97',['has_passed_course',['../classStudent.html#aaa9b98999d0faf8a80b4cc1b610957e5',1,'Student']]]
+  ['filter_5fstudents_5fby_5fmajor_94',['filter_students_by_major',['../classDatabase.html#a45f1957b797ff105d146fa89d2ed6f3d',1,'Database']]]
 ];

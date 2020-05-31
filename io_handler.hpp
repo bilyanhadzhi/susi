@@ -4,6 +4,8 @@
 #include "lib/string.hpp"
 #include "lib/vector.hpp"
 
+//! A very helpful class responsible for parsing commands and arguments and printing messages for errors/sucesses
+
 class IOHandler
 {
 private:

@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+//! String implementation
+
 class String
 {
 private:
@@ -17,8 +19,11 @@ private:
     void increase_capacity();
 
 public:
+    //! Empty-string constructor
     String();
+    //! Constructor via const C-string
     String(const char* str);
+    //! Copy constructor
     String(const String& other);
     String& operator=(const String& other);
     //! Replace string value with str (frees old value)

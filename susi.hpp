@@ -7,6 +7,7 @@
 #include "student.hpp"
 #include "susi_database.hpp"
 
+//! The main class of the applicaton. It has an input/output handler and a Database
 
 class SUSI
 {

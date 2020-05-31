@@ -71,11 +71,21 @@ $(function() {
 <div class="title">Student Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The student class stored a lot of information, including pointers to pending courses and instances of passed courses.  
+ <a href="classStudent.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="student_8hpp_source.html">student.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af9168cedbfa5565cf0b20c1a9d3f5c9d"><td class="memItemLeft" align="right" valign="top"><a id="af9168cedbfa5565cf0b20c1a9d3f5c9d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#af9168cedbfa5565cf0b20c1a9d3f5c9d">Student</a> ()</td></tr>
+<tr class="memdesc:af9168cedbfa5565cf0b20c1a9d3f5c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for empty student. <br /></td></tr>
+<tr class="separator:af9168cedbfa5565cf0b20c1a9d3f5c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44954d69401c871e7f2ec5db2b7214f3"><td class="memItemLeft" align="right" valign="top"><a id="a44954d69401c871e7f2ec5db2b7214f3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Student</b> (int fac_number, <a class="el" href="classMajor.html">Major</a> *major, int group, String name, int year=1, StudentStatus status=StudentStatus::active)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#a44954d69401c871e7f2ec5db2b7214f3">Student</a> (int fac_number, <a class="el" href="classMajor.html">Major</a> *major, int group, String name, int year=1, StudentStatus status=StudentStatus::active)</td></tr>
+<tr class="memdesc:a44954d69401c871e7f2ec5db2b7214f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for student ready to be added to the database. <br /></td></tr>
 <tr class="separator:a44954d69401c871e7f2ec5db2b7214f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a863c1ff49ee0442b782d1401f8ede8c8"><td class="memItemLeft" align="right" valign="top"><a id="a863c1ff49ee0442b782d1401f8ede8c8"></a>
 String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#a863c1ff49ee0442b782d1401f8ede8c8">get_name</a> () const</td></tr>
@@ -97,6 +107,10 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <a class="el" href="classMajor.html">Major</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#a824332476bfe19bd9f602510c13d5e86">get_major</a> () const</td></tr>
 <tr class="memdesc:a824332476bfe19bd9f602510c13d5e86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to student's major. <br /></td></tr>
 <tr class="separator:a824332476bfe19bd9f602510c13d5e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acda9081de069157c9b0aad86c817cc57"><td class="memItemLeft" align="right" valign="top"><a id="acda9081de069157c9b0aad86c817cc57"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#acda9081de069157c9b0aad86c817cc57">get_group</a> () const</td></tr>
+<tr class="memdesc:acda9081de069157c9b0aad86c817cc57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get student's group. <br /></td></tr>
+<tr class="separator:acda9081de069157c9b0aad86c817cc57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa19c9e5823b7a5fedf871574d24e055b"><td class="memItemLeft" align="right" valign="top"><a id="aa19c9e5823b7a5fedf871574d24e055b"></a>
 StudentStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#aa19c9e5823b7a5fedf871574d24e055b">get_status</a> () const</td></tr>
 <tr class="memdesc:aa19c9e5823b7a5fedf871574d24e055b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get student status. <br /></td></tr>
@@ -161,6 +175,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#aa7cc46f68cb2f68a3af60e5488d86a36">enroll_in</a> (<a class="el" href="classCourse.html">Course</a> *course)</td></tr>
 <tr class="memdesc:aa7cc46f68cb2f68a3af60e5488d86a36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enroll student in course (only if not already enrolled/passed) <br /></td></tr>
 <tr class="separator:aa7cc46f68cb2f68a3af60e5488d86a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5be8cff63abf3466675309736fc561c4"><td class="memItemLeft" align="right" valign="top"><a id="a5be8cff63abf3466675309736fc561c4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#a5be8cff63abf3466675309736fc561c4">is_enrolled_in_or_has_passed</a> (<a class="el" href="classCourse.html">Course</a> *course)</td></tr>
+<tr class="memdesc:a5be8cff63abf3466675309736fc561c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if student is either enrolled in or has passed course. <br /></td></tr>
+<tr class="separator:a5be8cff63abf3466675309736fc561c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81ca05911d0c3828b1e69940759cc019"><td class="memItemLeft" align="right" valign="top"><a id="a81ca05911d0c3828b1e69940759cc019"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#a81ca05911d0c3828b1e69940759cc019">get_grade_for_course</a> (<a class="el" href="classCourse.html">Course</a> *course)</td></tr>
+<tr class="memdesc:a81ca05911d0c3828b1e69940759cc019"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get grade for passed course (min grade if not passed) <br /></td></tr>
+<tr class="separator:a81ca05911d0c3828b1e69940759cc019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab28485b2c8f60192dde89c6089e1f7c4"><td class="memItemLeft" align="right" valign="top"><a id="ab28485b2c8f60192dde89c6089e1f7c4"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#ab28485b2c8f60192dde89c6089e1f7c4">graduate</a> ()</td></tr>
 <tr class="memdesc:ab28485b2c8f60192dde89c6089e1f7c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark student as graduated (only if they can) <br /></td></tr>
@@ -177,7 +199,9 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memdesc:a79a45e98d90c4a7b199e9cc3906ac4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print student. <br /></td></tr>
 <tr class="separator:a79a45e98d90c4a7b199e9cc3906ac4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The student class stored a lot of information, including pointers to pending courses and instances of passed courses. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="student_8hpp_source.html">student.hpp</a></li>
 <li>student.cpp</li>
 </ul>

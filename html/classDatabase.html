@@ -70,9 +70,18 @@ $(function() {
 <div class="title">Database Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The database class stores all the courses, majors and students.  
+ <a href="classDatabase.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="susi__database_8hpp_source.html">susi_database.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a4703c80e6969d33565ea340f768fdadf"><td class="memItemLeft" align="right" valign="top"><a id="a4703c80e6969d33565ea340f768fdadf"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a4703c80e6969d33565ea340f768fdadf">Database</a> ()</td></tr>
+<tr class="memdesc:a4703c80e6969d33565ea340f768fdadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a4703c80e6969d33565ea340f768fdadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a915377cfed26e909fd9eaa3e6a88727e"><td class="memItemLeft" align="right" valign="top"><a id="a915377cfed26e909fd9eaa3e6a88727e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a915377cfed26e909fd9eaa3e6a88727e">add_student</a> (<a class="el" href="classStudent.html">Student</a> student)</td></tr>
 <tr class="memdesc:a915377cfed26e909fd9eaa3e6a88727e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add new student to database. <br /></td></tr>
@@ -105,11 +114,89 @@ Vector&lt; <a class="el" href="classCourse.html">Course</a> * &gt;&#160;</td><td
 Vector&lt; <a class="el" href="classStudent.html">Student</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a82ee24eb31dc473959aa80f00f0609c5">get_students_by_major_and_year</a> (<a class="el" href="classMajor.html">Major</a> *major, int year) const</td></tr>
 <tr class="memdesc:a82ee24eb31dc473959aa80f00f0609c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get students by major and year. <br /></td></tr>
 <tr class="separator:a82ee24eb31dc473959aa80f00f0609c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace2287bfb57fd48c594aaaaf74e246c2"><td class="memItemLeft" align="right" valign="top"><a id="ace2287bfb57fd48c594aaaaf74e246c2"></a>
-Vector&lt; <a class="el" href="classPassedCourse.html">PassedCourse</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#ace2287bfb57fd48c594aaaaf74e246c2">get_passed_courses_for_student</a> (<a class="el" href="classStudent.html">Student</a> *student) const</td></tr>
-<tr class="memdesc:ace2287bfb57fd48c594aaaaf74e246c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all passed courses for a given student. <br /></td></tr>
-<tr class="separator:ace2287bfb57fd48c594aaaaf74e246c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad23e7fc1f525125382264d15be0bbddc"><td class="memItemLeft" align="right" valign="top"><a id="ad23e7fc1f525125382264d15be0bbddc"></a>
+Vector&lt; <a class="el" href="classStudent.html">Student</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#ad23e7fc1f525125382264d15be0bbddc">get_students_by_course_and_year</a> (<a class="el" href="classCourse.html">Course</a> *course, int year) const</td></tr>
+<tr class="memdesc:ad23e7fc1f525125382264d15be0bbddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a (sorted) list of students by course and year. <br /></td></tr>
+<tr class="separator:ad23e7fc1f525125382264d15be0bbddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb747a7d0106fa15625d79a62b182a48"><td class="memItemLeft" align="right" valign="top"><a id="afb747a7d0106fa15625d79a62b182a48"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#afb747a7d0106fa15625d79a62b182a48">sort_list_of_students_by_fac_number</a> (Vector&lt; <a class="el" href="classStudent.html">Student</a> * &gt; &amp;list) const</td></tr>
+<tr class="memdesc:afb747a7d0106fa15625d79a62b182a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort a list of students (pointers) by their faculty number. <br /></td></tr>
+<tr class="separator:afb747a7d0106fa15625d79a62b182a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45f1957b797ff105d146fa89d2ed6f3d"><td class="memItemLeft" align="right" valign="top"><a id="a45f1957b797ff105d146fa89d2ed6f3d"></a>
+Vector&lt; <a class="el" href="classStudent.html">Student</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a45f1957b797ff105d146fa89d2ed6f3d">filter_students_by_major</a> (const Vector&lt; <a class="el" href="classStudent.html">Student</a> * &gt; &amp;list, <a class="el" href="classMajor.html">Major</a> *major) const</td></tr>
+<tr class="memdesc:a45f1957b797ff105d146fa89d2ed6f3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filtera list of students by their major. <br /></td></tr>
+<tr class="separator:a45f1957b797ff105d146fa89d2ed6f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d0fd2ff2c3b4648c43b352bcacb697"><td class="memItemLeft" align="right" valign="top"><a id="af9d0fd2ff2c3b4648c43b352bcacb697"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#af9d0fd2ff2c3b4648c43b352bcacb697">empty</a> ()</td></tr>
+<tr class="memdesc:af9d0fd2ff2c3b4648c43b352bcacb697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty the database. <br /></td></tr>
+<tr class="separator:af9d0fd2ff2c3b4648c43b352bcacb697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a54e713ebda6299a44e7e931551db3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a8a54e713ebda6299a44e7e931551db3e">save</a> (String filename=&quot;&quot;)</td></tr>
+<tr class="memdesc:a8a54e713ebda6299a44e7e931551db3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save information to binary file.  <a href="classDatabase.html#a8a54e713ebda6299a44e7e931551db3e">More...</a><br /></td></tr>
+<tr class="separator:a8a54e713ebda6299a44e7e931551db3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5988242f252af66dcd66ff36d42c8ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#aa5988242f252af66dcd66ff36d42c8ef">load</a> (String filename=&quot;&quot;)</td></tr>
+<tr class="memdesc:aa5988242f252af66dcd66ff36d42c8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load information.  <a href="classDatabase.html#aa5988242f252af66dcd66ff36d42c8ef">More...</a><br /></td></tr>
+<tr class="separator:aa5988242f252af66dcd66ff36d42c8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32de5021033aa7049597ab19e254d3f1"><td class="memItemLeft" align="right" valign="top"><a id="a32de5021033aa7049597ab19e254d3f1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a32de5021033aa7049597ab19e254d3f1">make_empty_file</a> (String filename)</td></tr>
+<tr class="memdesc:a32de5021033aa7049597ab19e254d3f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make empty file at destination. <br /></td></tr>
+<tr class="separator:a32de5021033aa7049597ab19e254d3f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f3ee097a524f8d5d2c28709699c5fd"><td class="memItemLeft" align="right" valign="top"><a id="a41f3ee097a524f8d5d2c28709699c5fd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a41f3ee097a524f8d5d2c28709699c5fd">close</a> ()</td></tr>
+<tr class="memdesc:a41f3ee097a524f8d5d2c28709699c5fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close file without saving. <br /></td></tr>
+<tr class="separator:a41f3ee097a524f8d5d2c28709699c5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade293c1da2782395f417c4bb55774f57"><td class="memItemLeft" align="right" valign="top"><a id="ade293c1da2782395f417c4bb55774f57"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#ade293c1da2782395f417c4bb55774f57">get_is_loaded</a> ()</td></tr>
+<tr class="memdesc:ade293c1da2782395f417c4bb55774f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is a db file opened. <br /></td></tr>
+<tr class="separator:ade293c1da2782395f417c4bb55774f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The database class stores all the courses, majors and students. </p>
+<p>If a file is loaded, is_loaded will be true and file_loaded will hold the name of that file. Filenames are relative to the folder db/ i.e. "database.db" means the file at "db/database.db" </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa5988242f252af66dcd66ff36d42c8ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5988242f252af66dcd66ff36d42c8ef">&#9670;&nbsp;</a></span>load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Database::load </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>filename</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load information. </p>
+<p>Load all courses</p>
+<p>Load all majors</p>
+
+</div>
+</div>
+<a id="a8a54e713ebda6299a44e7e931551db3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a54e713ebda6299a44e7e931551db3e">&#9670;&nbsp;</a></span>save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Database::save </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>filename</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save information to binary file. </p>
+<p>Save all courses</p>
+<p>Save all majors</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="susi__database_8hpp_source.html">susi_database.hpp</a></li>
 <li>susi_database.cpp</li>

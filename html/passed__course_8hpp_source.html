@@ -72,25 +72,31 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;course.hpp&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="classPassedCourse.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPassedCourse.html">PassedCourse</a>: <span class="keyword">public</span> <a class="code" href="classCourse.html">Course</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">double</span> grade;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">void</span> set_grade(<span class="keywordtype">double</span> grade);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="classPassedCourse.html">PassedCourse</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classPassedCourse.html">PassedCourse</a>(<a class="code" href="classCourse.html">Course</a>* course, <span class="keywordtype">double</span> grade);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPassedCourse.html#ad816fa813f75d7aa5d40b48f7c3aab2f">get_grade</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classPassedCourse.html#ae6f18d714e2e11da26a7e6bdcc6d4d3f">operator&lt;&lt;</a>(std::ostream&amp; o_stream, <span class="keyword">const</span> <a class="code" href="classPassedCourse.html">PassedCourse</a>&amp; passed_course);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif // PASSED_COURSE_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classPassedCourse.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPassedCourse.html">PassedCourse</a>: <span class="keyword">public</span> <a class="code" href="classCourse.html">Course</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">double</span> grade;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> set_grade(<span class="keywordtype">double</span> grade);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classPassedCourse.html#a24aafa968ec74b09cbab809c33c34bfa">PassedCourse</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classPassedCourse.html#a24aafa968ec74b09cbab809c33c34bfa">PassedCourse</a>(<a class="code" href="classCourse.html">Course</a>* course, <span class="keywordtype">double</span> grade);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPassedCourse.html#ad816fa813f75d7aa5d40b48f7c3aab2f">get_grade</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classPassedCourse.html#ae6f18d714e2e11da26a7e6bdcc6d4d3f">operator&lt;&lt;</a>(std::ostream&amp; o_stream, <span class="keyword">const</span> <a class="code" href="classPassedCourse.html">PassedCourse</a>&amp; passed_course);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classPassedCourse.html#a36b212b6d85237881a2182adaf53e6d1">write_to_bin</a>(std::ofstream&amp; of_stream);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classPassedCourse.html#a4ff231792ce8f1d47ee86fe52b8e01e7">read_from_bin</a>(std::ifstream&amp; if_stream);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif // PASSED_COURSE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPassedCourse_html"><div class="ttname"><a href="classPassedCourse.html">PassedCourse</a></div><div class="ttdef"><b>Definition:</b> passed_course.hpp:6</div></div>
-<div class="ttc" id="aclassPassedCourse_html_ad816fa813f75d7aa5d40b48f7c3aab2f"><div class="ttname"><a href="classPassedCourse.html#ad816fa813f75d7aa5d40b48f7c3aab2f">PassedCourse::get_grade</a></div><div class="ttdeci">double get_grade() const</div><div class="ttdoc">Get grade of passed course.</div><div class="ttdef"><b>Definition:</b> passed_course.cpp:26</div></div>
-<div class="ttc" id="aclassPassedCourse_html_ae6f18d714e2e11da26a7e6bdcc6d4d3f"><div class="ttname"><a href="classPassedCourse.html#ae6f18d714e2e11da26a7e6bdcc6d4d3f">PassedCourse::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;o_stream, const PassedCourse &amp;passed_course)</div><div class="ttdoc">Print passec course to output stream.</div><div class="ttdef"><b>Definition:</b> passed_course.cpp:31</div></div>
-<div class="ttc" id="aclassCourse_html"><div class="ttname"><a href="classCourse.html">Course</a></div><div class="ttdef"><b>Definition:</b> course.hpp:7</div></div>
+<div class="ttc" id="aclassPassedCourse_html"><div class="ttname"><a href="classPassedCourse.html">PassedCourse</a></div><div class="ttdoc">A PassedCourse is a Course with a grade.</div><div class="ttdef"><b>Definition:</b> passed_course.hpp:8</div></div>
+<div class="ttc" id="aclassPassedCourse_html_ad816fa813f75d7aa5d40b48f7c3aab2f"><div class="ttname"><a href="classPassedCourse.html#ad816fa813f75d7aa5d40b48f7c3aab2f">PassedCourse::get_grade</a></div><div class="ttdeci">double get_grade() const</div><div class="ttdoc">Get grade of passed course.</div><div class="ttdef"><b>Definition:</b> passed_course.cpp:27</div></div>
+<div class="ttc" id="aclassPassedCourse_html_a4ff231792ce8f1d47ee86fe52b8e01e7"><div class="ttname"><a href="classPassedCourse.html#a4ff231792ce8f1d47ee86fe52b8e01e7">PassedCourse::read_from_bin</a></div><div class="ttdeci">bool read_from_bin(std::ifstream &amp;if_stream)</div><div class="ttdoc">Read PassedCourse from binary file.</div><div class="ttdef"><b>Definition:</b> passed_course.cpp:70</div></div>
+<div class="ttc" id="aclassPassedCourse_html_ae6f18d714e2e11da26a7e6bdcc6d4d3f"><div class="ttname"><a href="classPassedCourse.html#ae6f18d714e2e11da26a7e6bdcc6d4d3f">PassedCourse::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;o_stream, const PassedCourse &amp;passed_course)</div><div class="ttdoc">Print passec course to output stream.</div><div class="ttdef"><b>Definition:</b> passed_course.cpp:32</div></div>
+<div class="ttc" id="aclassPassedCourse_html_a24aafa968ec74b09cbab809c33c34bfa"><div class="ttname"><a href="classPassedCourse.html#a24aafa968ec74b09cbab809c33c34bfa">PassedCourse::PassedCourse</a></div><div class="ttdeci">PassedCourse()</div><div class="ttdoc">Default constructor with min grade.</div><div class="ttdef"><b>Definition:</b> passed_course.cpp:17</div></div>
+<div class="ttc" id="aclassPassedCourse_html_a36b212b6d85237881a2182adaf53e6d1"><div class="ttname"><a href="classPassedCourse.html#a36b212b6d85237881a2182adaf53e6d1">PassedCourse::write_to_bin</a></div><div class="ttdeci">bool write_to_bin(std::ofstream &amp;of_stream)</div><div class="ttdoc">Write PassedCourse to binary file.</div><div class="ttdef"><b>Definition:</b> passed_course.cpp:42</div></div>
+<div class="ttc" id="aclassCourse_html"><div class="ttname"><a href="classCourse.html">Course</a></div><div class="ttdoc">A course only keeps its name and its type (CourseType)</div><div class="ttdef"><b>Definition:</b> course.hpp:9</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

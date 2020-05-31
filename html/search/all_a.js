@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['susi_50',['susi',['../md_README.html',1,'']]],
-  ['set_5fgroup_51',['set_group',['../classStudent.html#a45e67c0b44c2b4b64686cd40b17b1fd4',1,'Student']]],
-  ['set_5fmajor_52',['set_major',['../classStudent.html#a4518a489e512613c7cf7760cde67df76',1,'Student']]],
-  ['set_5fstatus_53',['set_status',['../classStudent.html#a564b32a0044b82660318b2af812dc30c',1,'Student']]],
-  ['student_54',['Student',['../classStudent.html',1,'']]],
-  ['susi_55',['SUSI',['../classSUSI.html',1,'']]]
+  ['operator_3c_3c_51',['operator&lt;&lt;',['../classCourse.html#ac9f2f4c4165ad66b459945eace513aef',1,'Course::operator&lt;&lt;()'],['../classPassedCourse.html#ae6f18d714e2e11da26a7e6bdcc6d4d3f',1,'PassedCourse::operator&lt;&lt;()'],['../classStudent.html#a79a45e98d90c4a7b199e9cc3906ac4ee',1,'Student::operator&lt;&lt;()']]],
+  ['operator_3d_52',['operator=',['../classMajor.html#a283a750462c3e959ede1e33bcf3fb87b',1,'Major']]]
 ];

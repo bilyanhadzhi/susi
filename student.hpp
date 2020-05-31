@@ -8,6 +8,8 @@
 #include "course.hpp"
 #include "passed_course.hpp"
 
+//! The student class stored a lot of information, including pointers to pending courses and instances of passed courses
+
 class Student
 {
 private:
@@ -27,7 +29,9 @@ private:
     PassedCourse* get_passed_course(Course* course);
 
 public:
+    //! Default constructor for empty student
     Student();
+    //! Constructor for student ready to be added to the database
     Student(int fac_number, Major* major, int group, String name, int year = 1, StudentStatus status = StudentStatus::active);
     //! Get name of student
     String get_name() const;
@@ -63,6 +67,8 @@ public:
     bool can_enroll(Course* course);
     //! Check whether student can advance to next year
     bool can_advance() const;
+    //! Add a passed course directly (have to use for file purposes)
+    void add_passed_course(PassedCourse passed_course);
     //! Check if student is already enrolled in course
     bool is_enrolled_in(Course* course) const;
     //! Check if student can change major

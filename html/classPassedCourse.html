@@ -71,32 +71,52 @@ $(function() {
 <div class="title">PassedCourse Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A <a class="el" href="classPassedCourse.html" title="A PassedCourse is a Course with a grade.">PassedCourse</a> is a <a class="el" href="classCourse.html" title="A course only keeps its name and its type (CourseType)">Course</a> with a grade.  
+ <a href="classPassedCourse.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="passed__course_8hpp_source.html">passed_course.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PassedCourse:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classPassedCourse.png" usemap="#PassedCourse_map" alt=""/>
   <map id="PassedCourse_map" name="PassedCourse_map">
-<area href="classCourse.html" alt="Course" shape="rect" coords="0,0,94,24"/>
+<area href="classCourse.html" title="A course only keeps its name and its type (CourseType)" alt="Course" shape="rect" coords="0,0,94,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a24aafa968ec74b09cbab809c33c34bfa"><td class="memItemLeft" align="right" valign="top"><a id="a24aafa968ec74b09cbab809c33c34bfa"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPassedCourse.html#a24aafa968ec74b09cbab809c33c34bfa">PassedCourse</a> ()</td></tr>
+<tr class="memdesc:a24aafa968ec74b09cbab809c33c34bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor with min grade. <br /></td></tr>
+<tr class="separator:a24aafa968ec74b09cbab809c33c34bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a402e71c2cf8f7a1b1f44f8a04c425c01"><td class="memItemLeft" align="right" valign="top"><a id="a402e71c2cf8f7a1b1f44f8a04c425c01"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PassedCourse</b> (<a class="el" href="classCourse.html">Course</a> *course, double grade)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPassedCourse.html#a402e71c2cf8f7a1b1f44f8a04c425c01">PassedCourse</a> (<a class="el" href="classCourse.html">Course</a> *course, double grade)</td></tr>
+<tr class="memdesc:a402e71c2cf8f7a1b1f44f8a04c425c01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with pointer to course and grade (turns to min grade if not valid) <br /></td></tr>
 <tr class="separator:a402e71c2cf8f7a1b1f44f8a04c425c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad816fa813f75d7aa5d40b48f7c3aab2f"><td class="memItemLeft" align="right" valign="top"><a id="ad816fa813f75d7aa5d40b48f7c3aab2f"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPassedCourse.html#ad816fa813f75d7aa5d40b48f7c3aab2f">get_grade</a> () const</td></tr>
 <tr class="memdesc:ad816fa813f75d7aa5d40b48f7c3aab2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get grade of passed course. <br /></td></tr>
 <tr class="separator:ad816fa813f75d7aa5d40b48f7c3aab2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b212b6d85237881a2182adaf53e6d1"><td class="memItemLeft" align="right" valign="top"><a id="a36b212b6d85237881a2182adaf53e6d1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPassedCourse.html#a36b212b6d85237881a2182adaf53e6d1">write_to_bin</a> (std::ofstream &amp;of_stream)</td></tr>
+<tr class="memdesc:a36b212b6d85237881a2182adaf53e6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write <a class="el" href="classPassedCourse.html" title="A PassedCourse is a Course with a grade.">PassedCourse</a> to binary file. <br /></td></tr>
+<tr class="separator:a36b212b6d85237881a2182adaf53e6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff231792ce8f1d47ee86fe52b8e01e7"><td class="memItemLeft" align="right" valign="top"><a id="a4ff231792ce8f1d47ee86fe52b8e01e7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPassedCourse.html#a4ff231792ce8f1d47ee86fe52b8e01e7">read_from_bin</a> (std::ifstream &amp;if_stream)</td></tr>
+<tr class="memdesc:a4ff231792ce8f1d47ee86fe52b8e01e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read <a class="el" href="classPassedCourse.html" title="A PassedCourse is a Course with a grade.">PassedCourse</a> from binary file. <br /></td></tr>
+<tr class="separator:a4ff231792ce8f1d47ee86fe52b8e01e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCourse"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCourse')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCourse.html">Course</a></td></tr>
+<tr class="memitem:a6b959ccf15d9ceed9e9c14a701561982 inherit pub_methods_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="a6b959ccf15d9ceed9e9c14a701561982"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a6b959ccf15d9ceed9e9c14a701561982">Course</a> ()</td></tr>
+<tr class="memdesc:a6b959ccf15d9ceed9e9c14a701561982 inherit pub_methods_classCourse"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor with empty name and CourseType - none. <br /></td></tr>
+<tr class="separator:a6b959ccf15d9ceed9e9c14a701561982 inherit pub_methods_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab46c736e04f0228f51bbccf4d59f8fbf inherit pub_methods_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="ab46c736e04f0228f51bbccf4d59f8fbf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Course</b> (const char *name, CourseType type)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#ab46c736e04f0228f51bbccf4d59f8fbf">Course</a> (const char *name, CourseType type)</td></tr>
+<tr class="memdesc:ab46c736e04f0228f51bbccf4d59f8fbf inherit pub_methods_classCourse"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with course name and a CourseType. <br /></td></tr>
 <tr class="separator:ab46c736e04f0228f51bbccf4d59f8fbf inherit pub_methods_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1ca2e07508b91bfa355c4af47f4f16f inherit pub_methods_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="ae1ca2e07508b91bfa355c4af47f4f16f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Course</b> (const <a class="el" href="classCourse.html">Course</a> &amp;other)</td></tr>
-<tr class="separator:ae1ca2e07508b91bfa355c4af47f4f16f inherit pub_methods_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a601bff660da1a991613d4950d18b9a0a inherit pub_methods_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="a601bff660da1a991613d4950d18b9a0a"></a>
 String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a601bff660da1a991613d4950d18b9a0a">get_name</a> () const</td></tr>
 <tr class="memdesc:a601bff660da1a991613d4950d18b9a0a inherit pub_methods_classCourse"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get course name. <br /></td></tr>
@@ -109,6 +129,14 @@ CourseType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a2ea8802001428c951133db7b385638d3">get_type_name</a> () const</td></tr>
 <tr class="memdesc:a2ea8802001428c951133db7b385638d3 inherit pub_methods_classCourse"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get course type as a string. <br /></td></tr>
 <tr class="separator:a2ea8802001428c951133db7b385638d3 inherit pub_methods_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66eb944359b5a4e80845fe4021f2cc18 inherit pub_methods_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="a66eb944359b5a4e80845fe4021f2cc18"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a66eb944359b5a4e80845fe4021f2cc18">write_to_bin</a> (std::ofstream &amp;of_stream)</td></tr>
+<tr class="memdesc:a66eb944359b5a4e80845fe4021f2cc18 inherit pub_methods_classCourse"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write course to binary file. <br /></td></tr>
+<tr class="separator:a66eb944359b5a4e80845fe4021f2cc18 inherit pub_methods_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90894f717de69fae3302b8b43ec1cf28 inherit pub_methods_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="a90894f717de69fae3302b8b43ec1cf28"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a90894f717de69fae3302b8b43ec1cf28">read_from_bin</a> (std::ifstream &amp;if_stream)</td></tr>
+<tr class="memdesc:a90894f717de69fae3302b8b43ec1cf28 inherit pub_methods_classCourse"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read course from binary file. <br /></td></tr>
+<tr class="separator:a90894f717de69fae3302b8b43ec1cf28 inherit pub_methods_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -116,8 +144,20 @@ Friends</h2></td></tr>
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPassedCourse.html#ae6f18d714e2e11da26a7e6bdcc6d4d3f">operator&lt;&lt;</a> (std::ostream &amp;o_stream, const <a class="el" href="classPassedCourse.html">PassedCourse</a> &amp;passed_course)</td></tr>
 <tr class="memdesc:ae6f18d714e2e11da26a7e6bdcc6d4d3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print passec course to output stream. <br /></td></tr>
 <tr class="separator:ae6f18d714e2e11da26a7e6bdcc6d4d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classCourse"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCourse')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classCourse.html">Course</a></td></tr>
+<tr class="memitem:adb0527004d5b1eab962d831a1d22d4ad inherit pro_attribs_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="adb0527004d5b1eab962d831a1d22d4ad"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:adb0527004d5b1eab962d831a1d22d4ad inherit pro_attribs_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b2ae7769b5143496995a4b5a887161 inherit pro_attribs_classCourse"><td class="memItemLeft" align="right" valign="top"><a id="af0b2ae7769b5143496995a4b5a887161"></a>
+CourseType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="separator:af0b2ae7769b5143496995a4b5a887161 inherit pro_attribs_classCourse"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A <a class="el" href="classPassedCourse.html" title="A PassedCourse is a Course with a grade.">PassedCourse</a> is a <a class="el" href="classCourse.html" title="A course only keeps its name and its type (CourseType)">Course</a> with a grade. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="passed__course_8hpp_source.html">passed_course.hpp</a></li>
 <li>passed_course.cpp</li>
 </ul>

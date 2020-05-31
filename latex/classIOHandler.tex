@@ -1,5 +1,14 @@
 \hypertarget{classIOHandler}{}\doxysection{I\+O\+Handler Class Reference}
 \label{classIOHandler}\index{IOHandler@{IOHandler}}
+
+
+A very helpful class responsible for parsing commands and arguments and printing messages for errors/sucesses.  
+
+
+
+
+{\ttfamily \#include $<$io\+\_\+handler.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,8 +30,8 @@ bool \mbox{\hyperlink{classIOHandler_a2580dd1382324c8d73891aa343c0ad8f}{check\+\
 \mbox{\Hypertarget{classIOHandler_a9b96b2efe8de040e5571cef1add548f2}\label{classIOHandler_a9b96b2efe8de040e5571cef1add548f2}} 
 void \mbox{\hyperlink{classIOHandler_a9b96b2efe8de040e5571cef1add548f2}{print\+\_\+prompt}} () const
 \begin{DoxyCompactList}\small\item\em Print shell prompt. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classIOHandler_a45378b25d654e0c82c954a2338dae098}\label{classIOHandler_a45378b25d654e0c82c954a2338dae098}} 
-void \mbox{\hyperlink{classIOHandler_a45378b25d654e0c82c954a2338dae098}{print\+\_\+usage}} (String command, String usage) const
+\mbox{\Hypertarget{classIOHandler_a1a6c5809db240658af402e74a083d017}\label{classIOHandler_a1a6c5809db240658af402e74a083d017}} 
+void \mbox{\hyperlink{classIOHandler_a1a6c5809db240658af402e74a083d017}{print\+\_\+usage}} (String command, String usage=\char`\"{}\char`\"{}, bool with\+\_\+prefix=true) const
 \begin{DoxyCompactList}\small\item\em Print usage of command. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classIOHandler_a3b31ed47d33cd1db1708bd534363913c}\label{classIOHandler_a3b31ed47d33cd1db1708bd534363913c}} 
 void \mbox{\hyperlink{classIOHandler_a3b31ed47d33cd1db1708bd534363913c}{print\+\_\+error}} (String desc) const
@@ -32,8 +41,17 @@ void \mbox{\hyperlink{classIOHandler_a493194663de8187c4e6df95a3d419cc8}{print\+\
 \begin{DoxyCompactList}\small\item\em Print unknown command. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classIOHandler_a9d81fc2b6b1097064da320ae86e59da3}\label{classIOHandler_a9d81fc2b6b1097064da320ae86e59da3}} 
 void \mbox{\hyperlink{classIOHandler_a9d81fc2b6b1097064da320ae86e59da3}{print\+\_\+success}} (String message) const
-\begin{DoxyCompactList}\small\item\em Print success with message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Print success with message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a7b2671063b491d71e70942bd192071a0}\label{classIOHandler_a7b2671063b491d71e70942bd192071a0}} 
+void \mbox{\hyperlink{classIOHandler_a7b2671063b491d71e70942bd192071a0}{print\+\_\+help}} () const
+\begin{DoxyCompactList}\small\item\em Print help on using the app. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a2b48decab78ce52c360cc404f25fcc3a}\label{classIOHandler_a2b48decab78ce52c360cc404f25fcc3a}} 
+void \mbox{\hyperlink{classIOHandler_a2b48decab78ce52c360cc404f25fcc3a}{print\+\_\+exit}} () const
+\begin{DoxyCompactList}\small\item\em Print message for exiting the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+A very helpful class responsible for parsing commands and arguments and printing messages for errors/sucesses. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

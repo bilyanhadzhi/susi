@@ -420,6 +420,16 @@ bool Student::pass_course(Course* course, double grade)
     return true;
 }
 
+void Student::add_passed_course(PassedCourse passed_course)
+{
+    if (this->has_passed_course(&passed_course))
+    {
+        return;
+    }
+
+    this->passed_courses.push(passed_course);
+}
+
 bool Student::is_enrolled_in_or_has_passed(Course* course)
 {
     return this->is_enrolled_in(course) || this->has_passed_course(course);

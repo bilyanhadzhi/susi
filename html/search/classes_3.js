@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['major_59',['Major',['../classMajor.html',1,'']]]
+  ['major_77',['Major',['../classMajor.html',1,'']]]
 ];

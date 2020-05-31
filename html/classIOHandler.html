@@ -70,6 +70,11 @@ $(function() {
 <div class="title">IOHandler Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A very helpful class responsible for parsing commands and arguments and printing messages for errors/sucesses.  
+ <a href="classIOHandler.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="io__handler_8hpp_source.html">io_handler.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -97,10 +102,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOHandler.html#a9b96b2efe8de040e5571cef1add548f2">print_prompt</a> () const</td></tr>
 <tr class="memdesc:a9b96b2efe8de040e5571cef1add548f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print shell prompt. <br /></td></tr>
 <tr class="separator:a9b96b2efe8de040e5571cef1add548f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45378b25d654e0c82c954a2338dae098"><td class="memItemLeft" align="right" valign="top"><a id="a45378b25d654e0c82c954a2338dae098"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOHandler.html#a45378b25d654e0c82c954a2338dae098">print_usage</a> (String command, String usage) const</td></tr>
-<tr class="memdesc:a45378b25d654e0c82c954a2338dae098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print usage of command. <br /></td></tr>
-<tr class="separator:a45378b25d654e0c82c954a2338dae098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a6c5809db240658af402e74a083d017"><td class="memItemLeft" align="right" valign="top"><a id="a1a6c5809db240658af402e74a083d017"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOHandler.html#a1a6c5809db240658af402e74a083d017">print_usage</a> (String command, String usage=&quot;&quot;, bool with_prefix=true) const</td></tr>
+<tr class="memdesc:a1a6c5809db240658af402e74a083d017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print usage of command. <br /></td></tr>
+<tr class="separator:a1a6c5809db240658af402e74a083d017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b31ed47d33cd1db1708bd534363913c"><td class="memItemLeft" align="right" valign="top"><a id="a3b31ed47d33cd1db1708bd534363913c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOHandler.html#a3b31ed47d33cd1db1708bd534363913c">print_error</a> (String desc) const</td></tr>
 <tr class="memdesc:a3b31ed47d33cd1db1708bd534363913c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print error with description. <br /></td></tr>
@@ -113,8 +118,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOHandler.html#a9d81fc2b6b1097064da320ae86e59da3">print_success</a> (String message) const</td></tr>
 <tr class="memdesc:a9d81fc2b6b1097064da320ae86e59da3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print success with message. <br /></td></tr>
 <tr class="separator:a9d81fc2b6b1097064da320ae86e59da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b2671063b491d71e70942bd192071a0"><td class="memItemLeft" align="right" valign="top"><a id="a7b2671063b491d71e70942bd192071a0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOHandler.html#a7b2671063b491d71e70942bd192071a0">print_help</a> () const</td></tr>
+<tr class="memdesc:a7b2671063b491d71e70942bd192071a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print help on using the app. <br /></td></tr>
+<tr class="separator:a7b2671063b491d71e70942bd192071a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b48decab78ce52c360cc404f25fcc3a"><td class="memItemLeft" align="right" valign="top"><a id="a2b48decab78ce52c360cc404f25fcc3a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOHandler.html#a2b48decab78ce52c360cc404f25fcc3a">print_exit</a> () const</td></tr>
+<tr class="memdesc:a2b48decab78ce52c360cc404f25fcc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print message for exiting the application. <br /></td></tr>
+<tr class="separator:a2b48decab78ce52c360cc404f25fcc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A very helpful class responsible for parsing commands and arguments and printing messages for errors/sucesses. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="io__handler_8hpp_source.html">io_handler.hpp</a></li>
 <li>io_handler.cpp</li>
 </ul>

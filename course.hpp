@@ -4,9 +4,11 @@
 #include "lib/string.hpp"
 #include "course_type.hpp"
 
+//! A course only keeps its name and its type (CourseType)
+
 class Course
 {
-private:
+protected:
     String name;
     CourseType type;
 

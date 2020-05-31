@@ -65,30 +65,38 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classCourse-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Course Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A course only keeps its name and its type (CourseType)  
+ <a href="classCourse.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="course_8hpp_source.html">course.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Course:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classCourse.png" usemap="#Course_map" alt=""/>
   <map id="Course_map" name="Course_map">
-<area href="classPassedCourse.html" alt="PassedCourse" shape="rect" coords="0,56,94,80"/>
+<area href="classPassedCourse.html" title="A PassedCourse is a Course with a grade." alt="PassedCourse" shape="rect" coords="0,56,94,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a6b959ccf15d9ceed9e9c14a701561982"><td class="memItemLeft" align="right" valign="top"><a id="a6b959ccf15d9ceed9e9c14a701561982"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a6b959ccf15d9ceed9e9c14a701561982">Course</a> ()</td></tr>
+<tr class="memdesc:a6b959ccf15d9ceed9e9c14a701561982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor with empty name and CourseType - none. <br /></td></tr>
+<tr class="separator:a6b959ccf15d9ceed9e9c14a701561982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab46c736e04f0228f51bbccf4d59f8fbf"><td class="memItemLeft" align="right" valign="top"><a id="ab46c736e04f0228f51bbccf4d59f8fbf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Course</b> (const char *name, CourseType type)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#ab46c736e04f0228f51bbccf4d59f8fbf">Course</a> (const char *name, CourseType type)</td></tr>
+<tr class="memdesc:ab46c736e04f0228f51bbccf4d59f8fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with course name and a CourseType. <br /></td></tr>
 <tr class="separator:ab46c736e04f0228f51bbccf4d59f8fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1ca2e07508b91bfa355c4af47f4f16f"><td class="memItemLeft" align="right" valign="top"><a id="ae1ca2e07508b91bfa355c4af47f4f16f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Course</b> (const <a class="el" href="classCourse.html">Course</a> &amp;other)</td></tr>
-<tr class="separator:ae1ca2e07508b91bfa355c4af47f4f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a601bff660da1a991613d4950d18b9a0a"><td class="memItemLeft" align="right" valign="top"><a id="a601bff660da1a991613d4950d18b9a0a"></a>
 String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a601bff660da1a991613d4950d18b9a0a">get_name</a> () const</td></tr>
 <tr class="memdesc:a601bff660da1a991613d4950d18b9a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get course name. <br /></td></tr>
@@ -101,6 +109,23 @@ CourseType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a2ea8802001428c951133db7b385638d3">get_type_name</a> () const</td></tr>
 <tr class="memdesc:a2ea8802001428c951133db7b385638d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get course type as a string. <br /></td></tr>
 <tr class="separator:a2ea8802001428c951133db7b385638d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66eb944359b5a4e80845fe4021f2cc18"><td class="memItemLeft" align="right" valign="top"><a id="a66eb944359b5a4e80845fe4021f2cc18"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a66eb944359b5a4e80845fe4021f2cc18">write_to_bin</a> (std::ofstream &amp;of_stream)</td></tr>
+<tr class="memdesc:a66eb944359b5a4e80845fe4021f2cc18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write course to binary file. <br /></td></tr>
+<tr class="separator:a66eb944359b5a4e80845fe4021f2cc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90894f717de69fae3302b8b43ec1cf28"><td class="memItemLeft" align="right" valign="top"><a id="a90894f717de69fae3302b8b43ec1cf28"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html#a90894f717de69fae3302b8b43ec1cf28">read_from_bin</a> (std::ifstream &amp;if_stream)</td></tr>
+<tr class="memdesc:a90894f717de69fae3302b8b43ec1cf28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read course from binary file. <br /></td></tr>
+<tr class="separator:a90894f717de69fae3302b8b43ec1cf28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:adb0527004d5b1eab962d831a1d22d4ad"><td class="memItemLeft" align="right" valign="top"><a id="adb0527004d5b1eab962d831a1d22d4ad"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:adb0527004d5b1eab962d831a1d22d4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b2ae7769b5143496995a4b5a887161"><td class="memItemLeft" align="right" valign="top"><a id="af0b2ae7769b5143496995a4b5a887161"></a>
+CourseType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="separator:af0b2ae7769b5143496995a4b5a887161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -109,7 +134,9 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memdesc:ac9f2f4c4165ad66b459945eace513aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print course information to output stream. <br /></td></tr>
 <tr class="separator:ac9f2f4c4165ad66b459945eace513aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A course only keeps its name and its type (CourseType) </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="course_8hpp_source.html">course.hpp</a></li>
 <li>course.cpp</li>
 </ul>

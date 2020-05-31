@@ -1,17 +1,29 @@
 \hypertarget{classMajor}{}\doxysection{Major Class Reference}
 \label{classMajor}\index{Major@{Major}}
+
+
+The \mbox{\hyperlink{classMajor}{Major}} class holds n vectors of Course$\ast$, where n is the years of the education.  
+
+
+
+
+{\ttfamily \#include $<$major.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classMajor_a33e7072b7b7abe3024209816a6f9573d}\label{classMajor_a33e7072b7b7abe3024209816a6f9573d}} 
-{\bfseries Major} (const char $\ast$name=\char`\"{}\char`\"{}, int max\+\_\+years=M\+A\+X\+\_\+\+Y\+E\+AR)
-\item 
+\mbox{\hyperlink{classMajor_a33e7072b7b7abe3024209816a6f9573d}{Major}} (const char $\ast$name=\char`\"{}\char`\"{}, int max\+\_\+years=M\+A\+X\+\_\+\+Y\+E\+AR)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMajor_abe43fb1124cb311e7a8e71e1579a1313}\label{classMajor_abe43fb1124cb311e7a8e71e1579a1313}} 
-{\bfseries Major} (const \mbox{\hyperlink{classMajor}{Major}} \&other)
-\item 
+\mbox{\hyperlink{classMajor_abe43fb1124cb311e7a8e71e1579a1313}{Major}} (const \mbox{\hyperlink{classMajor}{Major}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMajor_a283a750462c3e959ede1e33bcf3fb87b}\label{classMajor_a283a750462c3e959ede1e33bcf3fb87b}} 
-\mbox{\hyperlink{classMajor}{Major}} \& {\bfseries operator=} (const \mbox{\hyperlink{classMajor}{Major}} \&other)
-\item 
+\mbox{\hyperlink{classMajor}{Major}} \& \mbox{\hyperlink{classMajor_a283a750462c3e959ede1e33bcf3fb87b}{operator=}} (const \mbox{\hyperlink{classMajor}{Major}} \&other)
+\begin{DoxyCompactList}\small\item\em Turn into a copy of another major. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMajor_a1abff2668ad86c9b16e572871c75568f}\label{classMajor_a1abff2668ad86c9b16e572871c75568f}} 
+\mbox{\hyperlink{classMajor_a1abff2668ad86c9b16e572871c75568f}{$\sim$\+Major}} ()
+\begin{DoxyCompactList}\small\item\em Delete dynamic array of course-\/vectors. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMajor_a0486dec66e2d9a8dacf2dfc2dec80463}\label{classMajor_a0486dec66e2d9a8dacf2dfc2dec80463}} 
 void \mbox{\hyperlink{classMajor_a0486dec66e2d9a8dacf2dfc2dec80463}{add\+\_\+course}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course, int year)
 \begin{DoxyCompactList}\small\item\em Add course to year. \end{DoxyCompactList}\item 
@@ -23,8 +35,17 @@ int \mbox{\hyperlink{classMajor_abc8b96c08c09000eb72a7c178a6e60ef}{get\+\_\+max\
 \begin{DoxyCompactList}\small\item\em Get course years. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMajor_af26a7d3495c0e17e177b3ee4318c1dea}\label{classMajor_af26a7d3495c0e17e177b3ee4318c1dea}} 
 const Vector$<$ \mbox{\hyperlink{classCourse}{Course}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{classMajor_af26a7d3495c0e17e177b3ee4318c1dea}{get\+\_\+courses}} () const
-\begin{DoxyCompactList}\small\item\em Get courses (can\textquotesingle{}t be changed) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get courses (can\textquotesingle{}t be changed) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMajor_ac18b917a33408003cb33734579116fb3}\label{classMajor_ac18b917a33408003cb33734579116fb3}} 
+bool \mbox{\hyperlink{classMajor_ac18b917a33408003cb33734579116fb3}{write\+\_\+to\+\_\+bin}} (std\+::ofstream \&of\+\_\+stream)
+\begin{DoxyCompactList}\small\item\em Write major to binary file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMajor_a62ca48f0663999f5d52703c4ed4489aa}\label{classMajor_a62ca48f0663999f5d52703c4ed4489aa}} 
+bool \mbox{\hyperlink{classMajor_a62ca48f0663999f5d52703c4ed4489aa}{read\+\_\+from\+\_\+bin}} (std\+::ifstream \&if\+\_\+stream)
+\begin{DoxyCompactList}\small\item\em Read major from binary file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classMajor}{Major}} class holds n vectors of Course$\ast$, where n is the years of the education. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

@@ -4,6 +4,8 @@
 #include "lib/vector.hpp"
 #include "course.hpp"
 
+//! The Major class holds n vectors of Course*, where n is the years of the education
+
 class Major
 {
 private:

@@ -73,30 +73,34 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;lib/string.hpp&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;course_type.hpp&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classCourse.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCourse.html">Course</a></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    String name;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    CourseType type;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">void</span> copy_from(<span class="keyword">const</span> <a class="code" href="classCourse.html">Course</a>&amp; other);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classCourse.html">Course</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classCourse.html">Course</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* name, CourseType type);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classCourse.html">Course</a>(<span class="keyword">const</span> <a class="code" href="classCourse.html">Course</a>&amp; other);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    String <a class="code" href="classCourse.html#a601bff660da1a991613d4950d18b9a0a">get_name</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    CourseType <a class="code" href="classCourse.html#af3961a857e808ad939112dee44df68c2">get_type</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classCourse.html#a2ea8802001428c951133db7b385638d3">get_type_name</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classCourse.html#ac9f2f4c4165ad66b459945eace513aef">operator&lt;&lt;</a>(std::ostream&amp; o_stream, <span class="keyword">const</span> <a class="code" href="classCourse.html">Course</a>&amp; course);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif // COURSE_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classCourse.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCourse.html">Course</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    String name;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    CourseType type;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classCourse.html#a6b959ccf15d9ceed9e9c14a701561982">Course</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classCourse.html#a6b959ccf15d9ceed9e9c14a701561982">Course</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* name, CourseType type);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    String <a class="code" href="classCourse.html#a601bff660da1a991613d4950d18b9a0a">get_name</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    CourseType <a class="code" href="classCourse.html#af3961a857e808ad939112dee44df68c2">get_type</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classCourse.html#a2ea8802001428c951133db7b385638d3">get_type_name</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classCourse.html#ac9f2f4c4165ad66b459945eace513aef">operator&lt;&lt;</a>(std::ostream&amp; o_stream, <span class="keyword">const</span> <a class="code" href="classCourse.html">Course</a>&amp; course);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCourse.html#a66eb944359b5a4e80845fe4021f2cc18">write_to_bin</a>(std::ofstream&amp; of_stream);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCourse.html#a90894f717de69fae3302b8b43ec1cf28">read_from_bin</a>(std::ifstream&amp; if_stream);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif // COURSE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassCourse_html_af3961a857e808ad939112dee44df68c2"><div class="ttname"><a href="classCourse.html#af3961a857e808ad939112dee44df68c2">Course::get_type</a></div><div class="ttdeci">CourseType get_type() const</div><div class="ttdoc">Get type of course.</div><div class="ttdef"><b>Definition:</b> course.cpp:34</div></div>
-<div class="ttc" id="aclassCourse_html_a601bff660da1a991613d4950d18b9a0a"><div class="ttname"><a href="classCourse.html#a601bff660da1a991613d4950d18b9a0a">Course::get_name</a></div><div class="ttdeci">String get_name() const</div><div class="ttdoc">Get course name.</div><div class="ttdef"><b>Definition:</b> course.cpp:29</div></div>
-<div class="ttc" id="aclassCourse_html_a2ea8802001428c951133db7b385638d3"><div class="ttname"><a href="classCourse.html#a2ea8802001428c951133db7b385638d3">Course::get_type_name</a></div><div class="ttdeci">const char * get_type_name() const</div><div class="ttdoc">Get course type as a string.</div><div class="ttdef"><b>Definition:</b> course.cpp:39</div></div>
-<div class="ttc" id="aclassCourse_html_ac9f2f4c4165ad66b459945eace513aef"><div class="ttname"><a href="classCourse.html#ac9f2f4c4165ad66b459945eace513aef">Course::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;o_stream, const Course &amp;course)</div><div class="ttdoc">Print course information to output stream.</div><div class="ttdef"><b>Definition:</b> course.cpp:54</div></div>
-<div class="ttc" id="aclassCourse_html"><div class="ttname"><a href="classCourse.html">Course</a></div><div class="ttdef"><b>Definition:</b> course.hpp:7</div></div>
+<div class="ttc" id="aclassCourse_html_af3961a857e808ad939112dee44df68c2"><div class="ttname"><a href="classCourse.html#af3961a857e808ad939112dee44df68c2">Course::get_type</a></div><div class="ttdeci">CourseType get_type() const</div><div class="ttdoc">Get type of course.</div><div class="ttdef"><b>Definition:</b> course.cpp:24</div></div>
+<div class="ttc" id="aclassCourse_html_a601bff660da1a991613d4950d18b9a0a"><div class="ttname"><a href="classCourse.html#a601bff660da1a991613d4950d18b9a0a">Course::get_name</a></div><div class="ttdeci">String get_name() const</div><div class="ttdoc">Get course name.</div><div class="ttdef"><b>Definition:</b> course.cpp:19</div></div>
+<div class="ttc" id="aclassCourse_html_a2ea8802001428c951133db7b385638d3"><div class="ttname"><a href="classCourse.html#a2ea8802001428c951133db7b385638d3">Course::get_type_name</a></div><div class="ttdeci">const char * get_type_name() const</div><div class="ttdoc">Get course type as a string.</div><div class="ttdef"><b>Definition:</b> course.cpp:29</div></div>
+<div class="ttc" id="aclassCourse_html_a6b959ccf15d9ceed9e9c14a701561982"><div class="ttname"><a href="classCourse.html#a6b959ccf15d9ceed9e9c14a701561982">Course::Course</a></div><div class="ttdeci">Course()</div><div class="ttdoc">Default constructor with empty name and CourseType - none.</div><div class="ttdef"><b>Definition:</b> course.cpp:7</div></div>
+<div class="ttc" id="aclassCourse_html_ac9f2f4c4165ad66b459945eace513aef"><div class="ttname"><a href="classCourse.html#ac9f2f4c4165ad66b459945eace513aef">Course::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;o_stream, const Course &amp;course)</div><div class="ttdoc">Print course information to output stream.</div><div class="ttdef"><b>Definition:</b> course.cpp:44</div></div>
+<div class="ttc" id="aclassCourse_html_a90894f717de69fae3302b8b43ec1cf28"><div class="ttname"><a href="classCourse.html#a90894f717de69fae3302b8b43ec1cf28">Course::read_from_bin</a></div><div class="ttdeci">bool read_from_bin(std::ifstream &amp;if_stream)</div><div class="ttdoc">Read course from binary file.</div><div class="ttdef"><b>Definition:</b> course.cpp:67</div></div>
+<div class="ttc" id="aclassCourse_html_a66eb944359b5a4e80845fe4021f2cc18"><div class="ttname"><a href="classCourse.html#a66eb944359b5a4e80845fe4021f2cc18">Course::write_to_bin</a></div><div class="ttdeci">bool write_to_bin(std::ofstream &amp;of_stream)</div><div class="ttdoc">Write course to binary file.</div><div class="ttdef"><b>Definition:</b> course.cpp:54</div></div>
+<div class="ttc" id="aclassCourse_html"><div class="ttname"><a href="classCourse.html">Course</a></div><div class="ttdoc">A course only keeps its name and its type (CourseType)</div><div class="ttdef"><b>Definition:</b> course.hpp:9</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

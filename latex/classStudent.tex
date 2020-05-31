@@ -1,11 +1,23 @@
 \hypertarget{classStudent}{}\doxysection{Student Class Reference}
 \label{classStudent}\index{Student@{Student}}
+
+
+The student class stored a lot of information, including pointers to pending courses and instances of passed courses.  
+
+
+
+
+{\ttfamily \#include $<$student.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{classStudent_af9168cedbfa5565cf0b20c1a9d3f5c9d}\label{classStudent_af9168cedbfa5565cf0b20c1a9d3f5c9d}} 
+\mbox{\hyperlink{classStudent_af9168cedbfa5565cf0b20c1a9d3f5c9d}{Student}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for empty student. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classStudent_a44954d69401c871e7f2ec5db2b7214f3}\label{classStudent_a44954d69401c871e7f2ec5db2b7214f3}} 
-{\bfseries Student} (int fac\+\_\+number, \mbox{\hyperlink{classMajor}{Major}} $\ast$major, int group, String name, int year=1, Student\+Status status=Student\+Status\+::active)
-\item 
+\mbox{\hyperlink{classStudent_a44954d69401c871e7f2ec5db2b7214f3}{Student}} (int fac\+\_\+number, \mbox{\hyperlink{classMajor}{Major}} $\ast$major, int group, String name, int year=1, Student\+Status status=Student\+Status\+::active)
+\begin{DoxyCompactList}\small\item\em Constructor for student ready to be added to the database. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classStudent_a863c1ff49ee0442b782d1401f8ede8c8}\label{classStudent_a863c1ff49ee0442b782d1401f8ede8c8}} 
 String \mbox{\hyperlink{classStudent_a863c1ff49ee0442b782d1401f8ede8c8}{get\+\_\+name}} () const
 \begin{DoxyCompactList}\small\item\em Get name of student. \end{DoxyCompactList}\item 
@@ -21,6 +33,9 @@ double \mbox{\hyperlink{classStudent_a2898a41170f70f336b9c6c0f75323259}{get\+\_\
 \mbox{\Hypertarget{classStudent_a824332476bfe19bd9f602510c13d5e86}\label{classStudent_a824332476bfe19bd9f602510c13d5e86}} 
 \mbox{\hyperlink{classMajor}{Major}} $\ast$ \mbox{\hyperlink{classStudent_a824332476bfe19bd9f602510c13d5e86}{get\+\_\+major}} () const
 \begin{DoxyCompactList}\small\item\em Get pointer to student\textquotesingle{}s major. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_acda9081de069157c9b0aad86c817cc57}\label{classStudent_acda9081de069157c9b0aad86c817cc57}} 
+int \mbox{\hyperlink{classStudent_acda9081de069157c9b0aad86c817cc57}{get\+\_\+group}} () const
+\begin{DoxyCompactList}\small\item\em Get student\textquotesingle{}s group. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classStudent_aa19c9e5823b7a5fedf871574d24e055b}\label{classStudent_aa19c9e5823b7a5fedf871574d24e055b}} 
 Student\+Status \mbox{\hyperlink{classStudent_aa19c9e5823b7a5fedf871574d24e055b}{get\+\_\+status}} () const
 \begin{DoxyCompactList}\small\item\em Get student status. \end{DoxyCompactList}\item 
@@ -69,6 +84,12 @@ bool \mbox{\hyperlink{classStudent_aaa9b98999d0faf8a80b4cc1b610957e5}{has\+\_\+p
 \mbox{\Hypertarget{classStudent_aa7cc46f68cb2f68a3af60e5488d86a36}\label{classStudent_aa7cc46f68cb2f68a3af60e5488d86a36}} 
 bool \mbox{\hyperlink{classStudent_aa7cc46f68cb2f68a3af60e5488d86a36}{enroll\+\_\+in}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course)
 \begin{DoxyCompactList}\small\item\em Enroll student in course (only if not already enrolled/passed) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a5be8cff63abf3466675309736fc561c4}\label{classStudent_a5be8cff63abf3466675309736fc561c4}} 
+bool \mbox{\hyperlink{classStudent_a5be8cff63abf3466675309736fc561c4}{is\+\_\+enrolled\+\_\+in\+\_\+or\+\_\+has\+\_\+passed}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course)
+\begin{DoxyCompactList}\small\item\em Check if student is either enrolled in or has passed course. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a81ca05911d0c3828b1e69940759cc019}\label{classStudent_a81ca05911d0c3828b1e69940759cc019}} 
+double \mbox{\hyperlink{classStudent_a81ca05911d0c3828b1e69940759cc019}{get\+\_\+grade\+\_\+for\+\_\+course}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course)
+\begin{DoxyCompactList}\small\item\em Get grade for passed course (min grade if not passed) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classStudent_ab28485b2c8f60192dde89c6089e1f7c4}\label{classStudent_ab28485b2c8f60192dde89c6089e1f7c4}} 
 bool \mbox{\hyperlink{classStudent_ab28485b2c8f60192dde89c6089e1f7c4}{graduate}} ()
 \begin{DoxyCompactList}\small\item\em Mark student as graduated (only if they can) \end{DoxyCompactList}\item 
@@ -82,6 +103,9 @@ const char $\ast$ \mbox{\hyperlink{classStudent_ad0372e02b958167ed8acc0f4d7e5c78
 std\+::ostream \& \mbox{\hyperlink{classStudent_a79a45e98d90c4a7b199e9cc3906ac4ee}{operator$<$$<$}} (std\+::ostream \&o\+\_\+stream, const \mbox{\hyperlink{classStudent}{Student}} \&student)
 \begin{DoxyCompactList}\small\item\em Print student. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+The student class stored a lot of information, including pointers to pending courses and instances of passed courses. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

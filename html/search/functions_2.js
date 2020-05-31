@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['enroll_5fin_71',['enroll_in',['../classStudent.html#aa7cc46f68cb2f68a3af60e5488d86a36',1,'Student']]]
+  ['database_91',['Database',['../classDatabase.html#a4703c80e6969d33565ea340f768fdadf',1,'Database']]]
 ];
