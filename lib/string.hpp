@@ -41,8 +41,17 @@ public:
     friend bool operator!=(const char* c_string, const String& string);
     //! Get the i-th character (returns '\0' when i out of bounds; errors when given negative i)
     char operator[](int i) const;
+    //! Read into value from binary file
+    bool read_from_bin(std::ifstream& if_stream);
+    //! Write string to end of binary file, first length then value
+    bool write_to_bin(std::ofstream& of_stream) const;
     //! Append character to string
     String& operator+=(const char new_char);
+    //! Append string to string
+    String& operator+=(const String to_append);
+    //! Append c-string to string
+    String& operator+=(const char* to_append);
+    //! Free dynamic memory allocated by string
     ~String();
     //! Set new value for string and update length (frees old value)
     void set_value(const char* value);
@@ -56,6 +65,8 @@ public:
     double to_double() const;
     //! Same like to_double, cast to int
     int to_int() const;
+    //! Get string value as const char*
+    const char* to_c_string() const;
 };
 
 std::ostream& operator<<(std::ostream& o_stream, const String& string);

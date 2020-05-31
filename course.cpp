@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iomanip>
 #include "course.hpp"
 #include "course_type.hpp"
@@ -13,17 +14,6 @@ Course::Course(const char* name, CourseType type)
 {
     this->name = name;
     this->type = type;
-}
-
-Course::Course(const Course& other)
-{
-    this->copy_from(other);
-}
-
-void Course::copy_from(const Course& other)
-{
-    this->name = other.name;
-    this->type = other.type;
 }
 
 String Course::get_name() const
@@ -59,4 +49,30 @@ std::ostream& operator<<(std::ostream& o_stream, const Course& course)
     std::cout << std::setw(10) << "No grade" << " |";
 
     return o_stream;
+}
+
+bool Course::write_to_bin(std::ofstream& of_stream)
+{
+    if (!of_stream)
+    {
+        return false;
+    }
+
+    this->name.write_to_bin(of_stream);
+    of_stream.write((char*)&this->type, sizeof(int));
+
+    return of_stream ? true : false;
+}
+
+bool Course::read_from_bin(std::ifstream& if_stream)
+{
+    if (!if_stream)
+    {
+        return false;
+    }
+
+    this->name.read_from_bin(if_stream);
+    if_stream.read((char*)&this->type, sizeof(int));
+
+    return if_stream ? true : false;
 }

@@ -88,10 +88,23 @@ void IOHandler::print_prompt() const
     std::cout << "(susi) $ ";
 }
 
-void IOHandler::print_usage(String command, String usage) const
+void IOHandler::print_usage(String command, String usage, bool with_prefix) const
 {
-    std::cout << "Usage: ";
-    std::cout << command << " " << usage << std::endl;
+    if (with_prefix)
+    {
+        std::cout << "Usage: ";
+    }
+    std::cout << command;
+    std::cout << " ";
+
+    if (usage.get_len() < 1)
+    {
+        std::cout << "(no args)\n";
+    }
+    else
+    {
+        std::cout << usage << "\n";
+    }
 }
 
 void IOHandler::print_error(String desc) const
@@ -109,4 +122,33 @@ void IOHandler::print_success(String message) const
 {
     std::cout << "Success: ";
     std::cout << message << std::endl;
+}
+
+void IOHandler::print_help() const
+{
+    std::cout << "\nSUSI Commands:\n\n";
+
+    this->print_usage(COMMAND_ENROLL, USAGE_ENROLL, false);
+    this->print_usage(COMMAND_ADVANCE, USAGE_ADVANCE, false);
+    this->print_usage(COMMAND_CHANGE, USAGE_CHANGE, false);
+    this->print_usage(COMMAND_GRADUATE, USAGE_GRADUATE, false);
+    this->print_usage(COMMAND_INTERRUPT, USAGE_INTERRUPT, false);
+    this->print_usage(COMMAND_RESUME, USAGE_RESUME, false);
+    this->print_usage(COMMAND_PRINT, USAGE_PRINT, false);
+    this->print_usage(COMMAND_PRINT_ALL, USAGE_PRINT_ALL, false);
+    this->print_usage(COMMAND_ENROLL_IN, USAGE_ENROLL_IN, false);
+    this->print_usage(COMMAND_ADD_GRADE, USAGE_ADD_GRADE, false);
+    this->print_usage(COMMAND_PROTOCOL, USAGE_PROTOCOL, false);
+    this->print_usage(COMMAND_REPORT, USAGE_REPORT, false);
+    this->print_usage(COMMAND_OPEN, USAGE_OPEN, false);
+    this->print_usage(COMMAND_CLOSE, "", false);
+    this->print_usage(COMMAND_SAVE, "", false);
+    this->print_usage(COMMAND_SAVE_AS, USAGE_SAVE_AS, false);
+    this->print_usage(COMMAND_HELP, "", false);
+    this->print_usage(COMMAND_EXIT, "", false);
+}
+
+void IOHandler::print_exit() const
+{
+    std::cout << "Bye! :)" << std::endl;
 }

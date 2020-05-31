@@ -1,0 +1,38 @@
+\hypertarget{classString}{}\doxysection{String Class Reference}
+\label{classString}\index{String@{String}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classString_a3fba40cf6cb11735ffddc355a5ff68f4}\label{classString_a3fba40cf6cb11735ffddc355a5ff68f4}} 
+{\bfseries String} (const char $\ast$str)
+\item 
+\mbox{\Hypertarget{classString_afc158dffcdf56e601bd640cbacdfcd3c}\label{classString_afc158dffcdf56e601bd640cbacdfcd3c}} 
+{\bfseries String} (const \mbox{\hyperlink{classString}{String}} \&other)
+\item 
+\mbox{\Hypertarget{classString_a734f34a0b7a42bcad30c368d6e8c5469}\label{classString_a734f34a0b7a42bcad30c368d6e8c5469}} 
+\mbox{\hyperlink{classString}{String}} \& {\bfseries operator=} (const \mbox{\hyperlink{classString}{String}} \&other)
+\item 
+\mbox{\Hypertarget{classString_ac86762e58f690b9000fa7eb03dc3b36c}\label{classString_ac86762e58f690b9000fa7eb03dc3b36c}} 
+\mbox{\hyperlink{classString}{String}} \& \mbox{\hyperlink{classString_ac86762e58f690b9000fa7eb03dc3b36c}{operator=}} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Replace string value with str (frees old value) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classString_a18508c89c1c4888bf7ec71406a316b68}\label{classString_a18508c89c1c4888bf7ec71406a316b68}} 
+char \mbox{\hyperlink{classString_a18508c89c1c4888bf7ec71406a316b68}{operator\mbox{[}$\,$\mbox{]}}} (int i)
+\begin{DoxyCompactList}\small\item\em Get the i-\/th character (returns null char when i out of bounds; errors when given negative i) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classString_af46fa9fe32c52c8bb55fb50ce01bb2b6}\label{classString_af46fa9fe32c52c8bb55fb50ce01bb2b6}} 
+void \mbox{\hyperlink{classString_af46fa9fe32c52c8bb55fb50ce01bb2b6}{set\+\_\+value}} (const char $\ast$value)
+\begin{DoxyCompactList}\small\item\em Set new value for string and update length (frees old value) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classString_a28542204e3383f9ca2abb37bfa5f9dec}\label{classString_a28542204e3383f9ca2abb37bfa5f9dec}} 
+std\+::ostream \& \mbox{\hyperlink{classString_a28542204e3383f9ca2abb37bfa5f9dec}{operator$<$$<$}} (std\+::ostream \&o\+\_\+stream, const \mbox{\hyperlink{classString}{String}} \&string)
+\begin{DoxyCompactList}\small\item\em Feed string to output stream (i.\+e. cout) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classString_a5bb3e359fe03e4cd5a588aa705740eee}\label{classString_a5bb3e359fe03e4cd5a588aa705740eee}} 
+std\+::istream \& \mbox{\hyperlink{classString_a5bb3e359fe03e4cd5a588aa705740eee}{operator$>$$>$}} (std\+::istream \&i\+\_\+stream, \mbox{\hyperlink{classString}{String}} \&string)
+\begin{DoxyCompactList}\small\item\em Get string from ionput stream (i.\+e. cin) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+string.\+hpp\item 
+string.\+cpp\end{DoxyCompactItemize}

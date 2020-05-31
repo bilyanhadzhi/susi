@@ -39,6 +39,8 @@ public:
     double get_gpa() const;
     //! Get pointer to student's major
     Major* get_major() const;
+    //! Get student's group
+    int get_group() const;
     //! Get student status
     StudentStatus get_status() const;
     //! Get a list of all courses the student has not yet passed

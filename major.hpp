@@ -15,9 +15,13 @@ private:
     void free_memory();
 
 public:
+    //! Default constructor
     Major(const char* name = "", int max_years = MAX_YEAR);
+    //! Copy constructor
     Major(const Major& other);
+    //! Turn into a copy of another major
     Major& operator=(const Major& other);
+    //! Delete dynamic array of course-vectors
     ~Major();
     //! Add course to year
     void add_course(Course* course, int year);
@@ -27,6 +31,10 @@ public:
     int get_max_years() const;
     //! Get courses (can't be changed)
     const Vector<Course*>* get_courses() const;
+    //! Write major to binary file
+    bool write_to_bin(std::ofstream& of_stream);
+    //! Read major from binary file
+    bool read_from_bin(std::ifstream& if_stream);
 };
 
 #endif // MAJOR_HPP

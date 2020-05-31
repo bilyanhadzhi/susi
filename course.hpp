@@ -9,12 +9,12 @@ class Course
 private:
     String name;
     CourseType type;
-    void copy_from(const Course& other);
 
 public:
+    //! Default constructor with empty name and CourseType - none
     Course();
+    //! Constructor with course name and a CourseType
     Course(const char* name, CourseType type);
-    Course(const Course& other);
     //! Get course name
     String get_name() const;
     //! Get type of course
@@ -23,6 +23,10 @@ public:
     const char* get_type_name() const;
     //! Print course information to output stream
     friend std::ostream& operator<<(std::ostream& o_stream, const Course& course);
+    //! Write course to binary file
+    bool write_to_bin(std::ofstream& of_stream);
+    //! Read course from binary file
+    bool read_from_bin(std::ifstream& if_stream);
 };
 
 #endif // COURSE_HPP

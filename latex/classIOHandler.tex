@@ -1,0 +1,41 @@
+\hypertarget{classIOHandler}{}\doxysection{I\+O\+Handler Class Reference}
+\label{classIOHandler}\index{IOHandler@{IOHandler}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classIOHandler_a0a7c014ac1d9eecc7c334f931d281f1c}\label{classIOHandler_a0a7c014ac1d9eecc7c334f931d281f1c}} 
+void \mbox{\hyperlink{classIOHandler_a0a7c014ac1d9eecc7c334f931d281f1c}{input\+\_\+command}} ()
+\begin{DoxyCompactList}\small\item\em Get first string from the console. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_ad5c8f1760dfcb0ea6625836228fba80e}\label{classIOHandler_ad5c8f1760dfcb0ea6625836228fba80e}} 
+void \mbox{\hyperlink{classIOHandler_ad5c8f1760dfcb0ea6625836228fba80e}{input\+\_\+args}} (std\+::istream \&i\+\_\+stream)
+\begin{DoxyCompactList}\small\item\em Get argument list (works for files, too) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a39b277e934e16aa909d3723ae6d41ec0}\label{classIOHandler_a39b277e934e16aa909d3723ae6d41ec0}} 
+String \mbox{\hyperlink{classIOHandler_a39b277e934e16aa909d3723ae6d41ec0}{get\+\_\+command}} () const
+\begin{DoxyCompactList}\small\item\em Get current command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a9b81418f49addf83ea415b1571495b0d}\label{classIOHandler_a9b81418f49addf83ea415b1571495b0d}} 
+Vector$<$ String $>$ \mbox{\hyperlink{classIOHandler_a9b81418f49addf83ea415b1571495b0d}{get\+\_\+args}} () const
+\begin{DoxyCompactList}\small\item\em Get current arguments in a list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a2580dd1382324c8d73891aa343c0ad8f}\label{classIOHandler_a2580dd1382324c8d73891aa343c0ad8f}} 
+bool \mbox{\hyperlink{classIOHandler_a2580dd1382324c8d73891aa343c0ad8f}{check\+\_\+number\+\_\+of\+\_\+arguments}} (int num\+\_\+of\+\_\+args) const
+\begin{DoxyCompactList}\small\item\em Returns whether the number of current arguments is \textquotesingle{}num\+\_\+of\+\_\+args\textquotesingle{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a9b96b2efe8de040e5571cef1add548f2}\label{classIOHandler_a9b96b2efe8de040e5571cef1add548f2}} 
+void \mbox{\hyperlink{classIOHandler_a9b96b2efe8de040e5571cef1add548f2}{print\+\_\+prompt}} () const
+\begin{DoxyCompactList}\small\item\em Print shell prompt. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a45378b25d654e0c82c954a2338dae098}\label{classIOHandler_a45378b25d654e0c82c954a2338dae098}} 
+void \mbox{\hyperlink{classIOHandler_a45378b25d654e0c82c954a2338dae098}{print\+\_\+usage}} (String command, String usage) const
+\begin{DoxyCompactList}\small\item\em Print usage of command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a3b31ed47d33cd1db1708bd534363913c}\label{classIOHandler_a3b31ed47d33cd1db1708bd534363913c}} 
+void \mbox{\hyperlink{classIOHandler_a3b31ed47d33cd1db1708bd534363913c}{print\+\_\+error}} (String desc) const
+\begin{DoxyCompactList}\small\item\em Print error with description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a493194663de8187c4e6df95a3d419cc8}\label{classIOHandler_a493194663de8187c4e6df95a3d419cc8}} 
+void \mbox{\hyperlink{classIOHandler_a493194663de8187c4e6df95a3d419cc8}{print\+\_\+unknown\+\_\+command}} () const
+\begin{DoxyCompactList}\small\item\em Print unknown command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIOHandler_a9d81fc2b6b1097064da320ae86e59da3}\label{classIOHandler_a9d81fc2b6b1097064da320ae86e59da3}} 
+void \mbox{\hyperlink{classIOHandler_a9d81fc2b6b1097064da320ae86e59da3}{print\+\_\+success}} (String message) const
+\begin{DoxyCompactList}\small\item\em Print success with message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+io\+\_\+handler.\+hpp\item 
+io\+\_\+handler.\+cpp\end{DoxyCompactItemize}

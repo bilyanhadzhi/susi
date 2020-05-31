@@ -11,11 +11,10 @@
 class SUSI
 {
 private:
-    // A class that deals with getting commands
+    //! A class that deals with getting commands
     IOHandler io_handler;
-    // A class that keeps our data:
+    //! A class that keeps our data:
     Database database;
-    // Functions to handle each command
     void handle_command_enroll();
     void handle_command_advance();
     void handle_command_change();
@@ -28,8 +27,15 @@ private:
     void handle_command_add_grade();
     void handle_command_protocol();
     void handle_command_report();
+    void handle_command_open();
+    void handle_command_close();
+    void handle_command_save();
+    void handle_command_save_as();
+    void handle_command_help();
+    void handle_command_exit();
 
 public:
+    //! Run the main app loop
     void run();
 };
 

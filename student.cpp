@@ -132,6 +132,11 @@ double Student::get_gpa() const
     return this->gpa;
 }
 
+int Student::get_group() const
+{
+    return this->group;
+}
+
 Vector<Course*> Student::get_pending_courses() const
 {
     return this->pending_courses;

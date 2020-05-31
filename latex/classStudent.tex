@@ -1,0 +1,89 @@
+\hypertarget{classStudent}{}\doxysection{Student Class Reference}
+\label{classStudent}\index{Student@{Student}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classStudent_a44954d69401c871e7f2ec5db2b7214f3}\label{classStudent_a44954d69401c871e7f2ec5db2b7214f3}} 
+{\bfseries Student} (int fac\+\_\+number, \mbox{\hyperlink{classMajor}{Major}} $\ast$major, int group, String name, int year=1, Student\+Status status=Student\+Status\+::active)
+\item 
+\mbox{\Hypertarget{classStudent_a863c1ff49ee0442b782d1401f8ede8c8}\label{classStudent_a863c1ff49ee0442b782d1401f8ede8c8}} 
+String \mbox{\hyperlink{classStudent_a863c1ff49ee0442b782d1401f8ede8c8}{get\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Get name of student. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_abafc0c283e35a69074c7e1159222c18f}\label{classStudent_abafc0c283e35a69074c7e1159222c18f}} 
+int \mbox{\hyperlink{classStudent_abafc0c283e35a69074c7e1159222c18f}{get\+\_\+fac\+\_\+number}} () const
+\begin{DoxyCompactList}\small\item\em Get faculty number of student. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_af3ce26f6952ed2556a77c43ca458bbff}\label{classStudent_af3ce26f6952ed2556a77c43ca458bbff}} 
+int \mbox{\hyperlink{classStudent_af3ce26f6952ed2556a77c43ca458bbff}{get\+\_\+year}} () const
+\begin{DoxyCompactList}\small\item\em Get current year of student. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a2898a41170f70f336b9c6c0f75323259}\label{classStudent_a2898a41170f70f336b9c6c0f75323259}} 
+double \mbox{\hyperlink{classStudent_a2898a41170f70f336b9c6c0f75323259}{get\+\_\+gpa}} () const
+\begin{DoxyCompactList}\small\item\em Get G\+PA of studnet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a824332476bfe19bd9f602510c13d5e86}\label{classStudent_a824332476bfe19bd9f602510c13d5e86}} 
+\mbox{\hyperlink{classMajor}{Major}} $\ast$ \mbox{\hyperlink{classStudent_a824332476bfe19bd9f602510c13d5e86}{get\+\_\+major}} () const
+\begin{DoxyCompactList}\small\item\em Get pointer to student\textquotesingle{}s major. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_aa19c9e5823b7a5fedf871574d24e055b}\label{classStudent_aa19c9e5823b7a5fedf871574d24e055b}} 
+Student\+Status \mbox{\hyperlink{classStudent_aa19c9e5823b7a5fedf871574d24e055b}{get\+\_\+status}} () const
+\begin{DoxyCompactList}\small\item\em Get student status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a0d48d5dfe748f7742cb2f06b59f18109}\label{classStudent_a0d48d5dfe748f7742cb2f06b59f18109}} 
+Vector$<$ \mbox{\hyperlink{classCourse}{Course}} $\ast$ $>$ \mbox{\hyperlink{classStudent_a0d48d5dfe748f7742cb2f06b59f18109}{get\+\_\+pending\+\_\+courses}} () const
+\begin{DoxyCompactList}\small\item\em Get a list of all courses the student has not yet passed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a5bcd722de36090c0d56788d0305b4dc2}\label{classStudent_a5bcd722de36090c0d56788d0305b4dc2}} 
+\mbox{\hyperlink{classCourse}{Course}} $\ast$ \mbox{\hyperlink{classStudent_a5bcd722de36090c0d56788d0305b4dc2}{get\+\_\+enrolled\+\_\+course}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course) const
+\begin{DoxyCompactList}\small\item\em Get course if student is enrolled; return nullptr otherwise. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a53ce9ed2af28d6a1daa441df4bf613bb}\label{classStudent_a53ce9ed2af28d6a1daa441df4bf613bb}} 
+const Vector$<$ \mbox{\hyperlink{classPassedCourse}{Passed\+Course}} $>$ \& \mbox{\hyperlink{classStudent_a53ce9ed2af28d6a1daa441df4bf613bb}{get\+\_\+passed\+\_\+courses}} () const
+\begin{DoxyCompactList}\small\item\em Get all passed courses for student. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a40d280a4e42fe3849505ec0c61fbf3f3}\label{classStudent_a40d280a4e42fe3849505ec0c61fbf3f3}} 
+bool \mbox{\hyperlink{classStudent_a40d280a4e42fe3849505ec0c61fbf3f3}{pass\+\_\+course}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course, double grade)
+\begin{DoxyCompactList}\small\item\em Remove course pointer from pending and create an instance of a finished course. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a781e5b519757e5da224eb4fe0fadb4a0}\label{classStudent_a781e5b519757e5da224eb4fe0fadb4a0}} 
+bool \mbox{\hyperlink{classStudent_a781e5b519757e5da224eb4fe0fadb4a0}{advance\+\_\+year}} ()
+\begin{DoxyCompactList}\small\item\em Increment student\textquotesingle{}s year. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a45e67c0b44c2b4b64686cd40b17b1fd4}\label{classStudent_a45e67c0b44c2b4b64686cd40b17b1fd4}} 
+bool \mbox{\hyperlink{classStudent_a45e67c0b44c2b4b64686cd40b17b1fd4}{set\+\_\+group}} (int group)
+\begin{DoxyCompactList}\small\item\em Change group of student; return whether successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a4518a489e512613c7cf7760cde67df76}\label{classStudent_a4518a489e512613c7cf7760cde67df76}} 
+bool \mbox{\hyperlink{classStudent_a4518a489e512613c7cf7760cde67df76}{set\+\_\+major}} (\mbox{\hyperlink{classMajor}{Major}} $\ast$major)
+\begin{DoxyCompactList}\small\item\em Set major. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a564b32a0044b82660318b2af812dc30c}\label{classStudent_a564b32a0044b82660318b2af812dc30c}} 
+bool \mbox{\hyperlink{classStudent_a564b32a0044b82660318b2af812dc30c}{set\+\_\+status}} (Student\+Status status)
+\begin{DoxyCompactList}\small\item\em Change student\textquotesingle{}s status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a6dbcea4a287c4aafac3a20c6c357f057}\label{classStudent_a6dbcea4a287c4aafac3a20c6c357f057}} 
+bool \mbox{\hyperlink{classStudent_a6dbcea4a287c4aafac3a20c6c357f057}{can\+\_\+enroll}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course)
+\begin{DoxyCompactList}\small\item\em Check whether this year student can enroll in course. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a669101e032c530cf0ddea442513b6ad2}\label{classStudent_a669101e032c530cf0ddea442513b6ad2}} 
+bool \mbox{\hyperlink{classStudent_a669101e032c530cf0ddea442513b6ad2}{can\+\_\+advance}} () const
+\begin{DoxyCompactList}\small\item\em Check whether student can advance to next year. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a295f0fc4f4be163f44381e7172cc3b26}\label{classStudent_a295f0fc4f4be163f44381e7172cc3b26}} 
+bool \mbox{\hyperlink{classStudent_a295f0fc4f4be163f44381e7172cc3b26}{is\+\_\+enrolled\+\_\+in}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course) const
+\begin{DoxyCompactList}\small\item\em Check if student is already enrolled in course. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_a457b048427e459f99a89776982cb4c18}\label{classStudent_a457b048427e459f99a89776982cb4c18}} 
+bool \mbox{\hyperlink{classStudent_a457b048427e459f99a89776982cb4c18}{can\+\_\+switch\+\_\+major}} (\mbox{\hyperlink{classMajor}{Major}} $\ast$major) const
+\begin{DoxyCompactList}\small\item\em Check if student can change major. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_aec9fc7a409efe88f87493da9f7598dd1}\label{classStudent_aec9fc7a409efe88f87493da9f7598dd1}} 
+bool \mbox{\hyperlink{classStudent_aec9fc7a409efe88f87493da9f7598dd1}{can\+\_\+graduate}} () const
+\begin{DoxyCompactList}\small\item\em Check whether student can graduate. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_aaa9b98999d0faf8a80b4cc1b610957e5}\label{classStudent_aaa9b98999d0faf8a80b4cc1b610957e5}} 
+bool \mbox{\hyperlink{classStudent_aaa9b98999d0faf8a80b4cc1b610957e5}{has\+\_\+passed\+\_\+course}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course) const
+\begin{DoxyCompactList}\small\item\em Check whether course has been passed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_aa7cc46f68cb2f68a3af60e5488d86a36}\label{classStudent_aa7cc46f68cb2f68a3af60e5488d86a36}} 
+bool \mbox{\hyperlink{classStudent_aa7cc46f68cb2f68a3af60e5488d86a36}{enroll\+\_\+in}} (\mbox{\hyperlink{classCourse}{Course}} $\ast$course)
+\begin{DoxyCompactList}\small\item\em Enroll student in course (only if not already enrolled/passed) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_ab28485b2c8f60192dde89c6089e1f7c4}\label{classStudent_ab28485b2c8f60192dde89c6089e1f7c4}} 
+bool \mbox{\hyperlink{classStudent_ab28485b2c8f60192dde89c6089e1f7c4}{graduate}} ()
+\begin{DoxyCompactList}\small\item\em Mark student as graduated (only if they can) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStudent_ad0372e02b958167ed8acc0f4d7e5c78a}\label{classStudent_ad0372e02b958167ed8acc0f4d7e5c78a}} 
+const char $\ast$ \mbox{\hyperlink{classStudent_ad0372e02b958167ed8acc0f4d7e5c78a}{get\+\_\+student\+\_\+type\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Get student\textquotesingle{}s status as string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classStudent_a79a45e98d90c4a7b199e9cc3906ac4ee}\label{classStudent_a79a45e98d90c4a7b199e9cc3906ac4ee}} 
+std\+::ostream \& \mbox{\hyperlink{classStudent_a79a45e98d90c4a7b199e9cc3906ac4ee}{operator$<$$<$}} (std\+::ostream \&o\+\_\+stream, const \mbox{\hyperlink{classStudent}{Student}} \&student)
+\begin{DoxyCompactList}\small\item\em Print student. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+student.\+hpp\item 
+student.\+cpp\end{DoxyCompactItemize}

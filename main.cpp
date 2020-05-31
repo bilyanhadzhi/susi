@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "lib/string.hpp"
 #include "lib/vector.hpp"
 #include "io_handler.hpp"

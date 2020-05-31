@@ -26,13 +26,17 @@ public:
     //! Print shell prompt
     void print_prompt() const;
     //! Print usage of command
-    void print_usage(String command, String usage) const;
+    void print_usage(String command, String usage = "", bool with_prefix = true) const;
     //! Print error with description
     void print_error(String desc) const;
     //! Print unknown command
     void print_unknown_command() const;
     //! Print success with message
     void print_success(String message) const;
+    //! Print help on using the app
+    void print_help() const;
+    //! Print message for exiting the application
+    void print_exit() const;
 };
 
 #endif // IO_HANDLER_HPP

@@ -1,8 +1,12 @@
+#include <fstream>
 #include "susi_database.hpp"
 
 Database::Database()
 {
-    this->populate_data();
+    // this->populate_data();
+    // this->is_loaded = true;
+    // this->save("database.db");
+    this->is_loaded = false;
 }
 
 void Database::populate_data()
@@ -34,6 +38,308 @@ void Database::populate_data()
     // Add students
     this->add_student(Student(81980, &this->majors[0], 7, "Bilyan"));
     this->add_student(Student(81964, &this->majors[0], 7, "Ivana"));
+}
+
+bool Database::save(String filename)
+{
+    if (!this->is_loaded)
+    {
+        return false;
+    }
+
+    String db_file_path = "db/";
+    db_file_path += (filename == "") ? this->file_loaded : filename;
+    std::ofstream of_stream(db_file_path.to_c_string(), std::ios::binary | std::ios::trunc);
+
+    if (!of_stream)
+    {
+        return false;
+    }
+
+    //! Save all courses
+    const int courses_count = this->courses.get_len();
+
+    if (!of_stream.write((char*)&courses_count, sizeof(int)))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < courses_count; ++i)
+    {
+        if (!this->courses[i].write_to_bin(of_stream))
+        {
+            return false;
+        }
+    }
+
+    //! Save all majors
+    const int majors_count = this->majors.get_len();
+
+    if (!of_stream.write((char*)&majors_count, sizeof(int)))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < majors_count; ++i)
+    {
+        if (!this->majors[i].get_name().write_to_bin(of_stream))
+        {
+            return false;
+        }
+
+        int major_max_years = this->majors[i].get_max_years();
+        if (!of_stream.write((char*)&major_max_years, sizeof(int)))
+        {
+            return false;
+        }
+
+        const Vector<Course*>* courses_for_major = this->majors[i].get_courses();
+        for (int j = 0; j < major_max_years; ++j)
+        {
+            const Vector<Course*> courses_for_year_of_major = courses_for_major[j];
+            const int courses_for_year_count = courses_for_year_of_major.get_len();
+
+            if (!of_stream.write((char*)&courses_for_year_count, sizeof(int)))
+            {
+                return false;
+            }
+
+            for (int k = 0; k < courses_for_year_count; ++k)
+            {
+                if (!courses_for_year_of_major[k]->get_name().write_to_bin(of_stream))
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    // Save all students
+    const int students_count = this->students.get_len();
+
+    if (!of_stream.write((char*)&students_count, sizeof(int)))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < students_count; ++i)
+    {
+        if (!this->students[i].get_name().write_to_bin(of_stream))
+        {
+            return false;
+        }
+
+        double gpa = this->students[i].get_gpa();
+        if (!of_stream.write((char*)&gpa, sizeof(double)))
+        {
+            return false;
+        }
+
+        String major_name = this->students[i].get_major()->get_name();
+        if (!major_name.write_to_bin(of_stream))
+        {
+            return false;
+        }
+
+        StudentStatus student_status = this->students[i].get_status();
+        if (!of_stream.write((char*)&student_status, sizeof(int)))
+        {
+            return false;
+        }
+
+        int fac_number = this->students[i].get_fac_number();
+        if (!of_stream.write((char*)&fac_number, sizeof(int)))
+        {
+            return false;
+        }
+
+        int year = this->students[i].get_year();
+        if (!of_stream.write((char*)&year, sizeof(int)))
+        {
+            return false;
+        }
+
+        int group = this->students[i].get_group();
+        if (!of_stream.write((char*)&group, sizeof(int)))
+        {
+            return false;
+        }
+    }
+
+    return of_stream ? true : false;
+}
+
+bool Database::load(String filename)
+{
+    if (this->is_loaded)
+    {
+        return false;
+    }
+
+    String db_file_path = "db/";
+    db_file_path += this->is_loaded ? this->file_loaded : filename;
+    std::ifstream if_stream(db_file_path.to_c_string(), std::ios::binary);
+
+    if (!if_stream)
+    {
+        return false;
+    }
+
+    if (if_stream.peek() == EOF)
+    {
+        this->is_loaded = true;
+        return true;
+    }
+
+    //! Load all courses
+    int courses_count;
+    if (!if_stream.read((char*)&courses_count, sizeof(int)))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < courses_count; ++i)
+    {
+        Course course;
+        course.read_from_bin(if_stream);
+        this->courses.push(course);
+    }
+
+    //! Load all majors
+    int majors_count;
+    if (!if_stream.read((char*)&majors_count, sizeof(int)))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < majors_count; ++i)
+    {
+        String major_name;
+        major_name.read_from_bin(if_stream);
+
+        int major_max_years;
+        if (!if_stream.read((char*)&major_max_years, sizeof(int)))
+        {
+            return false;
+        }
+
+        Major major(major_name.to_c_string(), major_max_years);
+
+        for (int j = 0; j < major_max_years; ++j)
+        {
+            int courses_for_year_count;
+            if (!if_stream.read((char*)&courses_for_year_count, sizeof(int)))
+            {
+                return false;
+            }
+
+            for (int k = 0; k < courses_for_year_count; ++k)
+            {
+                String course_name;
+
+                if (!course_name.read_from_bin(if_stream))
+                {
+                    return false;
+                }
+
+                Course* found_course = this->get_courses_by_name(course_name)[0];
+                major.add_course(found_course, k + 1);
+            }
+        }
+
+        this->majors.push(major);
+    }
+
+    // Load all students
+    int students_count = this->students.get_len();
+    if (!if_stream.read((char*)&students_count, sizeof(int)))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < students_count; ++i)
+    {
+        String student_name;
+        if (!student_name.read_from_bin(if_stream))
+        {
+            return false;
+        }
+
+        double gpa;
+        if (!if_stream.read((char*)&gpa, sizeof(double)))
+        {
+            return false;
+        }
+
+        String major_name;
+        if (!major_name.read_from_bin(if_stream))
+        {
+            return false;
+        }
+
+        Major* major = this->get_majors_by_name(major_name)[0];
+
+        StudentStatus student_status;
+        if (!if_stream.read((char*)&student_status, sizeof(int)))
+        {
+            return false;
+        }
+
+        int fac_number;
+        if (!if_stream.read((char*)&fac_number, sizeof(int)))
+        {
+            return false;
+        }
+
+        int year;
+        if (!if_stream.read((char*)&year, sizeof(int)))
+        {
+            return false;
+        }
+
+        int group;
+        if (!if_stream.read((char*)&group, sizeof(int)))
+        {
+            return false;
+        }
+
+        Student student(fac_number, major, group, student_name, year, student_status);
+        this->students.push(student);
+    }
+
+    this->is_loaded = true;
+    this->file_loaded = filename;
+    return if_stream ? true : false;
+}
+
+void Database::make_empty_file(String filename)
+{
+    String db_subdir_filename = "db/";
+    db_subdir_filename += filename;
+    std::ofstream empty_file(db_subdir_filename.to_c_string());
+    this->is_loaded = true;
+    this->file_loaded = filename;
+}
+
+bool Database::close()
+{
+    if (!this->is_loaded)
+    {
+        return false;
+    }
+
+    this->empty();
+    this->is_loaded = false;
+    return true;
+}
+
+void Database::empty()
+{
+    this->courses.empty_vector();
+    this->majors.empty_vector();
+    this->students.empty_vector();
+    this->file_loaded = "";
+    this->is_loaded = false;
 }
 
 void Database::add_student(Student student)
@@ -206,4 +512,9 @@ void Database::sort_list_of_students_by_fac_number(Vector<Student*>& list) const
         list[i] = list[min_index];
         list[min_index] = temp;
     }
+}
+
+bool Database::get_is_loaded()
+{
+    return this->is_loaded;
 }

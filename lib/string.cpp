@@ -1,3 +1,4 @@
+#include <fstream>
 #include <cstring>
 #include <cassert>
 #include "string.hpp"
@@ -252,6 +253,40 @@ String& String::operator+=(const char new_char)
     return *this;
 }
 
+String& String::operator+=(const char* to_append)
+{
+    assert(to_append != nullptr);
+
+    const int to_append_len = strlen(to_append);
+    if (to_append_len < 1)
+    {
+        return *this;
+    }
+
+    for (int i = 0; i < to_append_len; ++i)
+    {
+        *this += to_append[i];
+    }
+
+    return *this;
+}
+
+String& String::operator+=(const String to_append)
+{
+    const int to_append_len = to_append.get_len();
+    if (to_append_len < 1)
+    {
+        return *this;
+    }
+
+    for (int i = 0; i < to_append_len; ++i)
+    {
+        *this += to_append[i];
+    }
+
+    return *this;
+}
+
 int String::get_len() const
 {
     return this->len;
@@ -273,7 +308,9 @@ bool String::is_valid_number(bool check_for_int_only) const
         is_valid = false;
     }
 
-    for (int i = 0; i < len && is_valid; ++i)
+    int beg_index = this->value[0] == '-' || this->value[0] == '+';
+
+    for (int i = beg_index; i < len && is_valid; ++i)
     {
         if (!isdigit(this->value[i]))
         {
@@ -365,7 +402,7 @@ double String::to_double() const
         result += 10 / divide_by;
     }
 
-    bool is_negative = has_sign && this->value[i] == '-';
+    bool is_negative = has_sign && this->value[0] == '-';
 
     return is_negative ? -result : result;
 }
@@ -373,4 +410,60 @@ double String::to_double() const
 int String::to_int() const
 {
     return (int)this->to_double();
+}
+
+bool String::read_from_bin(std::ifstream& if_stream)
+{
+    if (if_stream.eof())
+    {
+        return false;
+    }
+
+    int value_len;
+    if (!if_stream.read((char*)&value_len, sizeof(int)))
+    {
+        return false;
+    }
+
+    char* new_value = new char[value_len + 1];
+
+    if (!if_stream.read(new_value, value_len))
+    {
+        delete[] new_value;
+        return false;
+    }
+
+    new_value[value_len] = '\0';
+
+    this->set_value(new_value);
+
+    delete[] new_value;
+    return true;
+
+}
+
+bool String::write_to_bin(std::ofstream& of_stream) const
+{
+    if (this->len < 1)
+    {
+        return false;
+    }
+
+    if (!of_stream.write((char*)&this->len, sizeof(int)))
+    {
+        return false;
+    }
+
+    if (!of_stream.write(this->value, this->len))
+    {
+        return false;
+    }
+
+    return true;
+
+}
+
+const char* String::to_c_string() const
+{
+    return this->value;
 }

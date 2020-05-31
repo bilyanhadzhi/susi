@@ -1,6 +1,7 @@
 #ifndef SUSI_DATABASE_HPP
 #define SUSI_DATABASE_HPP
 
+#include <fstream>
 #include "lib/string.hpp"
 #include "lib/vector.hpp"
 #include "major.hpp"
@@ -10,16 +11,18 @@
 class Database
 {
 private:
-    Vector<Major> majors;
     Vector<Course> courses;
+    Vector<Major> majors;
     Vector<Student> students;
+    String file_loaded;
+    bool is_loaded;
     //! Dummy function to add some courses
     void populate_data();
 public:
+    //! Default constructor
     Database();
     //! Add new student to database
     void add_student(Student student);
-    // Functions for accessing the database
     //! Get all majors via pointers
     Vector<Major*> get_majors() const;
     //! Get all courses via pointers
@@ -40,6 +43,18 @@ public:
     void sort_list_of_students_by_fac_number(Vector<Student*>& list) const;
     //! Filtera list of students by their major
     Vector<Student*> filter_students_by_major(const Vector<Student*>& list, Major* major) const;
+    //! Empty the database
+    void empty();
+    //! Save information to binary file
+    bool save(String filename = "");
+    //! Load information
+    bool load(String filename = "");
+    //! Make empty file at destination
+    void make_empty_file(String filename);
+    //! Close file without saving
+    bool close();
+    //! Check if there is a db file opened
+    bool get_is_loaded();
 };
 
 #endif // SUSI_DATABASE_HPP

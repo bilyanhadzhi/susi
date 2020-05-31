@@ -44,10 +44,6 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
-# doxygen
-html/
-latex/
-
 # dummy text
 random.txt
 

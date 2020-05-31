@@ -17,6 +17,11 @@
 #define COMMAND_ADD_GRADE   "addgrade"
 #define COMMAND_PROTOCOL    "protocol"
 #define COMMAND_REPORT      "report"
+#define COMMAND_OPEN        "open"
+#define COMMAND_CLOSE       "close"
+#define COMMAND_SAVE        "save"
+#define COMMAND_SAVE_AS     "save_as"
+#define COMMAND_HELP        "help"
 #define COMMAND_EXIT        "exit"
 
 // Usage of commands
@@ -32,6 +37,8 @@
 #define USAGE_ADD_GRADE     "<fn> <course> <grade>"
 #define USAGE_PROTOCOL      "<course>"
 #define USAGE_REPORT        "<fn>"
+#define USAGE_OPEN          "<filename>"
+#define USAGE_SAVE_AS       "<filename>"
 
 // Keywords for command 'change'
 #define ARGUMENT_CHANGE_PROGRAM "program"

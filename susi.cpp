@@ -63,9 +63,29 @@ void SUSI::run()
         {
             this->handle_command_report();
         }
+        else if (command == COMMAND_OPEN)
+        {
+            this->handle_command_open();
+        }
+        else if (command == COMMAND_CLOSE)
+        {
+            this->handle_command_close();
+        }
+        else if (command == COMMAND_SAVE)
+        {
+            this->handle_command_save();
+        }
+        else if (command == COMMAND_SAVE_AS)
+        {
+            this->handle_command_save_as();
+        }
+        else if (command == COMMAND_HELP)
+        {
+            this->handle_command_help();
+        }
         else if (command == COMMAND_EXIT)
         {
-            std::cout << "Bye! :)" << std::endl;
+            this->handle_command_exit();
         }
         else
         {
@@ -81,23 +101,43 @@ void SUSI::run()
             }
         }
     }
-    while (this->io_handler.get_command() != "exit");
+    while (this->io_handler.get_command() != COMMAND_EXIT);
 }
 
 void SUSI::handle_command_enroll()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_ENROLL, USAGE_ENROLL);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_ENROLL, USAGE_ENROLL);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
 
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
+
     if (!this->io_handler.check_number_of_arguments(4))
     {
         this->io_handler.print_usage(COMMAND_ENROLL, USAGE_ENROLL);
+        return;
+    }
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
         return;
     }
 
@@ -132,12 +172,26 @@ void SUSI::handle_command_advance()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_ADVANCE, USAGE_ADVANCE);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_ADVANCE, USAGE_ADVANCE);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(1))
     {
@@ -167,26 +221,39 @@ void SUSI::handle_command_advance()
         return;
     }
 
-    if (student->advance_year())
-    {
-        this->io_handler.print_success("Student advanced successfully");
-    }
-    else
+    if (!student->advance_year())
     {
         this->io_handler.print_error("Student could not advance");
+        return;
     }
+
+    this->io_handler.print_success("Student advanced successfully");
 }
 
 void SUSI::handle_command_change()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_CHANGE, USAGE_CHANGE);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_CHANGE, USAGE_CHANGE);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(3))
     {
@@ -317,12 +384,26 @@ void SUSI::handle_command_graduate()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_GRADUATE, USAGE_GRADUATE);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_GRADUATE, USAGE_GRADUATE);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(1))
     {
@@ -367,12 +448,26 @@ void SUSI::handle_command_interrupt()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_INTERRUPT, USAGE_INTERRUPT);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_INTERRUPT, USAGE_INTERRUPT);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(1))
     {
@@ -408,12 +503,26 @@ void SUSI::handle_command_resume()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_RESUME, USAGE_RESUME);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_RESUME, USAGE_RESUME);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(1))
     {
@@ -462,12 +571,26 @@ void SUSI::handle_command_print()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_PRINT, USAGE_PRINT);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_PRINT, USAGE_PRINT);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(1))
     {
@@ -498,12 +621,26 @@ void SUSI::handle_command_print_all()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_PRINT_ALL, USAGE_PRINT_ALL);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_PRINT_ALL, USAGE_PRINT_ALL);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(2))
     {
@@ -547,12 +684,26 @@ void SUSI::handle_command_enroll_in()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_ENROLL_IN, USAGE_ENROLL_IN);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_ENROLL_IN, USAGE_ENROLL_IN);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(2))
     {
@@ -613,12 +764,26 @@ void SUSI::handle_command_add_grade()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_ADD_GRADE, USAGE_ADD_GRADE);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_ADD_GRADE, USAGE_ADD_GRADE);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(3))
     {
@@ -688,12 +853,26 @@ void SUSI::handle_command_protocol()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_PROTOCOL, USAGE_PROTOCOL);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_PROTOCOL, USAGE_PROTOCOL);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(1))
     {
@@ -768,12 +947,26 @@ void SUSI::handle_command_report()
 {
     if (std::cin.peek() == '\n')
     {
-        this->io_handler.print_usage(COMMAND_REPORT, USAGE_REPORT);
+        if (!this->database.get_is_loaded())
+        {
+            this->io_handler.print_error("No file loaded");
+        }
+        else
+        {
+            this->io_handler.print_usage(COMMAND_REPORT, USAGE_REPORT);
+        }
+
         std::cin.ignore();
         return;
     }
 
     this->io_handler.input_args(std::cin);
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file loaded");
+        return;
+    }
 
     if (!this->io_handler.check_number_of_arguments(1))
     {
@@ -842,4 +1035,128 @@ void SUSI::handle_command_report()
 
     std::cout << "GPA: " << std::setprecision(2) << std::fixed << student->get_gpa() << "\n\n";
     std::cout << "(Pending courses are counted as " << std::setprecision(2) << std::fixed << (double)MIN_COURSE_GRADE << ")\n\n";
+}
+
+void SUSI::handle_command_open()
+{
+    if (std::cin.peek() == '\n')
+    {
+        this->io_handler.print_usage(COMMAND_OPEN, USAGE_OPEN);
+        std::cin.ignore();
+        return;
+    }
+
+    this->io_handler.input_args(std::cin);
+
+    if (this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("A file is already opened");
+        return;
+    }
+
+    if (!this->io_handler.check_number_of_arguments(1))
+    {
+        this->io_handler.print_usage(COMMAND_OPEN, USAGE_OPEN);
+        return;
+    }
+
+    Vector<String> arguments = this->io_handler.get_args();
+    if (!this->database.load(arguments[0]))
+    {
+        this->database.make_empty_file(arguments[0]);
+        this->io_handler.print_success("File did not exist: created a new one");
+        return;
+    }
+
+    this->io_handler.print_success("File loaded");
+}
+
+void SUSI::handle_command_close()
+{
+    if (std::cin.peek() != '\n')
+    {
+        this->io_handler.input_args(std::cin);
+        this->io_handler.print_usage(COMMAND_CLOSE);
+        return;
+    }
+
+    std::cin.ignore();
+    if (!this->database.close())
+    {
+        this->io_handler.print_error("No file to close");
+        return;
+    }
+
+    this->io_handler.print_success("File closed");
+}
+
+void SUSI::handle_command_save()
+{
+    if (std::cin.peek() != '\n')
+    {
+        this->io_handler.input_args(std::cin);
+        this->io_handler.print_usage(COMMAND_SAVE);
+        return;
+    }
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file is loaded");
+        return;
+    }
+
+    if (!this->database.save())
+    {
+        this->io_handler.print_error("Could not save file");
+        return;
+    }
+    this->io_handler.print_success("Saved file");
+}
+
+void SUSI::handle_command_save_as()
+{
+    if (std::cin.peek() == '\n')
+    {
+        this->io_handler.print_usage(COMMAND_SAVE_AS, USAGE_SAVE_AS);
+        std::cin.ignore();
+        return;
+    }
+
+    this->io_handler.input_args(std::cin);
+    if (!this->io_handler.check_number_of_arguments(1))
+    {
+        this->io_handler.print_usage(COMMAND_SAVE_AS, USAGE_SAVE_AS);
+        return;
+    }
+
+    if (!this->database.get_is_loaded())
+    {
+        this->io_handler.print_error("No file is loaded");
+        return;
+    }
+
+    Vector<String> arguments = this->io_handler.get_args();
+
+    if (!this->database.save(arguments[0]))
+    {
+        this->io_handler.print_error("Could not save");
+        return;
+    }
+
+    String msg = "File saved at \"db/";
+    msg += arguments[0];
+    msg += "\"";
+
+    this->io_handler.print_success(msg);
+}
+
+void SUSI::handle_command_help()
+{
+    this->io_handler.print_help();
+}
+
+void SUSI::handle_command_exit()
+{
+    this->database.save();
+    this->io_handler.print_exit();
 }

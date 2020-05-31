@@ -1,0 +1,38 @@
+\hypertarget{classDatabase}{}\doxysection{Database Class Reference}
+\label{classDatabase}\index{Database@{Database}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDatabase_a915377cfed26e909fd9eaa3e6a88727e}\label{classDatabase_a915377cfed26e909fd9eaa3e6a88727e}} 
+void \mbox{\hyperlink{classDatabase_a915377cfed26e909fd9eaa3e6a88727e}{add\+\_\+student}} (\mbox{\hyperlink{classStudent}{Student}} student)
+\begin{DoxyCompactList}\small\item\em Add new student to database. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_a604778dc8115856a459ba62c6e9543a2}\label{classDatabase_a604778dc8115856a459ba62c6e9543a2}} 
+Vector$<$ \mbox{\hyperlink{classMajor}{Major}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_a604778dc8115856a459ba62c6e9543a2}{get\+\_\+majors}} () const
+\begin{DoxyCompactList}\small\item\em Get all majors via pointers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_abec6ac4f8ba34b8d8425b978bf5af907}\label{classDatabase_abec6ac4f8ba34b8d8425b978bf5af907}} 
+Vector$<$ \mbox{\hyperlink{classCourse}{Course}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_abec6ac4f8ba34b8d8425b978bf5af907}{get\+\_\+courses}} () const
+\begin{DoxyCompactList}\small\item\em Get all courses via pointers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_acd274745e10e36682d0109aa4661831e}\label{classDatabase_acd274745e10e36682d0109aa4661831e}} 
+Vector$<$ \mbox{\hyperlink{classStudent}{Student}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_acd274745e10e36682d0109aa4661831e}{get\+\_\+students}} () const
+\begin{DoxyCompactList}\small\item\em Get all students via pointers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_a13f57b1ee5b79da815ffb11a4e2d226d}\label{classDatabase_a13f57b1ee5b79da815ffb11a4e2d226d}} 
+Vector$<$ \mbox{\hyperlink{classMajor}{Major}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_a13f57b1ee5b79da815ffb11a4e2d226d}{get\+\_\+majors\+\_\+by\+\_\+name}} (String name) const
+\begin{DoxyCompactList}\small\item\em Get majors with matching name (we shouldn\textquotesingle{}t have repeats) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_a438cb399a2e4467819b3085593a32c13}\label{classDatabase_a438cb399a2e4467819b3085593a32c13}} 
+Vector$<$ \mbox{\hyperlink{classCourse}{Course}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_a438cb399a2e4467819b3085593a32c13}{get\+\_\+courses\+\_\+by\+\_\+name}} (String name) const
+\begin{DoxyCompactList}\small\item\em Get courses with matching name (we shouldn\textquotesingle{}t have repeats) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_acbb56c2152d64fe5a8d582d3fbf1518d}\label{classDatabase_acbb56c2152d64fe5a8d582d3fbf1518d}} 
+\mbox{\hyperlink{classStudent}{Student}} $\ast$ \mbox{\hyperlink{classDatabase_acbb56c2152d64fe5a8d582d3fbf1518d}{get\+\_\+student\+\_\+by\+\_\+fac\+\_\+number}} (int fac\+\_\+number) const
+\begin{DoxyCompactList}\small\item\em Get students with matching faculty number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_a82ee24eb31dc473959aa80f00f0609c5}\label{classDatabase_a82ee24eb31dc473959aa80f00f0609c5}} 
+Vector$<$ \mbox{\hyperlink{classStudent}{Student}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_a82ee24eb31dc473959aa80f00f0609c5}{get\+\_\+students\+\_\+by\+\_\+major\+\_\+and\+\_\+year}} (\mbox{\hyperlink{classMajor}{Major}} $\ast$major, int year) const
+\begin{DoxyCompactList}\small\item\em Get students by major and year. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabase_ace2287bfb57fd48c594aaaaf74e246c2}\label{classDatabase_ace2287bfb57fd48c594aaaaf74e246c2}} 
+Vector$<$ \mbox{\hyperlink{classPassedCourse}{Passed\+Course}} $\ast$ $>$ \mbox{\hyperlink{classDatabase_ace2287bfb57fd48c594aaaaf74e246c2}{get\+\_\+passed\+\_\+courses\+\_\+for\+\_\+student}} (\mbox{\hyperlink{classStudent}{Student}} $\ast$student) const
+\begin{DoxyCompactList}\small\item\em Get all passed courses for a given student. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+susi\+\_\+database.\+hpp\item 
+susi\+\_\+database.\+cpp\end{DoxyCompactItemize}
